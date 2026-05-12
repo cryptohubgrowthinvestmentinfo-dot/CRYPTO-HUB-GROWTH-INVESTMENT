@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRYPTO HUB GROWTH INVESTMENT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #071426, #0d1f3c, #122b52);
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #00d9ff;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      margin-left: 25px;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d9ff;
+    }
+
+    .btn {
+      background: #00d9ff;
+      color: #071426;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      display: inline-block;
+      transition: 0.3s;
+      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 8%;
+      min-height: 90vh;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      color: #00d9ff;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #d6e4ff;
+    }
+
+    .hero-image {
+      max-width: 500px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 8%;
+      background: rgba(255,255,255,0.04);
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-box h2 {
+      color: #00d9ff;
+      font-size: 2rem;
+    }
+
+    .live-status {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,217,255,0.08);
+      color: #00d9ff;
+      font-weight: 600;
+    }
+
+    .features {
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-title span {
+      color: #00d9ff;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.06);
+      padding: 30px;
+      border-radius: 20px;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: #00d9ff;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: #00d9ff;
+    }
+
+    .testimonials {
+      padding: 80px 8%;
+      background: rgba(255,255,255,0.03);
+      text-align: center;
+    }
+
+    .testimonial-box {
+      max-width: 800px;
+      margin: auto;
+      font-style: italic;
+      color: #d6e4ff;
+      font-size: 1.1rem;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 80px 8%;
+    }
+
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      padding: 30px 8%;
+      text-align: center;
+      background: rgba(0,0,0,0.3);
+      color: #c9d6f2;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.6rem;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">CRYPTO HUB GROWTH INVESTMENT</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Trust</a>
+      <a href="register.html" class="btn">Register</a>
+    </nav>
+  </header>
+
+  <!-- Firebase Live Status -->
+  <div class="live-status" id="liveStatus">
+    Connecting to secure live database...
+  </div>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Secure Your Financial Future with <span>Smart Crypto Investments</span></h1>
+      <p>
+        CRYPTO HUB GROWTH INVESTMENT empowers investors worldwide with trusted digital asset growth strategies, secure portfolio management, and transparent returns.
+      </p>
+      <a href="register.html" class="btn">Start Investing Today</a>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/825/825540.png" alt="Investment">
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-box">
+      <h2 id="trustedInvestors">50K+</h2>
+      <p>Trusted Investors</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="managedAssets">$120M+</h2>
+      <p>Managed Assets</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="securityRate">99.9%</h2>
+      <p>Platform Security</p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2 class="section-title">Why Choose <span>Us</span></h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Advanced Security</h3>
+        <p>Your investments are protected with top-level encryption and secure blockchain integration.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Consistent Growth</h3>
+        <p>Benefit from strategic market analysis and diversified crypto investment opportunities.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Transparent Platform</h3>
+        <p>Track your portfolio performance in real-time with complete financial transparency.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Global Access</h3>
+        <p>Invest anytime, anywhere with our secure and responsive digital platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <h2 class="section-title">Built on <span>Trust</span></h2>
+    <div class="testimonial-box" id="testimonialText">
+      “CRYPTO HUB GROWTH INVESTMENT has helped thousands of investors build confidence in crypto wealth generation through secure systems and professional investment management.”
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Join the Future of Wealth Building</h2>
+    <p>Take the next step toward financial growth and digital investment success.</p>
+    <br>
+    <a href="register.html" class="btn">Create Your Account</a>
+  </section>
+
+  <footer>
+    <p>© 2026 CRYPTO HUB GROWTH INVESTMENT | Secure. Trusted. Growing.</p>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+      authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+      databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "crypto-hub-growth-invest-9492c",
+      storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+      messagingSenderId: "946872117732",
+      appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+      measurementId: "G-CLET27VD7J"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+
+    // Live Status
+    document.getElementById("liveStatus").innerText = "Secure live database connected successfully.";
+
+    // Real-time Stats Sync
+    const statsRef = ref(database, "platformStats");
+
+    onValue(statsRef, (snapshot) => {
+      const data = snapshot.val();
+
+      if (data) {
+        if (data.trustedInvestors) {
+          document.getElementById("trustedInvestors").innerText = data.trustedInvestors;
+        }
+
+        if (data.managedAssets) {
+          document.getElementById("managedAssets").innerText = data.managedAssets;
+        }
+
+        if (data.securityRate) {
+          document.getElementById("securityRate").innerText = data.securityRate;
+        }
+
+        if (data.testimonial) {
+          document.getElementById("testimonialText").innerText = data.testimonial;
+        }
+      }
+    }, (error) => {
+      document.getElementById("liveStatus").innerText = "Database connection failed.";
+      console.error(error);
+    });
+  </script>
+
+</body>
+</html>
