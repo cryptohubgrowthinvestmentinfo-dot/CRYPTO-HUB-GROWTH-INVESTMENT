@@ -5,107 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register | CRYPTO HUB GROWTH INVESTMENT</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:Poppins; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
     body {
-      background: linear-gradient(135deg,#06131f,#0b2240);
-      color:#fff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
+      background: linear-gradient(135deg, #06131f, #0b2240);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      text-align:center;
-      padding:20px;
-      font-weight:700;
-      color:#00d9ff;
-      font-size:1.4rem;
+      text-align: center;
+      padding: 25px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #00d9ff;
     }
 
     .container {
-      flex:1;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
     .form-box {
-      width:100%;
-      max-width:450px;
-      background:rgba(255,255,255,0.06);
-      padding:30px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      max-width: 450px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 20px;
       backdrop-filter: blur(10px);
     }
 
-    h2 { text-align:center; color:#00d9ff; margin-bottom:15px; }
-
-    .input-group { margin-bottom:12px; position:relative; }
-
-    input {
-      width:100%;
-      padding:12px 40px 12px 12px;
-      border-radius:10px;
-      border:none;
-      outline:none;
-      background:rgba(255,255,255,0.08);
-      color:#fff;
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #00d9ff;
     }
 
-    input::placeholder { color:#c9d6f2; }
+    .input-group {
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #c9d6f2;
+    }
 
     .eye {
-      position:absolute;
-      right:10px;
-      top:50%;
-      transform:translateY(-50%);
-      cursor:pointer;
-      color:#00d9ff;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #00d9ff;
     }
 
     .btn {
-      width:100%;
-      padding:12px;
-      margin-top:10px;
-      border:none;
-      border-radius:30px;
-      background:#00d9ff;
-      font-weight:700;
-      cursor:pointer;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 30px;
+      background: #00d9ff;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .btn:disabled {
-      opacity:0.6;
-      cursor:not-allowed;
+    .btn:hover {
+      background: white;
     }
 
     .login {
-      text-align:center;
-      margin-top:12px;
-      font-size:0.9rem;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.9rem;
     }
 
-    .login a { color:#00d9ff; text-decoration:none; }
+    .login a {
+      color: #00d9ff;
+      text-decoration: none;
+    }
 
     footer {
-      text-align:center;
-      padding:15px;
-      font-size:0.8rem;
-      color:#c9d6f2;
-      background:rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      color: #c9d6f2;
+      background: rgba(0,0,0,0.3);
     }
 
     .msg {
-      text-align:center;
-      font-size:0.85rem;
-      margin-bottom:10px;
-      color:#ffcc00;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ffcc00;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -117,31 +133,32 @@
 <div class="container">
   <div class="form-box">
     <h2>Create Account</h2>
+
     <div class="msg" id="msg"></div>
 
     <div class="input-group">
-      <input id="username" placeholder="Username">
+      <input id="username" placeholder="Username" />
     </div>
 
     <div class="input-group">
-      <input id="fullname" placeholder="Full Name">
+      <input id="fullname" placeholder="Full Name" />
     </div>
 
     <div class="input-group">
-      <input id="email" type="email" placeholder="Email">
+      <input id="email" type="email" placeholder="Email" />
     </div>
 
     <div class="input-group">
-      <input id="password" type="password" placeholder="Password">
+      <input id="password" type="password" placeholder="Password" />
       <span class="eye" onclick="toggle('password',this)">👁</span>
     </div>
 
     <div class="input-group">
-      <input id="confirmPassword" type="password" placeholder="Confirm Password">
+      <input id="confirmPassword" type="password" placeholder="Confirm Password" />
       <span class="eye" onclick="toggle('confirmPassword',this)">👁</span>
     </div>
 
-    <button class="btn" id="btn" onclick="registerUser()">Create Account</button>
+    <button class="btn" onclick="registerUser()">Create Account</button>
 
     <div class="login">
       Already have an account? <a href="login.html">Login</a>
@@ -153,13 +170,13 @@
   © 2026 CRYPTO HUB GROWTH INVESTMENT
 </footer>
 
-<!-- Firebase -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-  // Firebase Config
+  // Firebase Config (INJECTED)
   const firebaseConfig = {
     apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
     authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
@@ -176,8 +193,6 @@
   const auth = firebase.auth();
   const db = firebase.database();
 
-  let loading = false;
-
   function toggle(id, el) {
     const input = document.getElementById(id);
     input.type = input.type === "password" ? "text" : "password";
@@ -189,9 +204,7 @@
   }
 
   function registerUser() {
-    if (loading) return;
-
-    const username = username = document.getElementById("username").value.trim();
+    const username = document.getElementById("username").value.trim();
     const fullname = document.getElementById("fullname").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
@@ -205,32 +218,30 @@
       return msg("Passwords do not match");
     }
 
-    loading = true;
-    document.getElementById("btn").disabled = true;
     msg("Creating account...");
 
     auth.createUserWithEmailAndPassword(email, password)
       .then(res => {
         const uid = res.user.uid;
 
+        // SAVE USER TO REALTIME DATABASE
         return db.ref("users/" + uid).set({
           username,
           fullname,
           email,
           balance: 0,
           createdAt: Date.now()
-        });
+        }).then(() => res.user);
       })
       .then(() => {
-        msg("Success! Redirecting...");
+        msg("Account created successfully. Redirecting...");
+
         setTimeout(() => {
           window.location.href = "dashboard.html";
         }, 1200);
       })
       .catch(err => {
         msg(err.message);
-        loading = false;
-        document.getElementById("btn").disabled = false;
       });
   }
 </script>
