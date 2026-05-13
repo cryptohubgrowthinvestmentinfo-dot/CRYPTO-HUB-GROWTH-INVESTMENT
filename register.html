@@ -2,373 +2,238 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register | CRYPTO HUB GROWTH INVESTMENT</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Poppins; }
 
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #071426, #0d1f3c, #122b52);
-      display: flex;
-      flex-direction: column;
-      color: white;
+      background: linear-gradient(135deg,#06131f,#0b2240);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
     }
 
-    a {
-      text-decoration: none;
+    header {
+      text-align:center;
+      padding:20px;
+      font-weight:700;
+      color:#00d9ff;
+      font-size:1.4rem;
     }
 
-    .header {
-      text-align: center;
-      padding: 30px 20px 10px;
+    .container {
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
     }
 
-    .header h1 {
-      color: #00d9ff;
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: 1px;
+    .form-box {
+      width:100%;
+      max-width:450px;
+      background:rgba(255,255,255,0.06);
+      padding:30px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
     }
 
-    .header p {
-      color: #d6e4ff;
-      margin-top: 8px;
-      font-size: 1rem;
+    h2 { text-align:center; color:#00d9ff; margin-bottom:15px; }
+
+    .input-group { margin-bottom:12px; position:relative; }
+
+    input {
+      width:100%;
+      padding:12px 40px 12px 12px;
+      border-radius:10px;
+      border:none;
+      outline:none;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
     }
 
-    .live-status {
-      text-align: center;
-      margin: 0 auto 15px;
-      padding: 10px 18px;
-      color: #00d9ff;
-      background: rgba(0,217,255,0.08);
-      border-radius: 12px;
-      font-weight: 600;
-      width: fit-content;
-    }
+    input::placeholder { color:#c9d6f2; }
 
-    .register-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 20px;
-    }
-
-    .register-box {
-      width: 100%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 25px;
-      padding: 40px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
-    }
-
-    .register-box h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 2rem;
-      color: white;
-    }
-
-    .input-group {
-      margin-bottom: 18px;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: #d6e4ff;
-      font-weight: 500;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 14px 16px;
-      border: none;
-      outline: none;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.12);
-      color: white;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
-
-    .input-group input::placeholder {
-      color: #c7d8f7;
-    }
-
-    .input-group input:focus {
-      background: rgba(255,255,255,0.18);
-      border: 1px solid #00d9ff;
+    .eye {
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      cursor:pointer;
+      color:#00d9ff;
     }
 
     .btn {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 30px;
-      background: #00d9ff;
-      color: #071426;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border:none;
+      border-radius:30px;
+      background:#00d9ff;
+      font-weight:700;
+      cursor:pointer;
     }
 
-    .btn:hover {
-      background: white;
-      transform: translateY(-2px);
+    .btn:disabled {
+      opacity:0.6;
+      cursor:not-allowed;
     }
 
-    .message {
-      margin-top: 15px;
-      text-align: center;
-      font-size: 0.95rem;
-      color: #d6e4ff;
-      min-height: 24px;
+    .login {
+      text-align:center;
+      margin-top:12px;
+      font-size:0.9rem;
     }
 
-    .login-link {
-      text-align: center;
-      margin-top: 20px;
-      color: #d6e4ff;
-      font-size: 0.95rem;
-    }
-
-    .login-link a {
-      color: #00d9ff;
-      font-weight: 600;
-      margin-left: 5px;
-    }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
+    .login a { color:#00d9ff; text-decoration:none; }
 
     footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.25);
-      color: #c9d6f2;
-      font-size: 0.9rem;
+      text-align:center;
+      padding:15px;
+      font-size:0.8rem;
+      color:#c9d6f2;
+      background:rgba(0,0,0,0.3);
     }
 
-    @media (max-width: 600px) {
-      .register-box {
-        padding: 30px 20px;
-      }
-
-      .header h1 {
-        font-size: 1.8rem;
-      }
-
-      .register-box h2 {
-        font-size: 1.7rem;
-      }
+    .msg {
+      text-align:center;
+      font-size:0.85rem;
+      margin-bottom:10px;
+      color:#ffcc00;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <h1>CRYPTO HUB GROWTH INVESTMENT</h1>
-    <p>Create your secure investment account today</p>
-  </div>
+<header>CRYPTO HUB GROWTH INVESTMENT</header>
 
-  <!-- Live Status -->
-  <div class="live-status" id="liveStatus">
-    Connecting to secure real-time database...
-  </div>
+<div class="container">
+  <div class="form-box">
+    <h2>Create Account</h2>
+    <div class="msg" id="msg"></div>
 
-  <!-- Register Section -->
-  <section class="register-section">
-    <div class="register-box">
-      <h2>Create Account</h2>
-
-      <form id="registerForm">
-        <div class="input-group">
-          <label for="username">1. User Name</label>
-          <input type="text" id="username" placeholder="Enter your username" required>
-        </div>
-
-        <div class="input-group">
-          <label for="fullname">2. Full Name</label>
-          <input type="text" id="fullname" placeholder="Enter your full name" required>
-        </div>
-
-        <div class="input-group">
-          <label for="gmail">3. Gmail</label>
-          <input type="email" id="gmail" placeholder="Enter your Gmail address" required>
-        </div>
-
-        <div class="input-group">
-          <label for="password">4. Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
-        </div>
-
-        <div class="input-group">
-          <label for="confirm-password">5. Confirm Password</label>
-          <input type="password" id="confirm-password" placeholder="Confirm your password" required>
-        </div>
-
-        <button type="submit" class="btn">Create Account</button>
-
-        <div class="message" id="registerMessage"></div>
-      </form>
-
-      <div class="login-link">
-        Already have an account?
-        <a href="login.html">Login</a>
-      </div>
+    <div class="input-group">
+      <input id="username" placeholder="Username">
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Registration Portal
-  </footer>
+    <div class="input-group">
+      <input id="fullname" placeholder="Full Name">
+    </div>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      createUserWithEmailAndPassword
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    <div class="input-group">
+      <input id="email" type="email" placeholder="Email">
+    </div>
 
-    import {
-      getDatabase,
-      ref,
-      set
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    <div class="input-group">
+      <input id="password" type="password" placeholder="Password">
+      <span class="eye" onclick="toggle('password',this)">👁</span>
+    </div>
 
-    // Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
-      authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
-      databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "crypto-hub-growth-invest-9492c",
-      storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
-      messagingSenderId: "946872117732",
-      appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
-      measurementId: "G-CLET27VD7J"
-    };
+    <div class="input-group">
+      <input id="confirmPassword" type="password" placeholder="Confirm Password">
+      <span class="eye" onclick="toggle('confirmPassword',this)">👁</span>
+    </div>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const database = getDatabase(app);
+    <button class="btn" id="btn" onclick="registerUser()">Create Account</button>
 
-    // Database Status
-    document.getElementById("liveStatus").innerText =
-      "Secure real-time database connected.";
+    <div class="login">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+  </div>
+</div>
 
-    // Elements
-    const registerForm = document.getElementById("registerForm");
-    const registerMessage = document.getElementById("registerMessage");
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT
+</footer>
 
-    // Register
-    registerForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
-      const username = document.getElementById("username").value.trim();
-      const fullName = document.getElementById("fullname").value.trim();
-      const email = document.getElementById("gmail").value.trim();
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirm-password").value;
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+    authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+    databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "crypto-hub-growth-invest-9492c",
+    storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+    messagingSenderId: "946872117732",
+    appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+    measurementId: "G-CLET27VD7J"
+  };
 
-      // Validation
-      if (password !== confirmPassword) {
-        registerMessage.innerText = "Passwords do not match.";
-        return;
-      }
+  firebase.initializeApp(firebaseConfig);
 
-      if (password.length < 6) {
-        registerMessage.innerText =
-          "Password must be at least 6 characters.";
-        return;
-      }
+  const auth = firebase.auth();
+  const db = firebase.database();
 
-      registerMessage.innerText =
-        "Creating secure investment account...";
+  let loading = false;
 
-      try {
-        // Firebase Auth Registration
-        const userCredential =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
+  function toggle(id, el) {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+    el.textContent = input.type === "password" ? "👁" : "🙈";
+  }
 
-        const user = userCredential.user;
+  function msg(t) {
+    document.getElementById("msg").innerText = t;
+  }
 
-        // Dashboard Ready Data
-        await set(ref(database, "users/" + user.uid), {
-          uid: user.uid,
-          userName: username,
-          fullName: fullName,
-          gmail: email,
+  function registerUser() {
+    if (loading) return;
 
-          // Dashboard Stats
-          totalBalance: "$0",
-          activeInvestment: "$0",
-          totalProfit: "$0",
+    const username = username = document.getElementById("username").value.trim();
+    const fullname = document.getElementById("fullname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
 
-          // Account Status
-          currentPlan: "Starter Plan",
-          roi: "5% ROI",
-          investorStatus: "Verified Investor",
-          accountLevel: "Starter",
+    if (!username || !fullname || !email || !password || !confirm) {
+      return msg("Fill all fields");
+    }
 
-          // Financial Records
-          totalDeposits: "$0",
-          totalWithdrawals: "$0",
+    if (password !== confirm) {
+      return msg("Passwords do not match");
+    }
 
-          // Bonuses
-          welcomeBonus: "$0",
-          referralBonus: "$0",
+    loading = true;
+    document.getElementById("btn").disabled = true;
+    msg("Creating account...");
 
-          // Metadata
-          createdAt: Date.now(),
-          lastLogin: Date.now()
-        });
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        const uid = res.user.uid;
 
-        // Transaction Base
-        await set(ref(database, "transactions/" + user.uid), {
-          initialized: true,
+        return db.ref("users/" + uid).set({
+          username,
+          fullname,
+          email,
+          balance: 0,
           createdAt: Date.now()
         });
+      })
+      .then(() => {
+        msg("Success! Redirecting...");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1200);
+      })
+      .catch(err => {
+        msg(err.message);
+        loading = false;
+        document.getElementById("btn").disabled = false;
+      });
+  }
+</script>
 
-        // Notification Base
-        await set(ref(database, "notifications/" + user.uid), {
-          welcomeMessage:
-            "Welcome to CRYPTO HUB GROWTH INVESTMENT",
-          accountStatus:
-            "Your account has been created successfully.",
-          createdAt: Date.now()
-        });
-
-        // Save Session
-        localStorage.setItem(
-          "cryptoHubUserId",
-          user.uid
-        );
+</body>
+</html>
