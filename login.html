@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | CRYPTO HUB GROWTH INVESTMENT</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -142,6 +141,19 @@
       text-align: center;
       font-size: 0.95rem;
       color: #d6e4ff;
+      min-height: 24px;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #d6e4ff;
+      font-size: 0.95rem;
+    }
+
+    .register-link a {
+      color: #00d9ff;
+      font-weight: 600;
     }
 
     footer {
@@ -197,6 +209,10 @@
 
         <div class="message" id="loginMessage"></div>
       </form>
+
+      <div class="register-link">
+        Don’t have an account? <a href="register.html">Register</a>
+      </div>
     </div>
   </section>
 
@@ -209,13 +225,15 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
       getAuth,
-      signInWithEmailAndPassword
+      signInWithEmailAndPassword,
+      onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     import {
       getDatabase,
       ref,
-      get
+      get,
+      set
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     // Firebase Configuration
@@ -235,37 +253,56 @@
     const auth = getAuth(app);
     const database = getDatabase(app);
 
-    // Live Status
-    document.getElementById("liveStatus").innerText = "Secure real-time database connected.";
-
-    // Login Form
+    const liveStatus = document.getElementById("liveStatus");
     const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("loginMessage");
 
+    liveStatus.innerText = "Secure real-time database connected.";
+
+    // Auto-login if already authenticated
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        localStorage.setItem("cryptoHubUserId", user.uid);
+        window.location.href = "dashboard.html";
+      }
+    });
+
+    // Login Form Submit
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const email = document.getElementById("gmail").value;
+      const email = document.getElementById("gmail").value.trim();
       const password = document.getElementById("password").value;
 
-      loginMessage.innerText = "Authenticating...";
+      loginMessage.innerText = "Authenticating secure access...";
 
       try {
-        // Firebase Authentication Login
+        // Sign in user
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save user session
+        // Save Session
         localStorage.setItem("cryptoHubUserId", user.uid);
 
-        // Check user data
+        // Check user profile
         const userRef = ref(database, "users/" + user.uid);
         const snapshot = await get(userRef);
 
-        if (snapshot.exists()) {
-          loginMessage.innerText = "Login successful. Redirecting...";
+        // If profile missing, create default profile
+        if (!snapshot.exists()) {
+          await set(userRef, {
+            userName: email.split("@")[0],
+            fullName: "Investor",
+            gmail: email,
+            totalBalance: "$0",
+            activeInvestment: "$0",
+            totalProfit: "$0",
+            createdAt: Date.now()
+          });
+
+          loginMessage.innerText = "Profile created successfully. Redirecting...";
         } else {
-          loginMessage.innerText = "Login successful. User profile not found, creating session...";
+          loginMessage.innerText = "Login successful. Redirecting...";
         }
 
         // Redirect to dashboard
@@ -274,10 +311,23 @@
         }, 1500);
 
       } catch (error) {
-        loginMessage.innerText = error.message;
+        switch (error.code) {
+          case "auth/user-not-found":
+            loginMessage.innerText = "No account found. Please register first.";
+            break;
+          case "auth/wrong-password":
+            loginMessage.innerText = "Incorrect password.";
+            break;
+          case "auth/invalid-email":
+            loginMessage.innerText = "Invalid email address.";
+            break;
+          default:
+            loginMessage.innerText = error.message;
+        }
       }
     });
   </script>
 
 </body>
   </html>
+
