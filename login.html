@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | CRYPTO HUB GROWTH INVESTMENT</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,6 +27,7 @@
 
     a {
       text-decoration: none;
+      color: inherit;
     }
 
     .header {
@@ -136,17 +138,22 @@
       transform: translateY(-2px);
     }
 
+    .btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     .message {
       margin-top: 15px;
       text-align: center;
       font-size: 0.95rem;
       color: #d6e4ff;
-      min-height: 24px;
+      min-height: 22px;
     }
 
     .register-link {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 18px;
       color: #d6e4ff;
       font-size: 0.95rem;
     }
@@ -205,13 +212,14 @@
           <input type="password" id="password" placeholder="Enter your password" required>
         </div>
 
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn" id="loginBtn">Login</button>
 
         <div class="message" id="loginMessage"></div>
       </form>
 
       <div class="register-link">
-        Don’t have an account? <a href="register.html">Register</a>
+        Don’t have an account?
+        <a href="register.html">Register</a>
       </div>
     </div>
   </section>
@@ -226,14 +234,15 @@
     import {
       getAuth,
       signInWithEmailAndPassword,
-      onAuthStateChanged
+      setPersistence,
+      browserLocalPersistence
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     import {
       getDatabase,
       ref,
       get,
-      set
+      update
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     // Firebase Configuration
@@ -253,77 +262,85 @@
     const auth = getAuth(app);
     const database = getDatabase(app);
 
+    // DOM Elements
     const liveStatus = document.getElementById("liveStatus");
     const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("loginMessage");
+    const loginBtn = document.getElementById("loginBtn");
 
+    // Database Connection Status
     liveStatus.innerText = "Secure real-time database connected.";
 
-    // Auto-login if already authenticated
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        localStorage.setItem("cryptoHubUserId", user.uid);
-        window.location.href = "dashboard.html";
-      }
-    });
+    // IMPORTANT:
+    // User stays on login page until credentials are submitted and verified.
+    // No auto redirect before successful sign in.
 
-    // Login Form Submit
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const email = document.getElementById("gmail").value.trim();
       const password = document.getElementById("password").value;
 
-      loginMessage.innerText = "Authenticating secure access...";
+      if (!email || !password) {
+        loginMessage.innerText = "Please enter your Gmail and password.";
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginMessage.innerText = "Authenticating securely...";
 
       try {
-        // Sign in user
+        // Keep session only after successful login
+        await setPersistence(auth, browserLocalPersistence);
+
+        // Sign in
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save Session
-        localStorage.setItem("cryptoHubUserId", user.uid);
-
-        // Check user profile
+        // Verify profile exists in realtime database
         const userRef = ref(database, "users/" + user.uid);
         const snapshot = await get(userRef);
 
-        // If profile missing, create default profile
         if (!snapshot.exists()) {
-          await set(userRef, {
-            userName: email.split("@")[0],
-            fullName: "Investor",
-            gmail: email,
-            totalBalance: "$0",
-            activeInvestment: "$0",
-            totalProfit: "$0",
-            createdAt: Date.now()
-          });
-
-          loginMessage.innerText = "Profile created successfully. Redirecting...";
-        } else {
-          loginMessage.innerText = "Login successful. Redirecting...";
+          loginMessage.innerText = "Account profile not found. Please register first.";
+          loginBtn.disabled = false;
+          return;
         }
 
-        // Redirect to dashboard
+        // Save secure local session
+        localStorage.setItem("cryptoHubUserId", user.uid);
+
+        // Optional last login update
+        await update(userRef, {
+          lastLogin: Date.now()
+        });
+
+        loginMessage.innerText = "Login successful. Preparing dashboard...";
+
+        // Give user time before redirect
         setTimeout(() => {
           window.location.href = "dashboard.html";
-        }, 1500);
+        }, 2000);
 
       } catch (error) {
         switch (error.code) {
           case "auth/user-not-found":
-            loginMessage.innerText = "No account found. Please register first.";
+            loginMessage.innerText = "No account found with this Gmail.";
             break;
           case "auth/wrong-password":
             loginMessage.innerText = "Incorrect password.";
             break;
-          case "auth/invalid-email":
-            loginMessage.innerText = "Invalid email address.";
+          case "auth/invalid-credential":
+            loginMessage.innerText = "Invalid login credentials.";
+            break;
+          case "auth/too-many-requests":
+            loginMessage.innerText = "Too many attempts. Please try again later.";
             break;
           default:
             loginMessage.innerText = error.message;
         }
+
+        loginBtn.disabled = false;
       }
     });
   </script>
