@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw | Investment Platform</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Poppins;
+    }
+
+    body {
+      background: linear-gradient(135deg,#06131f,#0b2240);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header {
+      text-align:center;
+      padding:20px;
+      font-weight:700;
+      color:#00d9ff;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .container {
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .box {
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      padding:25px;
+    }
+
+    h2 {
+      text-align:center;
+      color:#00d9ff;
+      margin-bottom:15px;
+    }
+
+    .section {
+      background:rgba(0,0,0,0.25);
+      padding:15px;
+      border-radius:12px;
+      margin-bottom:15px;
+    }
+
+    .title {
+      color:#00d9ff;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    select, input {
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border-radius:10px;
+      border:none;
+      outline:none;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+    }
+
+    .btn {
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:30px;
+      background:#00d9ff;
+      font-weight:700;
+      cursor:pointer;
+      margin-top:10px;
+      transition:0.3s;
+    }
+
+    .btn:hover {
+      background:#fff;
+    }
+
+    .msg {
+      text-align:center;
+      color:#ffcc00;
+      font-size:0.85rem;
+      margin-bottom:10px;
+    }
+
+    footer {
+      text-align:center;
+      padding:15px;
+      font-size:0.8rem;
+      background:rgba(0,0,0,0.3);
+      color:#c9d6f2;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>Withdrawal Center</header>
+
+<div class="container">
+  <div class="box">
+
+    <h2>Request Withdrawal</h2>
+    <div class="msg" id="msg"></div>
+
+    <!-- METHOD -->
+    <div class="section">
+      <div class="title">Select Withdrawal Method</div>
+
+      <select id="method" onchange="toggleFields()">
+        <option value="">Select Method</option>
+        <option value="mpesa">M-Pesa</option>
+        <option value="airtel">Airtel Money</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+    </div>
+
+    <!-- MOBILE MONEY -->
+    <div class="section" id="mobileSection" style="display:none;">
+      <div class="title">Mobile Money Number</div>
+      <input id="mobileNumber" placeholder="07XXXXXXXX">
+    </div>
+
+    <!-- BANK -->
+    <div class="section" id="bankSection" style="display:none;">
+      <div class="title">Bank Details</div>
+
+      <select id="bankName">
+        <option>Equity Bank</option>
+        <option>KCB Bank</option>
+        <option>I&M Bank</option>
+        <option>Stanbic Bank</option>
+        <option>Family Bank</option>
+      </select>
+
+      <input id="accountName" placeholder="Account Name">
+      <input id="accountNumber" placeholder="Account Number">
+    </div>
+
+    <!-- AMOUNT -->
+    <div class="section">
+      <div class="title">Amount</div>
+      <input id="amount" type="number" placeholder="Enter amount">
+    </div>
+
+    <button class="btn" onclick="withdraw()">Submit Withdrawal</button>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 Investment Platform | Secure Withdrawals
+</footer>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+
+let user = null;
+
+auth.onAuthStateChanged(u => {
+  if (!u) {
+    window.location.href = "login.html";
+  } else {
+    user = u;
+  }
+});
+
+function msg(t) {
+  document.getElementById("msg").innerText = t;
+}
+
+function toggleFields() {
+  const method = document.getElementById("method").value;
+
+  document.getElementById("mobileSection").style.display = "none";
+  document.getElementById("bankSection").style.display = "none";
+
+  if (method === "mpesa" || method === "airtel") {
+    document.getElementById("mobileSection").style.display = "block";
+  }
+
+  if (method === "bank") {
+    document.getElementById("bankSection").style.display = "block";
+  }
+}
+
+function withdraw() {
+  const method = document.getElementById("method").value;
+  const amount = document.getElementById("amount").value;
+
+  if (!user) return msg("User not logged in");
+  if (!method) return msg("Select withdrawal method");
+  if (!amount || amount <= 0) return msg("Enter valid amount");
+
+  let data = {
+    uid: user.uid,
+    method,
+    amount: Number(amount),
+    status: "pending",
+    createdAt: Date.now()
+  };
+
+  if (method === "mpesa" || method === "airtel") {
+    data.mobileNumber = document.getElementById("mobileNumber").value;
+    if (!data.mobileNumber) return msg("Enter mobile number");
+  }
+
+  if (method === "bank") {
+    data.bankName = document.getElementById("bankName").value;
+    data.accountName = document.getElementById("accountName").value;
+    data.accountNumber = document.getElementById("accountNumber").value;
+
+    if (!data.accountName || !data.accountNumber) {
+      return msg("Enter full bank details");
+    }
+  }
+
+  msg("Submitting withdrawal...");
+
+  db.ref("withdrawals/" + user.uid).push(data)
+    .then(() => {
+      return db.ref("transactions/" + user.uid).push(data);
+    })
+    .then(() => {
+      msg("Withdrawal request submitted successfully!");
+      document.getElementById("amount").value = "";
+    })
+    .catch(err => {
+      msg(err.message);
+    });
+}
+</script>
+
+</body>
+  </html>
