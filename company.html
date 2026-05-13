@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company | Investment Platform</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Poppins;
+    }
+
+    body {
+      background: linear-gradient(135deg,#06131f,#0b2240);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header {
+      text-align:center;
+      padding:25px;
+      font-size:1.5rem;
+      font-weight:700;
+      color:#00d9ff;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .container {
+      flex:1;
+      padding:30px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .box {
+      width:100%;
+      max-width:900px;
+    }
+
+    .card {
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      padding:25px;
+      margin-bottom:20px;
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color:#00d9ff;
+      margin-bottom:10px;
+    }
+
+    p {
+      line-height:1.7;
+      color:#c9d6f2;
+      font-size:0.95rem;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:15px;
+    }
+
+    .mini {
+      background:rgba(0,0,0,0.25);
+      padding:15px;
+      border-radius:12px;
+    }
+
+    .title {
+      color:#00d9ff;
+      font-weight:600;
+      margin-bottom:5px;
+    }
+
+    footer {
+      text-align:center;
+      padding:15px;
+      font-size:0.8rem;
+      background:rgba(0,0,0,0.3);
+      color:#c9d6f2;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  CRYPTO HUB GROWTH INVESTMENT
+</header>
+
+<div class="container">
+  <div class="box">
+
+    <!-- ABOUT -->
+    <div class="card">
+      <h2>About Us</h2>
+      <p>
+        Crypto Hub Growth Investment is a modern digital investment platform designed to provide users with
+        access to structured financial growth opportunities. We focus on transparency, secure transactions,
+        and real-time account management powered by advanced cloud infrastructure.
+      </p>
+    </div>
+
+    <!-- MISSION -->
+    <div class="card">
+      <h2>Our Mission</h2>
+      <p>
+        Our mission is to empower individuals by offering accessible investment solutions and a seamless
+        financial experience through technology-driven systems and secure data management.
+      </p>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="card">
+      <h2>What We Offer</h2>
+
+      <div class="grid">
+
+        <div class="mini">
+          <div class="title">Deposit System</div>
+          Secure bank-based deposit processing via Equity Bank integration.
+        </div>
+
+        <div class="mini">
+          <div class="title">Withdrawal System</div>
+          Supports M-Pesa, Airtel Money, and major banks.
+        </div>
+
+        <div class="mini">
+          <div class="title">Real-Time Tracking</div>
+          Firebase-powered transaction logging and monitoring.
+        </div>
+
+        <div class="mini">
+          <div class="title">User Accounts</div>
+          Secure authentication with personalized dashboards.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VISION -->
+    <div class="card">
+      <h2>Our Vision</h2>
+      <p>
+        To build a trusted digital financial ecosystem where users can manage investments,
+        track growth, and execute transactions in real time with full transparency.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT | All Rights Reserved
+</footer>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+
+// Optional: track visits (for analytics or admin insights)
+auth.onAuthStateChanged(user => {
+  if (user) {
+    db.ref("visits/" + user.uid).push({
+      page: "company",
+      time: Date.now()
+    });
+  }
+});
+</script>
+
+</body>
+  </html>
