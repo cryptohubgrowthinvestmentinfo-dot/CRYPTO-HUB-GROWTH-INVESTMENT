@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit | CRYPTO HUB GROWTH INVESTMENT</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Poppins;
+    }
+
+    body {
+      background: linear-gradient(135deg,#06131f,#0b2240);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header {
+      text-align:center;
+      padding:20px;
+      font-weight:700;
+      color:#00d9ff;
+      background:rgba(255,255,255,0.05);
+    }
+
+    .container {
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .box {
+      width:100%;
+      max-width:500px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      padding:25px;
+    }
+
+    h2 {
+      text-align:center;
+      color:#00d9ff;
+      margin-bottom:15px;
+    }
+
+    .section {
+      background:rgba(0,0,0,0.25);
+      padding:15px;
+      border-radius:12px;
+      margin-bottom:15px;
+    }
+
+    .title {
+      color:#00d9ff;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+    input {
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      outline:none;
+      margin-top:10px;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+    }
+
+    .btn {
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:30px;
+      background:#00d9ff;
+      font-weight:700;
+      cursor:pointer;
+      margin-top:10px;
+      transition:0.3s;
+    }
+
+    .btn:hover {
+      background:#fff;
+    }
+
+    .msg {
+      text-align:center;
+      color:#ffcc00;
+      font-size:0.85rem;
+      margin-bottom:10px;
+    }
+
+    footer {
+      text-align:center;
+      padding:15px;
+      font-size:0.8rem;
+      background:rgba(0,0,0,0.3);
+      color:#c9d6f2;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>Deposit Center</header>
+
+<div class="container">
+  <div class="box">
+
+    <h2>Equity Bank Deposit</h2>
+    <div class="msg" id="msg"></div>
+
+    <!-- BANK DETAILS (LOCKED AS REQUESTED) -->
+    <div class="section">
+      <div class="title">Bank Details</div>
+      Bank: Equity Bank<br>
+      Paybill: <b>247247</b><br>
+      Account Number: <b>280683</b><br>
+      Account Name: <b>Kutenz Enterprise</b>
+    </div>
+
+    <!-- AMOUNT ONLY -->
+    <div class="section">
+      <div class="title">Enter Deposit Amount</div>
+      <input id="amount" type="number" placeholder="Enter amount (KES)">
+    </div>
+
+    <button class="btn" onclick="submitDeposit()">Submit Deposit Request</button>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT | Equity Bank Deposits
+</footer>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+
+let currentUser = null;
+
+// WAIT FOR AUTH
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = user;
+  }
+});
+
+function msg(t) {
+  document.getElementById("msg").innerText = t;
+}
+
+function submitDeposit() {
+  const amount = document.getElementById("amount").value;
+
+  if (!currentUser) {
+    return msg("User not logged in. Please refresh.");
+  }
+
+  if (!amount || amount <= 0) {
+    return msg("Enter a valid amount");
+  }
+
+  msg("Submitting deposit...");
+
+  const depositData = {
+    uid: currentUser.uid,
+    method: "Equity Bank",
+    paybill: "247247",
+    accountNumber: "280683",
+    accountName: "Kutenz Enterprise",
+    amount: Number(amount),
+    status: "pending",
+    createdAt: Date.now()
+  };
+
+  db.ref("deposits/" + currentUser.uid).push(depositData)
+    .then(() => {
+      return db.ref("transactions/" + currentUser.uid).push(depositData);
+    })
+    .then(() => {
+      msg("Deposit submitted successfully!");
+      document.getElementById("amount").value = "";
+    })
+    .catch(err => {
+      msg("Error: " + err.message);
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+  </html>
