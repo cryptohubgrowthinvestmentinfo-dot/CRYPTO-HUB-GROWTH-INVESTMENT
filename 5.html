@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | CRYPTO HUB GROWTH INVESTMENT</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background: linear-gradient(135deg,#06131f,#0b2240); color:#fff; min-height:100vh; display:flex; flex-direction:column; }
+header { text-align:center; padding:20px; font-size:1.5rem; font-weight:700; color:#00d9ff; background:rgba(255,255,255,0.05); backdrop-filter:blur(10px);}
+.container { flex:1; padding:20px; display:flex; flex-direction:column; align-items:center; }
+.balance { font-size:1.3rem; font-weight:600; margin-bottom:20px; color:#ffcc00; }
+h2 { color:#00d9ff; margin-bottom:20px; text-align:center; }
+.plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; width:100%; max-width:1200px; }
+.plan-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:20px; text-align:center; transition:0.3s; }
+.plan-card:hover { transform:scale(1.05); border-color:#00d9ff; }
+.plan-title { font-weight:700; font-size:1.2rem; margin-bottom:10px; color:#00d9ff; }
+.plan-detail { margin-bottom:15px; color:#c9d6f2; }
+.btn { padding:10px 20px; border:none; border-radius:25px; background:#00d9ff; color:#06131f; font-weight:700; cursor:pointer; transition:0.3s; }
+.btn:hover { background:white; }
+.msg { text-align:center; margin-top:15px; color:#ffcc00; font-weight:500; }
+footer { text-align:center; padding:15px; font-size:0.85rem; color:#c9d6f2; background:rgba(0,0,0,0.3); }
+</style>
+</head>
+<body>
+
+<header>CRYPTO HUB GROWTH INVESTMENT | DASHBOARD</header>
+
+<div class="container">
+<div class="balance">Balance: $<span id="balance">0</span></div>
+
+<h2>Investment Plans</h2>
+<div class="plans"></div>
+<div class="msg" id="msg"></div>
+</div>
+
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+
+// Plans setup
+const basePrice = 5;
+const plans = [
+  {name:"Starter", roi:10},
+  {name:"Bronze", roi:12},
+  {name:"Silver", roi:14},
+  {name:"Gold", roi:16},
+  {name:"Platinum", roi:18},
+  {name:"Diamond", roi:20},
+  {name:"Elite", roi:25},
+];
+
+// DOM references
+const plansContainer = document.querySelector(".plans");
+const balanceEl = document.getElementById("balance");
+const msgEl = document.getElementById("msg");
+
+// Render plans
+plans.forEach((plan,index)=>{
+  const price = basePrice + index*5;
+  plan.price = price;
+  const card = document.createElement("div");
+  card.className = "plan-card";
+  card.innerHTML = `
+    <div class="plan-title">${plan.name} Plan</div>
+    <div class="plan-detail">Price: $${price} | ROI: ${plan.roi}% | Duration: 24h</div>
+    <button class="btn" id="btn-${index}" onclick="handlePlan('${plan.name}',${plan.price},${plan.roi},${index})">Invest</button>
+  `;
+  plansContainer.appendChild(card);
+});
+
+function showMsg(msg){
+  msgEl.innerText = msg;
+}
+
+// Handle investment
+function handlePlan(name, price, roi, index){
+  const user = auth.currentUser;
+  if(!user){
+    showMsg("Please login to invest.");
+    return;
+  }
+  const uid = user.uid;
+  const btn = document.getElementById(`btn-${index}`);
+  const investRef = db.ref(`investments/${uid}`);
+
+  investRef.child(name).once("value").then(snapshot=>{
+    const data = snapshot.val();
+    const now = Date.now();
+
+    if(data && !data.collected){
+      const endTime = data.investedAt + 24*60*60*1000;
+      if(now < endTime){
+        showMsg("Plan active. Collect after 24h.");
+        return;
+      } else {
+        // Collect profit
+        const profit = Math.round(data.amount * (data.roi/100));
+        db.ref(`users/${uid}`).once("value").then(userSnap=>{
+          const newBalance = (userSnap.val().balance || 0) + profit;
+          db.ref(`users/${uid}`).update({balance:newBalance});
+          investRef.child(name).update({collected:true});
+          btn.innerText = "Invest Again";
+          showMsg(`Profit $${profit} collected!`);
+        });
+        return;
+      }
+    }
+
+    // Invest if no active
+    db.ref(`users/${uid}`).once("value").then(snapshot=>{
+      const balance = snapshot.val().balance || 0;
+      if(balance < price){
+        showMsg("Insufficient balance to invest.");
+        return;
+      }
+      const newBalance = balance - price;
+      db.ref(`users/${uid}`).update({balance:newBalance}); // Deduct main balance
+      balanceEl.innerText = newBalance;
+      investRef.child(name).set({
+        plan:name,
+        amount:price,
+        roi:roi,
+        investedAt:Date.now(),
+        collected:false
+      });
+      btn.innerText = "Invested";
+      showMsg(`Invested $${price} in ${name} Plan successfully!`);
+    });
+  });
+}
+
+// Load balance and investment states in real-time
+auth.onAuthStateChanged(user=>{
+  if(user){
+    const uid = user.uid;
+    const userRef = db.ref(`users/${uid}`);
+    userRef.on("value",snap=>{
+      balanceEl.innerText = snap.val()?.balance || 0;
+    });
+
+    const investRef = db.ref(`investments/${uid}`);
+    investRef.on("value",snap=>{
+      plans.forEach((plan,index)=>{
+        const data = snap.val()?.[plan.name];
+        const btn = document.getElementById(`btn-${index}`);
+        if(data){
+          const now = Date.now();
+          const endTime = data.investedAt + 24*60*60*1000;
+          if(!data.collected && now >= endTime){
+            btn.innerText = "Collect Profit";
+          } else if(!data.collected){
+            btn.innerText = "Invested";
+          } else {
+            btn.innerText = "Invest Again";
+          }
+        } else {
+          btn.innerText = "Invest";
+        }
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>
