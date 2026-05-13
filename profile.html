@@ -1,404 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Profile | CRYPTO HUB GROWTH INVESTMENT</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Profile | CRYPTO HUB GROWTH INVESTMENT</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #071426, #0d1f3c, #122b52);
-      color: white;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 25px 8%;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #00d9ff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      padding: 10px 18px;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.06);
-      transition: 0.3s;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      background: #00d9ff;
-      color: #071426;
-    }
-
-    .live-status {
-      text-align: center;
-      margin: 20px auto 0;
-      padding: 10px 18px;
-      color: #00d9ff;
-      background: rgba(0,217,255,0.08);
-      border-radius: 12px;
-      font-weight: 600;
-      width: fit-content;
-    }
-
-    .profile-section {
-      flex: 1;
-      padding: 40px 8%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .profile-card {
-      width: 100%;
-      max-width: 950px;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(12px);
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-      overflow: hidden;
-    }
-
-    .profile-top {
-      text-align: center;
-      padding: 45px 30px;
-      background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(255,255,255,0.02));
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #00d9ff;
-      color: #071426;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin: 0 auto 20px;
-      box-shadow: 0 10px 30px rgba(0,217,255,0.25);
-    }
-
-    .profile-top h1 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    .profile-top p {
-      color: #d6e4ff;
-    }
-
-    .profile-body {
-      padding: 35px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-
-    .info-box {
-      background: rgba(255,255,255,0.05);
-      padding: 25px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.3s;
-    }
-
-    .info-box:hover {
-      transform: translateY(-5px);
-      border-color: #00d9ff;
-    }
-
-    .info-box h3 {
-      color: #00d9ff;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .info-box p {
-      font-size: 1.1rem;
-      font-weight: 500;
-      word-break: break-word;
-    }
-
-    .action-section {
-      padding: 0 35px 35px;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: 700;
-      transition: 0.3s;
-      display: inline-block;
-      border: none;
-      cursor: pointer;
-    }
-
-    .primary {
-      background: #00d9ff;
-      color: #071426;
-    }
-
-    .secondary {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 22px;
-      background: rgba(0,0,0,0.25);
-      color: #c9d6f2;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-
-    @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .profile-top h1 {
-        font-size: 1.7rem;
-      }
-
-      .profile-body {
-        padding: 25px;
-      }
-
-      .action-section {
-        padding: 0 25px 25px;
-      }
-    }
-  </style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body { min-height:100vh; background:linear-gradient(135deg,#071426,#0d1f3c,#122b52); color:white; display:flex; flex-direction:column; }
+a { text-decoration:none; color:inherit; }
+.header { display:flex; justify-content:space-between; align-items:center; padding:25px 8%; background:rgba(255,255,255,0.05); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; }
+.logo { font-size:1.6rem; font-weight:800; color:#00d9ff; }
+.nav-links { display:flex; gap:15px; flex-wrap:wrap; }
+.nav-links a { padding:10px 18px; border-radius:25px; background:rgba(255,255,255,0.06); transition:0.3s; font-weight:500; }
+.nav-links a:hover { background:#00d9ff; color:#071426; }
+.live-status { text-align:center; margin:20px auto 0; padding:10px 18px; color:#00d9ff; background:rgba(0,217,255,0.08); border-radius:12px; font-weight:600; width:fit-content; }
+.profile-section { flex:1; padding:40px 8%; display:flex; justify-content:center; align-items:center; }
+.profile-card { width:100%; max-width:950px; background:rgba(255,255,255,0.06); backdrop-filter:blur(12px); border-radius:30px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 20px 50px rgba(0,0,0,0.35); overflow:hidden; }
+.profile-top { text-align:center; padding:45px 30px; background:linear-gradient(135deg, rgba(0,217,255,0.15), rgba(255,255,255,0.02)); border-bottom:1px solid rgba(255,255,255,0.08); }
+.avatar { width:110px; height:110px; border-radius:50%; background:#00d9ff; color:#071426; display:flex; justify-content:center; align-items:center; font-size:2.5rem; font-weight:800; margin:0 auto 20px; box-shadow:0 10px 30px rgba(0,217,255,0.25); }
+.profile-top h1 { font-size:2rem; margin-bottom:8px; }
+.profile-top p { color:#d6e4ff; }
+.profile-body { padding:35px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; }
+.info-box { background:rgba(255,255,255,0.05); padding:25px; border-radius:20px; border:1px solid rgba(255,255,255,0.08); transition:0.3s; }
+.info-box:hover { transform:translateY(-5px); border-color:#00d9ff; }
+.info-box h3 { color:#00d9ff; margin-bottom:10px; font-size:1rem; }
+.info-box p { font-size:1.1rem; font-weight:500; word-break:break-word; }
+.action-section { padding:0 35px 35px; display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
+.btn { padding:14px 28px; border-radius:30px; font-weight:700; transition:0.3s; display:inline-block; border:none; cursor:pointer; }
+.primary { background:#00d9ff; color:#071426; }
+.secondary { background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.08); }
+.btn:hover { transform:translateY(-3px); }
+footer { text-align:center; padding:22px; background:rgba(0,0,0,0.25); color:#c9d6f2; font-size:0.9rem; margin-top:auto; }
+@media(max-width:768px){.header{flex-direction:column;gap:15px;}.profile-top h1{font-size:1.7rem;}.profile-body{padding:25px;}.action-section{padding:0 25px 25px;}}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">CRYPTO HUB GROWTH INVESTMENT</div>
-
-    <div class="nav-links">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="index.html">Home</a>
-      <a href="login.html" id="logoutBtn">Logout</a>
-    </div>
-  </header>
-
-  <!-- Live Status -->
-  <div class="live-status" id="liveStatus">
-    Connecting to secure real-time database...
+<header class="header">
+  <div class="logo">CRYPTO HUB GROWTH INVESTMENT</div>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="smarter5rol.html">Home</a>
+    <a href="login.html" id="logoutBtn">Logout</a>
   </div>
+</header>
 
-  <!-- Profile Section -->
-  <section class="profile-section">
-    <div class="profile-card">
+<div class="live-status" id="liveStatus">
+  Connecting to secure real-time database...
+</div>
 
-      <div class="profile-top">
-        <div class="avatar" id="avatarLetter">U</div>
-        <h1 id="fullName">Loading Profile...</h1>
-        <p id="emailAddress">Fetching account details...</p>
-      </div>
-
-      <div class="profile-body">
-
-        <div class="info-box">
-          <h3>User Name</h3>
-          <p id="userName">---</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Full Name</h3>
-          <p id="fullNameBox">---</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Gmail Address</h3>
-          <p id="gmailBox">---</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Total Balance</h3>
-          <p id="totalBalance">$0</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Active Investment</h3>
-          <p id="activeInvestment">$0</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Total Profit</h3>
-          <p id="totalProfit">$0</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Account Created</h3>
-          <p id="createdAt">---</p>
-        </div>
-
-        <div class="info-box">
-          <h3>Investor Status</h3>
-          <p>Verified Investor</p>
-        </div>
-
-      </div>
-
-      <div class="action-section">
-        <a href="dashboard.html" class="btn primary">Back to Dashboard</a>
-        <button class="btn secondary" id="refreshBtn">Refresh Profile</button>
-      </div>
-
+<section class="profile-section">
+  <div class="profile-card">
+    <div class="profile-top">
+      <div class="avatar" id="avatarLetter">U</div>
+      <h1 id="fullName">Loading Profile...</h1>
+      <p id="emailAddress">Fetching account details...</p>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Investor Profile Portal
-  </footer>
+    <div class="profile-body">
+      <div class="info-box"><h3>User Name</h3><p id="userName">---</p></div>
+      <div class="info-box"><h3>Full Name</h3><p id="fullNameBox">---</p></div>
+      <div class="info-box"><h3>Gmail Address</h3><p id="gmailBox">---</p></div>
+      <div class="info-box"><h3>Total Balance</h3><p id="totalBalance">$0</p></div>
+      <div class="info-box"><h3>Active Investment</h3><p id="activeInvestment">$0</p></div>
+      <div class="info-box"><h3>Total Profit</h3><p id="totalProfit">$0</p></div>
+      <div class="info-box"><h3>Account Created</h3><p id="createdAt">---</p></div>
+      <div class="info-box"><h3>Investor Status</h3><p>Verified Investor</p></div>
+    </div>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getDatabase,
-      ref,
-      onValue
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    <div class="action-section">
+      <a href="dashboard.html" class="btn primary">Back to Dashboard</a>
+      <button class="btn secondary" id="refreshBtn">Refresh Profile</button>
+    </div>
+  </div>
+</section>
 
-    import {
-      getAuth,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Investor Profile Portal
+</footer>
 
-    // Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
-      authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
-      databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "crypto-hub-growth-invest-9492c",
-      storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
-      messagingSenderId: "946872117732",
-      appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
-      measurementId: "G-CLET27VD7J"
-    };
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const auth = getAuth(app);
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
 
-    // User ID
-    const userId = localStorage.getItem("cryptoHubUserId");
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
 
-    // Live Status
-    document.getElementById("liveStatus").innerText = "Secure real-time database connected.";
+let currentUserId = null;
 
-    // Redirect if no user
-    if (!userId) {
-      window.location.href = "login.html";
-    }
-
-    // Format Date
-    function formatDate(timestamp) {
-      if (!timestamp) return "---";
-      const date = new Date(timestamp);
-      return date.toLocaleDateString() + " " + date.toLocaleTimeString();
-    }
-
-    // Load User Profile
-    function loadProfile() {
-      const userRef = ref(database, "users/" + userId);
-
-      onValue(userRef, (snapshot) => {
-        const data = snapshot.val();
-
-        if (data) {
-          const initials = data.fullName ? data.fullName.charAt(0).toUpperCase() : "U";
-
-          document.getElementById("avatarLetter").innerText = initials;
-          document.getElementById("fullName").innerText = data.fullName || "Unknown User";
-          document.getElementById("emailAddress").innerText = data.gmail || "No Email";
-          document.getElementById("userName").innerText = data.userName || "---";
-          document.getElementById("fullNameBox").innerText = data.fullName || "---";
-          document.getElementById("gmailBox").innerText = data.gmail || "---";
-          document.getElementById("totalBalance").innerText = data.totalBalance || "$0";
-          document.getElementById("activeInvestment").innerText = data.activeInvestment || "$0";
-          document.getElementById("totalProfit").innerText = data.totalProfit || "$0";
-          document.getElementById("createdAt").innerText = formatDate(data.createdAt);
-        }
-      });
-    }
-
-    // Refresh
-    document.getElementById("refreshBtn").addEventListener("click", loadProfile);
-
-    // Logout
-    document.getElementById("logoutBtn").addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      try {
-        await signOut(auth);
-        localStorage.removeItem("cryptoHubUserId");
-        window.location.href = "login.html";
-      } catch (error) {
-        alert("Logout failed: " + error.message);
-      }
-    });
-
-    // Initial Load
+// Redirect user if not logged in
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    currentUserId = user.uid;
     loadProfile();
+  } else {
+    window.location.href = "smarter5rol.html";
+  }
+});
 
-  </script>
-
-</body>
-  </html>
+// Format timestamp
+function formatDate
