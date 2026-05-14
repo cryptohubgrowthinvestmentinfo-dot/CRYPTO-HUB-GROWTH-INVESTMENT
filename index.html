@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRYPTO HUB GROWTH INVESTMENT</title>
@@ -322,7 +325,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getDatabase, ref, onValue, connectDatabaseEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
     // Firebase Configuration
@@ -343,7 +346,21 @@
     const database = getDatabase(app);
 
     // Live Status
-    document.getElementById("liveStatus").innerText = "Secure live database connected successfully.";
+    const liveStatus = document.getElementById("liveStatus");
+
+    // Connection Monitoring
+    const connectedRef = ref(database, ".info/connected");
+
+    onValue(connectedRef, (snapshot) => {
+      if (snapshot.val() === true) {
+        liveStatus.innerText = "Secure live database connected successfully.";
+      } else {
+        liveStatus.innerText = "Reconnecting to secure live database...";
+      }
+    }, (error) => {
+      liveStatus.innerText = "Database connection failed.";
+      console.error("Connection Error:", error);
+    });
 
     // Real-time Stats Sync
     const statsRef = ref(database, "platformStats");
@@ -352,27 +369,27 @@
       const data = snapshot.val();
 
       if (data) {
-        if (data.trustedInvestors) {
+        if (data.trustedInvestors !== undefined) {
           document.getElementById("trustedInvestors").innerText = data.trustedInvestors;
         }
 
-        if (data.managedAssets) {
+        if (data.managedAssets !== undefined) {
           document.getElementById("managedAssets").innerText = data.managedAssets;
         }
 
-        if (data.securityRate) {
+        if (data.securityRate !== undefined) {
           document.getElementById("securityRate").innerText = data.securityRate;
         }
 
-        if (data.testimonial) {
+        if (data.testimonial !== undefined) {
           document.getElementById("testimonialText").innerText = data.testimonial;
         }
       }
     }, (error) => {
-      document.getElementById("liveStatus").innerText = "Database connection failed.";
-      console.error(error);
+      liveStatus.innerText = "Database sync failed.";
+      console.error("Realtime Sync Error:", error);
     });
   </script>
 
 </body>
-  </html>
+</html>
