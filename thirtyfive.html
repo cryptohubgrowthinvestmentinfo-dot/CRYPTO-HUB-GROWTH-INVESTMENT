@@ -1,0 +1,303 @@
+<!-- =========================
+FILE 1: investment-plans.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+    body{background:linear-gradient(135deg,#06131f,#0b2240);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    header{padding:20px;text-align:center;color:#00d9ff;font-size:1.4rem;font-weight:700}
+    .container{flex:1;padding:20px;max-width:1300px;margin:auto}
+    h2{text-align:center;color:#00d9ff;margin-bottom:20px}
+    .msg{max-width:700px;margin:0 auto 20px auto;text-align:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.08);color:#ffcc00;min-height:45px}
+    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .card{background:rgba(255,255,255,0.06);padding:20px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);text-align:center}
+    .title{font-size:1.2rem;font-weight:700;color:#00d9ff}
+    .price{font-size:2rem;font-weight:700;margin:10px 0}
+    .percent{color:#00ff99;font-weight:600}
+    .time{margin:10px 0;color:#c9d6f2}
+    .btn{width:100%;padding:12px;border:none;border-radius:30px;background:#00d9ff;color:#06131f;font-weight:700;cursor:pointer;margin-top:15px}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .nav{display:flex;gap:10px;justify-content:center;margin-top:25px}
+    .nav a{text-decoration:none;color:#06131f;background:#00d9ff;padding:10px 18px;border-radius:25px;font-weight:600}
+    footer{text-align:center;padding:15px;background:rgba(0,0,0,.3);color:#c9d6f2}
+  </style>
+</head>
+<body>
+<header>CRYPTO HUB GROWTH INVESTMENT</header>
+
+<div class="container">
+  <h2>24-Hour Investment Plans</h2>
+  <div class="msg" id="msg">Select a plan to invest.</div>
+  <div class="plans" id="plans"></div>
+
+  <div class="nav">
+    <a href="profile.html">Profile</a>
+    <a href="dashboard.html">Dashboard</a>
+  </div>
+</div>
+
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+
+const plans = [
+  {id:1,name:"Plan 1",price:100,percent:70},
+  {id:2,name:"Plan 2",price:125,percent:80},
+  {id:3,name:"Plan 3",price:150,percent:90},
+  {id:4,name:"Plan 4",price:175,percent:100},
+  {id:5,name:"Plan 5",price:200,percent:110},
+  {id:6,name:"Plan 6",price:225,percent:120},
+  {id:7,name:"Plan 7",price:250,percent:130}
+];
+
+let currentUser=null;
+auth.onAuthStateChanged(user=>{
+  if(!user){ window.location.href="login.html"; return; }
+  currentUser=user;
+  loadPlans();
+});
+
+function notify(text){
+  document.getElementById("msg").innerText=text;
+}
+
+function loadPlans(){
+  const wrap=document.getElementById("plans");
+  wrap.innerHTML="";
+  plans.forEach(plan=>{
+    db.ref("activePlans/"+currentUser.uid+"/"+plan.id).once("value").then(snapshot=>{
+      const active=snapshot.val();
+      let btnText="Invest";
+      let action=`invest(${plan.id})`;
+      let disabled=false;
+
+      if(active){
+        const now=Date.now();
+        const matureTime=active.investedAt + (24*60*60*1000);
+
+        if(now >= matureTime && !active.claimed){
+          btnText="Receive";
+          action=`receiveProfit(${plan.id})`;
+        }else if(!active.claimed){
+          btnText="Running";
+          disabled=true;
+        }
+      }
+
+      const card=document.createElement("div");
+      card.className="card";
+      card.innerHTML=`
+        <div class="title">${plan.name}</div>
+        <div class="price">$${plan.price}</div>
+        <div class="percent">${plan.percent}% Profit</div>
+        <div class="time">Duration: 24 Hours</div>
+        <button class="btn" ${disabled?"disabled":""} onclick="${action}">${btnText}</button>
+      `;
+      wrap.appendChild(card);
+    });
+  });
+}
+
+function invest(planId){
+  const plan=plans.find(p=>p.id===planId);
+  const userRef=db.ref("users/"+currentUser.uid);
+
+  userRef.once("value").then(snapshot=>{
+    const userData=snapshot.val() || {};
+    const balance=Number(userData.balance || 0);
+
+    if(balance < plan.price){
+      notify("Insufficient balance for "+plan.name);
+      return;
+    }
+
+    const newBalance=balance - plan.price;
+
+    userRef.update({balance:newBalance}).then(()=>{
+      return db.ref("activePlans/"+currentUser.uid+"/"+plan.id).set({
+        planId:plan.id,
+        planName:plan.name,
+        amount:plan.price,
+        percent:plan.percent,
+        investedAt:Date.now(),
+        claimed:false
+      });
+    }).then(()=>{
+      notify(plan.name+" activated successfully!");
+      loadPlans();
+    });
+  });
+}
+
+function receiveProfit(planId){
+  const planRef=db.ref("activePlans/"+currentUser.uid+"/"+planId);
+  const userRef=db.ref("users/"+currentUser.uid);
+
+  planRef.once("value").then(snapshot=>{
+    const plan=snapshot.val();
+    if(!plan) return;
+
+    const profit = plan.amount + ((plan.amount * plan.percent)/100);
+
+    userRef.once("value").then(userSnap=>{
+      const balance=Number((userSnap.val()||{}).balance || 0);
+
+      userRef.update({
+        balance: balance + profit
+      }).then(()=>{
+        return planRef.remove();
+      }).then(()=>{
+        notify("Profit received successfully! +$"+profit);
+        loadPlans();
+      });
+    });
+  });
+}
+</script>
+</body>
+</html>
+
+
+<!-- =========================
+FILE 2: profile.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Poppins;background:linear-gradient(135deg,#06131f,#0b2240);color:#fff}
+header,footer{text-align:center;padding:20px;color:#00d9ff}
+.box{max-width:500px;margin:30px auto;background:rgba(255,255,255,.06);padding:25px;border-radius:20px}
+.info{margin:15px 0;color:#c9d6f2}
+a{display:inline-block;margin-top:20px;text-decoration:none;background:#00d9ff;color:#06131f;padding:10px 18px;border-radius:25px}
+</style>
+</head>
+<body>
+<header>PROFILE</header>
+<div class="box">
+  <div class="info">Username: <span id="username"></span></div>
+  <div class="info">Full Name: <span id="fullname"></span></div>
+  <div class="info">Email: <span id="email"></span></div>
+  <div class="info">Main Balance: $<span id="balance"></span></div>
+  <a href="dashboard.html">Dashboard</a>
+</div>
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(user=>{
+  if(!user){window.location.href="login.html";return;}
+  firebase.database().ref("users/"+user.uid).on("value",snap=>{
+    const d=snap.val()||{};
+    document.getElementById("username").innerText=d.username||"";
+    document.getElementById("fullname").innerText=d.fullname||"";
+    document.getElementById("email").innerText=d.email||"";
+    document.getElementById("balance").innerText=d.balance||0;
+  });
+});
+</script>
+</body>
+</html>
+
+
+<!-- =========================
+FILE 3: dashboard.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Poppins;background:linear-gradient(135deg,#06131f,#0b2240);color:#fff}
+header,footer{text-align:center;padding:20px;color:#00d9ff}
+.container{max-width:700px;margin:30px auto}
+.card{background:rgba(255,255,255,.06);padding:20px;border-radius:20px;text-align:center}
+.balance{font-size:2rem;margin:15px 0}
+.nav{display:flex;justify-content:center;gap:15px;margin-top:20px}
+.nav a{text-decoration:none;background:#00d9ff;color:#06131f;padding:10px 18px;border-radius:25px}
+</style>
+</head>
+<body>
+<header>DASHBOARD</header>
+<div class="container">
+  <div class="card">
+    <h2>Available Balance</h2>
+    <div class="balance">$<span id="balance">0</span></div>
+    <div class="nav">
+      <a href="investment-plans.html">Investment Plans</a>
+      <a href="profile.html">Profile</a>
+    </div>
+  </div>
+</div>
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(user=>{
+  if(!user){window.location.href="login.html";return;}
+  firebase.database().ref("users/"+user.uid+"/balance").on("value",snap=>{
+    document.getElementById("balance").innerText=snap.val()||0;
+  });
+});
+</script>
+</body>
+                                                                                   </html>
