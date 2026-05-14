@@ -1,0 +1,130 @@
+<!-- ========================================================= -->
+<!-- FILE 1: investment-plans.html -->
+<!-- ========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+    body{background:linear-gradient(135deg,#06131f,#0b2240);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    header{text-align:center;padding:22px;font-size:1.5rem;font-weight:700;color:#00d9ff;background:rgba(255,255,255,.05)}
+    .container{flex:1;padding:20px;max-width:1300px;margin:auto;width:100%}
+    h2{text-align:center;color:#00d9ff;margin-bottom:20px}
+    .msg{margin:15px auto;text-align:center;color:#ffcc00;font-weight:500;min-height:24px}
+    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:20px;border-radius:20px;text-align:center}
+    .title{color:#00d9ff;font-size:1.2rem;font-weight:700;margin-bottom:10px}
+    .detail{color:#c9d6f2;margin-bottom:8px}
+    .timer{margin:10px 0;color:#7fffd4;font-size:.9rem}
+    .btn{padding:10px 20px;border:none;border-radius:25px;background:#00d9ff;color:#06131f;font-weight:700;cursor:pointer;width:100%}
+    .btn:disabled{opacity:.7;cursor:not-allowed}
+    nav{text-align:center;margin-top:25px}
+    nav a{color:#00d9ff;text-decoration:none;margin:0 12px;font-weight:600}
+    footer{text-align:center;padding:15px;background:rgba(0,0,0,.3);color:#c9d6f2}
+  </style>
+</head>
+<body>
+
+<header>CRYPTO HUB GROWTH INVESTMENT</header>
+
+<div class="container">
+  <h2>Investment Plans (24 Hours Cycle)</h2>
+  <div class="msg" id="msg"></div>
+  <div class="plans" id="plans"></div>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</div>
+
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT | Investment Plans</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+
+const plans = [
+  {id:1,name:"Plan 1",price:50,percent:40},
+  {id:2,name:"Plan 2",price:75,percent:45},
+  {id:3,name:"Plan 3",price:100,percent:50},
+  {id:4,name:"Plan 4",price:125,percent:55},
+  {id:5,name:"Plan 5",price:150,percent:60},
+  {id:6,name:"Plan 6",price:175,percent:65},
+  {id:7,name:"Plan 7",price:200,percent:70}
+];
+
+let currentUser = null;
+
+function notify(text){
+  document.getElementById("msg").innerText = text;
+}
+
+auth.onAuthStateChanged(user=>{
+  if(!user){
+    window.location.href="login.html";
+    return;
+  }
+  currentUser = user;
+  renderPlans();
+});
+
+function renderPlans(){
+  const container = document.getElementById("plans");
+  container.innerHTML = "";
+
+  plans.forEach(plan=>{
+    const card = document.createElement("div");
+    card.className = "card";
+    card.id = "plan-" + plan.id;
+
+    card.innerHTML = `
+      <div class="title">${plan.name}</div>
+      <div class="detail">Price: $${plan.price}</div>
+      <div class="detail">Profit: ${plan.percent}%</div>
+      <div class="detail">Duration: 24 Hours</div>
+      <div class="timer" id="timer-${plan.id}">Checking status...</div>
+      <button class="btn" id="btn-${plan.id}" onclick="handlePlan(${plan.id})">Invest</button>
+    `;
+    container.appendChild(card);
+
+    updatePlanButton(plan);
+  });
+}
+
+function updatePlanButton(plan){
+  const ref = db.ref("investments/" + currentUser.uid + "/plan_" + plan.id);
+
+  ref.once("value").then(snapshot=>{
+    const data = snapshot.val();
+    const btn = document.getElementById("btn-" + plan.id);
+    const timer = document.getElementById("timer-" + plan.id);
+
+    if(!data || data.status === "received"){
+      btn.innerText = "Invest";
+      timer.innerText = "Ready to invest";
+      return;
+    }
+
+    if(data.status === "active"){
+      const
