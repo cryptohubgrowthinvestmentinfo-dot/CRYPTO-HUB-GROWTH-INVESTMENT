@@ -1,395 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRYPTO HUB GROWTH INVESTMENT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRYPTO HUB GROWTH INVESTMENT</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Arial, sans-serif;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+body{
+  background:#0b1220;
+  color:#e5e7eb;
+  line-height:1.7;
+}
 
-    body {
-      background: linear-gradient(135deg, #071426, #0d1f3c, #122b52);
-      color: white;
-      line-height: 1.6;
-    }
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  background:rgba(15,23,42,0.96);
+  padding:18px 35px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #1f2937;
+  z-index:1000;
+}
 
-    a {
-      text-decoration: none;
-    }
+.logo{
+  color:#d4af37;
+  font-size:20px;
+  font-weight:bold;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 8%;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+.register-btn{
+  background:linear-gradient(135deg,#d4af37,#f8e08e);
+  color:#000;
+  padding:12px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-    .logo {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #00d9ff;
-      letter-spacing: 1px;
-    }
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 20px;
+  background:
+  linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+  url('https://images.unsplash.com/photo-1610375461246-83df859d849d');
+  background-size:cover;
+  background-position:center;
+}
 
-    nav a {
-      margin-left: 25px;
-      color: white;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+.hero h1{
+  font-size:56px;
+  color:#d4af37;
+  margin-bottom:15px;
+}
 
-    nav a:hover {
-      color: #00d9ff;
-    }
+.members{
+  font-size:26px;
+  color:#f8e08e;
+  margin-bottom:20px;
+}
 
-    .btn {
-      background: #00d9ff;
-      color: #071426;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: 700;
-      display: inline-block;
-      transition: 0.3s;
-      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
-      border: none;
-      cursor: pointer;
-    }
+/* SECTION */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px;
+}
 
-    .btn:hover {
-      background: white;
-      transform: translateY(-3px);
-    }
+h2{
+  text-align:center;
+  color:#d4af37;
+  font-size:38px;
+  margin-bottom:15px;
+}
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 80px 8%;
-      min-height: 90vh;
-      flex-wrap: wrap;
-    }
+.section-desc{
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+  color:#cbd5e1;
+  margin-bottom:40px;
+}
 
-    .hero-text {
-      max-width: 600px;
-    }
+/* GRID CARD */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
 
-    .hero-text h1 {
-      font-size: 3.5rem;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
+.card{
+  background:#111827;
+  border:1px solid #1f2937;
+  padding:20px;
+  border-radius:14px;
+  transition:0.3s;
+}
 
-    .hero-text h1 span {
-      color: #00d9ff;
-    }
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#d4af37;
+}
 
-    .hero-text p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      color: #d6e4ff;
-    }
+.card h3{
+  color:#d4af37;
+  margin-bottom:10px;
+}
 
-    .hero-image {
-      max-width: 500px;
-    }
+/* METAL BLOCK */
+.metal{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  align-items:center;
+  margin-top:30px;
+}
 
-    .hero-image img {
-      width: 100%;
-      animation: float 4s ease-in-out infinite;
-    }
+.metal img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid #1f2937;
+}
 
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
+.info{
+  background:#111827;
+  padding:20px;
+  border-radius:14px;
+  border:1px solid #1f2937;
+}
 
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 40px 8%;
-      background: rgba(255,255,255,0.04);
-      flex-wrap: wrap;
-    }
+.price{
+  color:#f8e08e;
+  font-size:20px;
+  margin-top:10px;
+}
 
-    .stat-box {
-      text-align: center;
-    }
+/* TABLE */
+table{
+  width:100%;
+  margin-top:30px;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:12px;
+}
 
-    .stat-box h2 {
-      color: #00d9ff;
-      font-size: 2rem;
-    }
+th,td{
+  padding:15px;
+  border:1px solid #1f2937;
+  text-align:center;
+}
 
-    .live-status {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,217,255,0.08);
-      color: #00d9ff;
-      font-weight: 600;
-    }
+th{
+  background:#111827;
+  color:#d4af37;
+}
 
-    .features {
-      padding: 80px 8%;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .section-title span {
-      color: #00d9ff;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 25px;
-      margin-top: 50px;
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,0.06);
-      padding: 30px;
-      border-radius: 20px;
-      transition: 0.3s;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      border-color: #00d9ff;
-    }
-
-    .feature-card h3 {
-      margin-bottom: 15px;
-      color: #00d9ff;
-    }
-
-    .testimonials {
-      padding: 80px 8%;
-      background: rgba(255,255,255,0.03);
-      text-align: center;
-    }
-
-    .testimonial-box {
-      max-width: 800px;
-      margin: auto;
-      font-style: italic;
-      color: #d6e4ff;
-      font-size: 1.1rem;
-    }
-
-    .cta {
-      text-align: center;
-      padding: 80px 8%;
-    }
-
-    .cta h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      padding: 30px 8%;
-      text-align: center;
-      background: rgba(0,0,0,0.3);
-      color: #c9d6f2;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-text h1 {
-        font-size: 2.6rem;
-      }
-
-      nav {
-        display: none;
-      }
-    }
-  </style>
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:35px;
+  border-top:1px solid #1f2937;
+  color:#94a3b8;
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">CRYPTO HUB GROWTH INVESTMENT</div>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Trust</a>
-      <a href="register.html" class="btn">Register</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">CRYPTO HUB GROWTH INVESTMENT</div>
+  <a href="register.html" class="register-btn">Register</a>
+</header>
 
-  <!-- Firebase Live Status -->
-  <div class="live-status" id="liveStatus">
-    Connecting to secure live database...
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Global Investment Growth Platform</h1>
+
+    <div class="members">
+      12,000,000+ Registered Members
+    </div>
+
+    <a href="register.html" class="register-btn">Start Investment</a>
   </div>
+</section>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Secure Your Financial Future with <span>Smart Crypto Investments</span></h1>
-      <p>
-        CRYPTO HUB GROWTH INVESTMENT empowers investors worldwide with trusted digital asset growth strategies, secure portfolio management, and transparent returns.
-      </p>
-      <a href="register.html" class="btn">Start Investing Today</a>
+<!-- GOLD -->
+<section>
+  <h2>Gold Asset</h2>
+  <p class="section-desc">Gold is a premium global stability asset used in investment portfolios.</p>
+
+  <div class="metal">
+    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646">
+
+    <div class="info">
+      <h3>Gold Market Position</h3>
+      <p>Used as a global reserve and long-term value storage asset.</p>
+      <div class="price">💰 $4,600 – $4,700 / oz</div>
+    </div>
+  </div>
+</section>
+
+<!-- SILVER -->
+<section>
+  <h2>Silver Asset</h2>
+
+  <div class="metal">
+    <div class="info">
+      <h3>Silver Market Position</h3>
+      <p>Industrial + investment dual-purpose precious metal.</p>
+      <div class="price">💰 $84 – $87 / oz</div>
     </div>
 
-    <div class="hero-image">
-      <img src="https://cdn-icons-png.flaticon.com/512/825/825540.png" alt="Investment">
+    <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247">
+  </div>
+</section>
+
+<!-- PLATINUM -->
+<section>
+  <h2>Platinum Asset</h2>
+
+  <div class="metal">
+    <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d">
+
+    <div class="info">
+      <h3>Platinum Industrial Value</h3>
+      <p>High-value scarcity metal used in automotive and industrial sectors.</p>
+      <div class="price">💰 $2,050 – $2,100 / oz</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="stats">
-    <div class="stat-box">
-      <h2 id="trustedInvestors">50K+</h2>
-      <p>Trusted Investors</p>
+<!-- COPPER -->
+<section>
+  <h2>Copper Asset</h2>
+
+  <div class="metal">
+    <div class="info">
+      <h3>Infrastructure Metal</h3>
+      <p>Essential for construction, electricity, and global infrastructure.</p>
+      <div class="price">💰 $6 – $7 / lb</div>
     </div>
 
-    <div class="stat-box">
-      <h2 id="managedAssets">$120M+</h2>
-      <p>Managed Assets</p>
-    </div>
+    <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad">
+  </div>
+</section>
 
-    <div class="stat-box">
-      <h2 id="securityRate">99.9%</h2>
-      <p>Platform Security</p>
-    </div>
-  </section>
+<!-- SUMMARY TABLE -->
+<section>
+  <h2>Market Overview</h2>
 
-  <section class="features" id="features">
-    <h2 class="section-title">Why Choose <span>Us</span></h2>
+  <table>
+    <tr>
+      <th>Asset</th>
+      <th>Price</th>
+      <th>Role</th>
+    </tr>
+    <tr>
+      <td>Gold</td>
+      <td>$4,600 – $4,700</td>
+      <td>Stability Asset</td>
+    </tr>
+    <tr>
+      <td>Silver</td>
+      <td>$84 – $87</td>
+      <td>Industrial + Investment</td>
+    </tr>
+    <tr>
+      <td>Platinum</td>
+      <td>$2,050 – $2,100</td>
+      <td>Scarcity Asset</td>
+    </tr>
+    <tr>
+      <td>Copper</td>
+      <td>$6 – $7</td>
+      <td>Infrastructure Asset</td>
+    </tr>
+  </table>
+</section>
 
-    <div class="feature-grid">
-      <div class="feature-card">
-        <h3>Advanced Security</h3>
-        <p>Your investments are protected with top-level encryption and secure blockchain integration.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Consistent Growth</h3>
-        <p>Benefit from strategic market analysis and diversified crypto investment opportunities.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Transparent Platform</h3>
-        <p>Track your portfolio performance in real-time with complete financial transparency.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Global Access</h3>
-        <p>Invest anytime, anywhere with our secure and responsive digital platform.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials" id="testimonials">
-    <h2 class="section-title">Built on <span>Trust</span></h2>
-    <div class="testimonial-box" id="testimonialText">
-      “CRYPTO HUB GROWTH INVESTMENT has helped thousands of investors build confidence in crypto wealth generation through secure systems and professional investment management.”
-    </div>
-  </section>
-
-  <section class="cta">
-    <h2>Join the Future of Wealth Building</h2>
-    <p>Take the next step toward financial growth and digital investment success.</p>
-    <br>
-    <a href="register.html" class="btn">Create Your Account</a>
-  </section>
-
-  <footer>
-    <p>© 2026 CRYPTO HUB GROWTH INVESTMENT | Secure. Trusted. Growing.</p>
-  </footer>
-
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getDatabase, ref, onValue, connectDatabaseEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-
-    // Firebase Configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
-      authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
-      databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "crypto-hub-growth-invest-9492c",
-      storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
-      messagingSenderId: "946872117732",
-      appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
-      measurementId: "G-CLET27VD7J"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const database = getDatabase(app);
-
-    // Live Status
-    const liveStatus = document.getElementById("liveStatus");
-
-    // Connection Monitoring
-    const connectedRef = ref(database, ".info/connected");
-
-    onValue(connectedRef, (snapshot) => {
-      if (snapshot.val() === true) {
-        liveStatus.innerText = "Secure live database connected successfully.";
-      } else {
-        liveStatus.innerText = "Reconnecting to secure live database...";
-      }
-    }, (error) => {
-      liveStatus.innerText = "Database connection failed.";
-      console.error("Connection Error:", error);
-    });
-
-    // Real-time Stats Sync
-    const statsRef = ref(database, "platformStats");
-
-    onValue(statsRef, (snapshot) => {
-      const data = snapshot.val();
-
-      if (data) {
-        if (data.trustedInvestors !== undefined) {
-          document.getElementById("trustedInvestors").innerText = data.trustedInvestors;
-        }
-
-        if (data.managedAssets !== undefined) {
-          document.getElementById("managedAssets").innerText = data.managedAssets;
-        }
-
-        if (data.securityRate !== undefined) {
-          document.getElementById("securityRate").innerText = data.securityRate;
-        }
-
-        if (data.testimonial !== undefined) {
-          document.getElementById("testimonialText").innerText = data.testimonial;
-        }
-      }
-    }, (error) => {
-      liveStatus.innerText = "Database sync failed.";
-      console.error("Realtime Sync Error:", error);
-    });
-  </script>
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT — All Rights Reserved
+</footer>
 
 </body>
-</html>
+  </html>
