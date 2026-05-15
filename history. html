@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transaction History | CRYPTO HUB GROWTH INVESTMENT</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#06131f,#0b2240);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      text-align:center;
+      padding:25px;
+      background:rgba(255,255,255,0.05);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    header h1{
+      color:#00d9ff;
+      font-size:1.7rem;
+      font-weight:700;
+    }
+
+    header p{
+      color:#c9d6f2;
+      margin-top:6px;
+      font-size:0.95rem;
+    }
+
+    .container{
+      flex:1;
+      max-width:1400px;
+      margin:auto;
+      width:100%;
+      padding:25px;
+    }
+
+    .notification{
+      display:none;
+      text-align:center;
+      padding:14px;
+      border-radius:12px;
+      margin-bottom:20px;
+      color:#00d9ff;
+      background:rgba(0,217,255,0.12);
+      border:1px solid rgba(0,217,255,0.35);
+      font-weight:500;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      margin-bottom:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      padding:20px;
+      text-align:center;
+    }
+
+    .card h3{
+      color:#c9d6f2;
+      margin-bottom:8px;
+      font-size:0.95rem;
+    }
+
+    .card p{
+      color:#00d9ff;
+      font-size:1.6rem;
+      font-weight:700;
+    }
+
+    .gallery{
+      margin-bottom:30px;
+    }
+
+    .gallery h2{
+      color:#00d9ff;
+      margin-bottom:15px;
+      text-align:center;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+    }
+
+    .gallery-item{
+      background:rgba(255,255,255,0.05);
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .gallery-item img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .gallery-item p{
+      padding:12px;
+      color:#c9d6f2;
+      font-size:0.9rem;
+      text-align:center;
+    }
+
+    .section{
+      background:rgba(255,255,255,0.05);
+      border-radius:20px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .section h2{
+      color:#00d9ff;
+      margin-bottom:18px;
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:900px;
+    }
+
+    th, td{
+      padding:14px 12px;
+      text-align:left;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      font-size:0.9rem;
+    }
+
+    th{
+      color:#00d9ff;
+      font-weight:600;
+    }
+
+    .type-badge{
+      padding:6px 10px;
+      border-radius:20px;
+      font-size:0.75rem;
+      font-weight:600;
+      display:inline-block;
+    }
+
+    .deposit{ background:rgba(0,255,140,0.15); color:#00ffae; }
+    .withdrawal{ background:rgba(255,77,77,0.15); color:#ff8c8c; }
+    .investment{ background:rgba(255,204,0,0.15); color:#ffcc00; }
+    .profit{ background:rgba(0,217,255,0.15); color:#00d9ff; }
+
+    footer{
+      text-align:center;
+      padding:18px;
+      font-size:0.85rem;
+      color:#c9d6f2;
+      background:rgba(0,0,0,0.3);
+      margin-top:25px;
+    }
+
+    @media(max-width:768px){
+      header h1{
+        font-size:1.35rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>CRYPTO HUB GROWTH INVESTMENT</h1>
+  <p>Professional Financial History & Transaction Records</p>
+</header>
+
+<div class="container">
+
+  <div class="notification" id="notification"></div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card">
+      <h3>Total Deposits</h3>
+      <p id="totalDeposits">$0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Withdrawals</h3>
+      <p id="totalWithdrawals">$0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Investments</h3>
+      <p id="totalInvestments">$0</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Profits</h3>
+      <p id="totalProfits">$0</p>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <h2>Platform Financial Operations</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80" alt="Secure Banking">
+        <p>Secure bank deposit verification and account funding process.</p>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=900&q=80" alt="Investment Growth">
+        <p>Investment plan activation, growth cycle and profit maturity.</p>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=900&q=80" alt="Transaction History">
+        <p>Real-time transaction records for deposits, withdrawals and profits.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY TABLE -->
+  <div class="section">
+    <h2>Real-Time Transaction History</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Plan / Method</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date & Time</th>
+          </tr>
+        </thead>
+
+        <tbody id="historyTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Real-Time History
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+/* Firebase Config */
+const firebaseConfig = {
+  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
+  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
+  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "crypto-hub-growth-invest-9492c",
+  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
+  messagingSenderId: "946872117732",
+  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+  measurementId: "G-CLET27VD7J"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+
+let currentUser = null;
+
+/* Notification */
+function notify(message){
+  const box = document.getElementById("notification");
+  box.innerText = message;
+  box.style.display = "block";
+
+  clearTimeout(box.timer);
+  box.timer = setTimeout(()=>{
+    box.style.display = "none";
+  }, 4000);
+}
+
+/* Auth */
+auth.onAuthStateChanged(user => {
+  if(!user){
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+  loadHistory();
+});
+
+/* Load Full Transaction History */
+function loadHistory(){
+  const table = document.getElementById("historyTable");
+
+  let totalDeposits = 0;
+  let totalWithdrawals = 0;
+  let totalInvestments = 0;
+  let totalProfits = 0;
+
+  db.ref("transactions/" + currentUser.uid).on("value", snap => {
+
+    table.innerHTML = "";
+    totalDeposits = 0;
+    totalWithdrawals = 0;
+    totalInvestments = 0;
+    totalProfits = 0;
+
+    let rows = [];
+
+    snap.forEach(txSnap => {
+      const tx = txSnap.val();
+
+      let badge = "";
+      let label = tx.type || "unknown";
+
+      if(label.includes("deposit")){
+        badge = "deposit";
+        totalDeposits += Number(tx.amount || 0);
+      }
+      else if(label.includes("withdraw")){
+        badge = "withdrawal";
+        totalWithdrawals += Number(tx.amount || 0);
+      }
+      else if(label.includes("investment")){
+        badge = "investment";
+        totalInvestments += Number(tx.amount || 0);
+      }
+      else if(label.includes("profit")){
+        badge = "profit";
+        totalProfits += Number(tx.amount || 0);
+      }
+
+      rows.push(`
+        <tr>
+          <td><span class="type-badge ${badge}">${label.replace(/_/g,' ')}</span></td>
+          <td>${tx.plan || tx.method || "Account Operation"}</td>
+          <td>$${Number(tx.amount || 0)}</td>
+          <td>${tx.status || "completed"}</td>
+          <td>${new Date(tx.createdAt || Date.now()).toLocaleString()}</td>
+        </tr>
+      `);
+    });
+
+    rows.reverse();
+    table.innerHTML = rows.join("");
+
+    document.getElementById("totalDeposits").innerText = "$" + totalDeposits;
+    document.getElementById("totalWithdrawals").innerText = "$" + totalWithdrawals;
+    document.getElementById("totalInvestments").innerText = "$" + totalInvestments;
+    document.getElementById("totalProfits").innerText = "$" + totalProfits;
+
+    if(rows.length === 0){
+      notify("No transaction history found yet.");
+    }
+  });
+}
+</script>
+
+</body>
+</html>
