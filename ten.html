@@ -1,38 +1,152 @@
-<!-- ========================= investment-plans.html ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-    body{background:linear-gradient(135deg,#06131f,#0b2240);color:#fff;min-height:100vh;display:flex;flex-direction:column}
-    header{text-align:center;padding:22px;font-size:1.4rem;font-weight:700;color:#00d9ff;background:rgba(255,255,255,.05)}
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;color:#c9d6f2}
-    .nav a{color:#00d9ff;text-decoration:none;margin-left:15px;font-weight:600}
-    .container{flex:1;padding:20px;max-width:1300px;width:100%;margin:auto}
-    h2{text-align:center;color:#00d9ff;margin-bottom:10px}
-    .note{text-align:center;color:#c9d6f2;margin-bottom:20px}
-    .msg{max-width:900px;margin:0 auto 18px auto;padding:12px;border-radius:12px;background:rgba(255,255,255,.06);color:#ffcc00;text-align:center;min-height:22px}
-    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;text-align:center}
-    .title{font-size:1.15rem;font-weight:700;color:#00d9ff;margin-bottom:8px}
-    .price{font-size:1.4rem;font-weight:700;margin-bottom:8px}
-    .detail{color:#c9d6f2;font-size:.92rem;margin-bottom:8px;line-height:1.6}
-    .timer{font-size:.9rem;color:#ffcc00;margin:10px 0}
-    .btn{width:100%;padding:12px;border:none;border-radius:30px;background:#00d9ff;color:#06131f;font-weight:700;cursor:pointer}
-    .btn:disabled{opacity:.6;cursor:not-allowed}
-    footer{text-align:center;padding:16px;background:rgba(0,0,0,.3);font-size:.82rem;color:#c9d6f2}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Investment Plans | CRYPTO HUB</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  background:#071422;
+  color:#fff;
+}
+
+header{
+  padding:20px;
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  background:#0d1f33;
+  color:#00d9ff;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  background:#0b1a2b;
+  color:#ffd700;
+  flex-wrap:wrap;
+}
+
+.nav a{
+  color:#00d9ff;
+  text-decoration:none;
+  margin-left:15px;
+  font-weight:600;
+}
+
+.container{
+  padding:20px;
+  max-width:1300px;
+  margin:auto;
+}
+
+.note{
+  text-align:center;
+  margin-bottom:15px;
+  color:#c9d6f2;
+  line-height:1.6;
+}
+
+.msg{
+  text-align:center;
+  margin:15px 0;
+  min-height:25px;
+  font-weight:600;
+}
+
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.card{
+  background:#0f2238;
+  border:1px solid #1d3a5c;
+  padding:20px;
+  border-radius:15px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#00d9ff;
+}
+
+.title{
+  font-size:20px;
+  color:#00d9ff;
+  font-weight:700;
+}
+
+.price{
+  font-size:24px;
+  margin:10px 0;
+  font-weight:700;
+}
+
+.detail{
+  margin:8px 0;
+  color:#c9d6f2;
+}
+
+.timer{
+  color:#ffcc00;
+  margin:12px 0;
+  font-weight:700;
+}
+
+.btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  background:#00d9ff;
+  color:#000;
+  font-size:15px;
+}
+
+.btn:hover:not(:disabled){
+  background:#fff;
+}
+
+.btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+footer{
+  text-align:center;
+  padding:15px;
+  margin-top:30px;
+  color:#c9d6f2;
+  background:#0b1a2b;
+}
+</style>
 </head>
+
 <body>
 
 <header>CRYPTO HUB GROWTH INVESTMENT</header>
 
 <div class="topbar">
-  <div id="balanceDisplay">Total Balance: $0.00</div>
+  <div id="balance">Balance: $0.00</div>
+
   <div class="nav">
     <a href="dashboard.html">Dashboard</a>
     <a href="profile.html">Profile</a>
@@ -40,20 +154,32 @@
 </div>
 
 <div class="container">
-  <h2>24-Hour Investment Plans</h2>
-  <div class="note">Minimum starts at $35. Each plan runs for 24 hours. Higher plans earn higher percentages.</div>
+
+  <div class="note">
+    Minimum investment starts at $10.<br>
+    Each plan increases by $25.<br>
+    Each plan runs for 24 hours.<br>
+    Higher plans earn higher ROI.
+  </div>
+
   <div class="msg" id="msg"></div>
 
-  <div class="plans" id="plansContainer"></div>
+  <div class="plans" id="plans"></div>
+
 </div>
 
-<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT | Investment Plans</footer>
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT
+</footer>
 
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
+
+/* ================= FIREBASE CONFIG ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
   authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
@@ -65,159 +191,234 @@ const firebaseConfig = {
   measurementId: "G-CLET27VD7J"
 };
 
-firebase.initializeApp(firebaseConfig);
+if(!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig);
+}
+
 const auth = firebase.auth();
 const db = firebase.database();
 
+let user = null;
+let balance = 0;
+
+/* ================= INVESTMENT PLANS ================= */
 const plans = [
-  {id:1, name:"Starter", price:35, percent:25},
-  {id:2, name:"Bronze", price:60, percent:30},
-  {id:3, name:"Silver", price:85, percent:35},
-  {id:4, name:"Gold", price:110, percent:40},
-  {id:5, name:"Platinum", price:135, percent:45},
-  {id:6, name:"Diamond", price:160, percent:50},
-  {id:7, name:"Elite", price:185, percent:55}
+  {id:1,name:"Starter",price:10,roi:10},
+  {id:2,name:"Bronze",price:35,roi:12},
+  {id:3,name:"Silver",price:60,roi:14},
+  {id:4,name:"Gold",price:85,roi:16},
+  {id:5,name:"Platinum",price:110,roi:18},
+  {id:6,name:"Diamond",price:135,roi:20},
+  {id:7,name:"Elite",price:160,roi:25}
 ];
 
-let currentUser = null;
-let userBalance = 0;
+/* ================= NOTIFICATIONS ================= */
+function notify(msg,color="#00ff88"){
+  const m = document.getElementById("msg");
+  m.style.color = color;
+  m.innerText = msg;
 
-function notify(text){
-  document.getElementById("msg").innerText = text;
+  clearTimeout(window.notifyTimer);
+
+  window.notifyTimer = setTimeout(()=>{
+    m.innerText = "";
+  },4000);
 }
 
-function formatRemaining(ms){
-  if(ms <= 0) return "Completed";
-  const hrs = Math.floor(ms / (1000*60*60));
-  const mins = Math.floor((ms % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((ms % (1000*60)) / 1000);
-  return `${hrs}h ${mins}m ${secs}s`;
+/* ================= TIMER FORMAT ================= */
+function format(ms){
+  if(ms <= 0) return "Profit Ready";
+
+  let h = Math.floor(ms / 3600000);
+  let m = Math.floor((ms % 3600000) / 60000);
+  let s = Math.floor((ms % 60000) / 1000);
+
+  return `${h}h ${m}m ${s}s`;
 }
 
-function renderPlans(userPlans = {}){
-  const container = document.getElementById("plansContainer");
-  container.innerHTML = "";
+/* ================= BALANCE SYNC ================= */
+function loadBalance(uid){
+  db.ref("users/" + uid).on("value", snap => {
 
-  plans.forEach(plan => {
-    const active = userPlans[plan.id] || null;
-    let buttonLabel = "Invest";
-    let buttonAction = `investPlan(${plan.id})`;
-    let timerText = "Duration: 24 Hours";
+    balance = Number(snap.val()?.balance || 0);
 
-    if(active){
-      if(active.status === "active"){
-        const remaining = (active.startedAt + 86400000) - Date.now();
-        if(remaining <= 0){
-          buttonLabel = "Receive";
-          buttonAction = `receiveProfit(${plan.id})`;
-          timerText = "Profit Ready";
-        } else {
-          buttonLabel = "Running";
-          buttonAction = "";
-          timerText = "Remaining: " + formatRemaining(remaining);
-        }
+    document.getElementById("balance").innerText =
+      "Balance: $" + balance.toFixed(2);
+
+  });
+}
+
+/* ================= RENDER PLANS ================= */
+function render(uid,data={}){
+
+  const box = document.getElementById("plans");
+  box.innerHTML = "";
+
+  plans.forEach(p => {
+
+    let inv = data[p.id];
+
+    let btnText = "Invest";
+    let disabled = false;
+    let timer = "24H";
+
+    if(inv){
+
+      const remaining = (inv.time + 86400000) - Date.now();
+
+      if(remaining <= 0){
+        btnText = "Receive";
+        timer = "Profit Ready";
+      }else{
+        btnText = "Running";
+        disabled = true;
+        timer = format(remaining);
       }
     }
 
+    const totalReturn = p.price + (p.price * p.roi / 100);
+
     const card = document.createElement("div");
     card.className = "card";
+
     card.innerHTML = `
-      <div class="title">${plan.name} Plan</div>
-      <div class="price">$${plan.price}</div>
+      <div class="title">${p.name} Plan</div>
+      <div class="price">$${p.price}</div>
+
+      <div class="detail">ROI: ${p.roi}% after 24H</div>
+
       <div class="detail">
-        Profit: ${plan.percent}% after 24 hours<br>
-        Total Return: $${(plan.price + (plan.price * plan.percent / 100)).toFixed(2)}
+        Return After 24H: $${totalReturn.toFixed(2)}
       </div>
-      <div class="timer">${timerText}</div>
-      <button class="btn" ${buttonLabel==="Running" ? "disabled" : ""} onclick="${buttonAction}">
-        ${buttonLabel}
+
+      <div class="timer">${timer}</div>
+
+      <button class="btn" ${disabled ? "disabled" : ""}>
+        ${btnText}
       </button>
     `;
-    container.appendChild(card);
+
+    const btn = card.querySelector("button");
+
+    if(btnText === "Invest"){
+      btn.onclick = () => invest(uid,p);
+    }
+
+    if(btnText === "Receive"){
+      btn.onclick = () => receive(uid,p,inv);
+    }
+
+    box.appendChild(card);
+
   });
 }
 
-function loadUserData(uid){
-  db.ref("users/" + uid).on("value", snap => {
-    const data = snap.val() || {};
-    userBalance = Number(data.balance || 0);
-    document.getElementById("balanceDisplay").innerText = `Total Balance: $${userBalance.toFixed(2)}`;
-  });
+/* ================= INVEST ================= */
+function invest(uid,p){
 
-  db.ref("investments/" + uid).on("value", snap => {
-    renderPlans(snap.val() || {});
-  });
-}
-
-function investPlan(planId){
-  const plan = plans.find(p => p.id === planId);
-  if(!currentUser || !plan) return;
-
-  if(userBalance < plan.price){
-    notify(`Insufficient balance for ${plan.name} Plan.`);
+  if(balance < p.price){
+    notify("Insufficient balance","#ff4444");
     return;
   }
 
-  const newBalance = userBalance - plan.price;
+  db.ref("investments/" + uid + "/" + p.id)
+    .once("value")
+    .then(snapshot => {
 
-  db.ref("users/" + currentUser.uid).update({
-    balance: newBalance
-  }).then(() => {
-    return db.ref("investments/" + currentUser.uid + "/" + planId).set({
-      planId: plan.id,
-      planName: plan.name,
-      price: plan.price,
-      percent: plan.percent,
-      startedAt: Date.now(),
-      status: "active"
+      if(snapshot.exists()){
+        notify("Plan already active","#ff4444");
+        return;
+      }
+
+      const newBalance = balance - p.price;
+
+      return db.ref("users/" + uid).update({
+        balance:newBalance
+      }).then(()=>{
+
+        return db.ref("investments/" + uid + "/" + p.id).set({
+          amount:p.price,
+          roi:p.roi,
+          time:Date.now()
+        });
+
+      }).then(()=>{
+
+        notify(`${p.name} Plan activated successfully`);
+
+      });
+
     });
-  }).then(() => {
-    notify(`${plan.name} Plan activated successfully.`);
-  }).catch(err => {
-    notify(err.message);
-  });
 }
 
-function receiveProfit(planId){
-  const plan = plans.find(p => p.id === planId);
-  if(!currentUser || !plan) return;
+/* ================= RECEIVE ================= */
+function receive(uid,p,inv){
 
-  db.ref("investments/" + currentUser.uid + "/" + planId).once("value").then(snap => {
-    const inv = snap.val();
-    if(!inv) return;
+  const payout = inv.amount + (inv.amount * p.roi / 100);
 
-    const payout = inv.price + (inv.price * inv.percent / 100);
-    const updatedBalance = userBalance + payout;
+  db.ref("users/" + uid)
+    .once("value")
+    .then(snap => {
 
-    return db.ref("users/" + currentUser.uid).update({
-      balance: updatedBalance
-    }).then(() => {
-      return db.ref("investments/" + currentUser.uid + "/" + planId).remove();
-    }).then(() => {
-      notify(`Profit received! $${payout.toFixed(2)} added to your balance.`);
+      const currentBalance = Number(snap.val()?.balance || 0);
+
+      return db.ref("users/" + uid).update({
+        balance: currentBalance + payout
+      });
+
+    })
+    .then(() => {
+
+      return db.ref("investments/" + uid + "/" + p.id).remove();
+
+    })
+    .then(() => {
+
+      notify(
+        `Received $${payout.toFixed(2)} from ${p.name} Plan`
+      );
+
     });
-  }).catch(err => {
-    notify(err.message);
-  });
 }
 
-auth.onAuthStateChanged(user => {
-  if(!user){
+/* ================= AUTH ================= */
+auth.onAuthStateChanged(u => {
+
+  if(!u){
     window.location.href = "login.html";
-  } else {
-    currentUser = user;
-    loadUserData(user.uid);
+    return;
   }
+
+  user = u;
+
+  loadBalance(u.uid);
+
+  db.ref("investments/" + u.uid).on("value", snap => {
+
+    render(u.uid, snap.val() || {});
+
+  });
+
 });
 
-setInterval(() => {
-  if(currentUser){
-    db.ref("investments/" + currentUser.uid).once("value").then(snap => {
-      renderPlans(snap.val() || {});
-    });
+/* ================= LIVE TIMER ================= */
+setInterval(()=>{
+
+  if(user){
+
+    db.ref("investments/" + user.uid)
+      .once("value")
+      .then(snap => {
+
+        render(user.uid, snap.val() || {});
+
+      });
+
   }
-}, 1000);
+
+},1000);
+
 </script>
 
 </body>
-                                           </html>
+  </html>
