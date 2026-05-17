@@ -1,185 +1,157 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | CRYPTO HUB GROWTH INVESTMENT</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
-    }
+body{
+  background:linear-gradient(135deg,#06131f,#0b2240);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
 
-    body{
-      background:linear-gradient(135deg,#06131f,#0b2240);
-      color:#fff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+header{
+  text-align:center;
+  padding:20px;
+  font-size:1.5rem;
+  font-weight:700;
+  color:#00d9ff;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+}
 
-    header{
-      text-align:center;
-      padding:25px;
-      font-size:1.5rem;
-      font-weight:700;
-      color:#00d9ff;
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(10px);
-    }
+.container{
+  flex:1;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .container{
-      flex:1;
-      padding:20px;
-      max-width:1300px;
-      width:100%;
-      margin:auto;
-    }
+.balance{
+  font-size:1.3rem;
+  font-weight:600;
+  margin-bottom:20px;
+  color:#ffcc00;
+}
 
-    h2{
-      text-align:center;
-      color:#00d9ff;
-      margin-bottom:10px;
-    }
+h2{
+  color:#00d9ff;
+  margin-bottom:20px;
+  text-align:center;
+}
 
-    .sub{
-      text-align:center;
-      color:#c9d6f2;
-      margin-bottom:25px;
-      font-size:0.95rem;
-    }
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  width:100%;
+  max-width:1300px;
+}
 
-    .notification{
-      max-width:700px;
-      margin:0 auto 20px;
-      padding:14px;
-      border-radius:12px;
-      text-align:center;
-      display:none;
-      font-weight:500;
-      background:rgba(0,217,255,0.12);
-      border:1px solid rgba(0,217,255,0.3);
-      color:#00d9ff;
-    }
+.plan-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  transition:0.3s;
+}
 
-    .plans{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-    }
+.plan-card:hover{
+  transform:scale(1.05);
+  border-color:#00d9ff;
+}
 
-    .plan-card{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:20px;
-      padding:20px;
-      transition:0.3s;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
+.plan-title{
+  font-weight:700;
+  font-size:1.2rem;
+  margin-bottom:10px;
+  color:#00d9ff;
+}
 
-    .plan-card:hover{
-      transform:translateY(-5px);
-      border-color:#00d9ff;
-    }
+.plan-detail{
+  margin-bottom:12px;
+  color:#c9d6f2;
+}
 
-    .plan-title{
-      font-size:1.2rem;
-      font-weight:700;
-      color:#00d9ff;
-      margin-bottom:10px;
-      text-align:center;
-    }
+.timer{
+  color:#ffcc00;
+  font-weight:600;
+  margin-bottom:12px;
+}
 
-    .price{
-      font-size:1.8rem;
-      font-weight:700;
-      text-align:center;
-      margin-bottom:10px;
-    }
+.btn{
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  background:#00d9ff;
+  color:#06131f;
+  font-weight:700;
+  cursor:pointer;
+  width:100%;
+}
 
-    .detail{
-      color:#c9d6f2;
-      margin-bottom:8px;
-      text-align:center;
-      font-size:0.9rem;
-    }
+.btn:hover{
+  background:white;
+}
 
-    .timer{
-      text-align:center;
-      font-size:0.85rem;
-      color:#ffcc00;
-      margin:10px 0;
-      min-height:20px;
-    }
+.btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
 
-    .btn{
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:30px;
-      background:#00d9ff;
-      color:#06131f;
-      font-weight:700;
-      cursor:pointer;
-      transition:0.3s;
-    }
+.msg{
+  text-align:center;
+  margin-top:20px;
+  color:#ffcc00;
+  font-weight:500;
+  min-height:25px;
+}
 
-    .btn:hover{
-      background:#fff;
-    }
-
-    .btn:disabled{
-      opacity:0.6;
-      cursor:not-allowed;
-    }
-
-    footer{
-      text-align:center;
-      padding:18px;
-      font-size:0.85rem;
-      color:#c9d6f2;
-      background:rgba(0,0,0,0.3);
-    }
-  </style>
+footer{
+  text-align:center;
+  padding:15px;
+  font-size:0.85rem;
+  color:#c9d6f2;
+  background:rgba(0,0,0,0.3);
+}
+</style>
 </head>
-
 <body>
 
-<header>
-  CRYPTO HUB GROWTH INVESTMENT
-</header>
+<header>CRYPTO HUB GROWTH INVESTMENT | DASHBOARD</header>
 
 <div class="container">
+  <div class="balance">Balance: $<span id="balance">0.00</span></div>
 
-  <h2>Professional Investment Plans</h2>
-  <div class="sub">
-    All plans mature in 24 hours. Minimum starts at $100. Higher plans earn higher returns.
-  </div>
-
-  <div class="notification" id="notification"></div>
+  <h2>24-Hour Investment Plans</h2>
 
   <div class="plans" id="plansContainer"></div>
 
+  <div class="msg" id="msg"></div>
 </div>
 
-<footer>
-  © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Investment Plans
-</footer>
+<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-/* Firebase Config */
+// FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
   authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
@@ -196,207 +168,184 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
 
-let currentUser = null;
-
-/* Investment Plans */
 const plans = [
-  { id:1, name:"Starter Plan", price:100, percent:70 },
-  { id:2, name:"Bronze Plan", price:125, percent:85 },
-  { id:3, name:"Silver Plan", price:150, percent:100 },
-  { id:4, name:"Gold Plan", price:175, percent:115 },
-  { id:5, name:"Platinum Plan", price:200, percent:130 },
-  { id:6, name:"Diamond Plan", price:225, percent:145 },
-  { id:7, name:"Elite Plan", price:250, percent:160 }
+  {id:1, name:"Starter", price:35, roi:25},
+  {id:2, name:"Bronze", price:60, roi:30},
+  {id:3, name:"Silver", price:85, roi:35},
+  {id:4, name:"Gold", price:110, roi:40},
+  {id:5, name:"Platinum", price:135, roi:45},
+  {id:6, name:"Diamond", price:160, roi:50},
+  {id:7, name:"Elite", price:185, roi:55}
 ];
 
-function notify(message){
-  const box = document.getElementById("notification");
-  box.innerText = message;
-  box.style.display = "block";
+const plansContainer = document.getElementById("plansContainer");
+const balanceEl = document.getElementById("balance");
+const msgEl = document.getElementById("msg");
 
-  setTimeout(()=>{
-    box.style.display = "none";
-  }, 4000);
+let currentUser = null;
+let currentBalance = 0;
+
+// MESSAGE
+function showMsg(text){
+  msgEl.innerText = text;
 }
 
-auth.onAuthStateChanged(user => {
-  if(!user){
-    window.location.href = "login.html";
-  }else{
-    currentUser = user;
-    loadPlans();
-  }
-});
+// TIMER FORMAT
+function formatTime(ms){
+  if(ms <= 0) return "Completed";
+  const hrs = Math.floor(ms / (1000*60*60));
+  const mins = Math.floor((ms % (1000*60*60)) / (1000*60));
+  const secs = Math.floor((ms % (1000*60)) / 1000);
+  return `${hrs}h ${mins}m ${secs}s`;
+}
 
-function loadPlans(){
-  const container = document.getElementById("plansContainer");
-  container.innerHTML = "";
+// RENDER PLANS
+function renderPlans(userPlans = {}){
+  plansContainer.innerHTML = "";
 
-  plans.forEach(plan => {
+  plans.forEach(plan=>{
+    const investment = userPlans[plan.name];
+    let buttonText = "Invest";
+    let buttonDisabled = false;
+    let timerText = "Duration: 24 Hours";
+
+    if(investment){
+      const endTime = investment.investedAt + 86400000;
+      const remaining = endTime - Date.now();
+
+      if(!investment.collected && remaining > 0){
+        buttonText = "Running";
+        buttonDisabled = true;
+        timerText = "Remaining: " + formatTime(remaining);
+      } else if(!investment.collected && remaining <= 0){
+        buttonText = "Collect Profit";
+        timerText = "Profit Ready";
+      } else {
+        buttonText = "Invest Again";
+      }
+    }
+
+    const totalReturn = plan.price + (plan.price * plan.roi / 100);
+
     const card = document.createElement("div");
     card.className = "plan-card";
 
     card.innerHTML = `
-      <div>
-        <div class="plan-title">${plan.name}</div>
-        <div class="price">$${plan.price}</div>
-        <div class="detail">${plan.percent}% Profit After 24 Hours</div>
-        <div class="detail">Duration: 24 Hours</div>
-        <div class="timer" id="timer-${plan.id}"></div>
+      <div class="plan-title">${plan.name} Plan</div>
+      <div class="plan-detail">
+        Price: $${plan.price}<br>
+        ROI: ${plan.roi}%<br>
+        Return: $${totalReturn.toFixed(2)}
       </div>
-      <button class="btn" id="btn-${plan.id}" onclick="handlePlan(${plan.id})">Invest</button>
+      <div class="timer">${timerText}</div>
+      <button class="btn" ${buttonDisabled ? "disabled" : ""}>
+        ${buttonText}
+      </button>
     `;
 
-    container.appendChild(card);
+    const btn = card.querySelector("button");
+    btn.onclick = () => handlePlan(plan);
 
-    monitorPlan(plan);
+    plansContainer.appendChild(card);
   });
 }
 
-function monitorPlan(plan){
-  const ref = db.ref("investments/" + currentUser.uid + "/" + plan.id);
+// HANDLE PLAN
+function handlePlan(plan){
+  if(!currentUser) return showMsg("Please login first.");
 
-  ref.on("value", snapshot => {
+  const investRef = db.ref(`investments/${currentUser.uid}/${plan.name}`);
+
+  investRef.once("value").then(snapshot=>{
     const data = snapshot.val();
-    const btn = document.getElementById("btn-" + plan.id);
-    const timer = document.getElementById("timer-" + plan.id);
-
-    if(!data){
-      btn.innerText = "Invest";
-      btn.disabled = false;
-      timer.innerText = "";
-      return;
-    }
-
-    if(data.status === "active"){
-      const endTime = data.startTime + (24 * 60 * 60 * 1000);
-      updateCountdown(plan.id, endTime);
-
-      if(Date.now() >= endTime){
-        btn.innerText = "Receive";
-        btn.disabled = false;
-        timer.innerText = "Investment matured";
-      }else{
-        btn.innerText = "Running";
-        btn.disabled = true;
-      }
-    }
-
-    if(data.status === "completed"){
-      btn.innerText = "Invest";
-      btn.disabled = false;
-      timer.innerText = "";
-    }
-  });
-}
-
-function updateCountdown(planId, endTime){
-  const timer = document.getElementById("timer-" + planId);
-
-  const interval = setInterval(() => {
     const now = Date.now();
-    const distance = endTime - now;
 
-    if(distance <= 0){
-      clearInterval(interval);
-      timer.innerText = "Investment matured";
-      return;
-    }
+    // ACTIVE OR COLLECT
+    if(data && !data.collected){
+      const endTime = data.investedAt + 86400000;
 
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
+      if(now >= endTime){
+        const payout = data.amount + (data.amount * data.roi / 100);
 
-    timer.innerText = `${hours}h ${minutes}m ${seconds}s remaining`;
-  }, 1000);
-}
+        db.ref(`users/${currentUser.uid}`).once("value").then(userSnap=>{
+          const oldBalance = Number(userSnap.val()?.balance || 0);
+          const newBalance = oldBalance + payout;
 
-function handlePlan(planId){
-  const plan = plans.find(p => p.id === planId);
-  const investmentRef = db.ref("investments/" + currentUser.uid + "/" + planId);
-  const userRef = db.ref("users/" + currentUser.uid);
-
-  investmentRef.once("value").then(snapshot => {
-    const investment = snapshot.val();
-
-    /* RECEIVE PROFIT */
-    if(investment && investment.status === "active"){
-      const matured = Date.now() >= investment.startTime + (24 * 60 * 60 * 1000);
-
-      if(!matured){
-        notify("This investment is still running.");
-        return;
-      }
-
-      const profit = investment.price + ((investment.price * investment.percent) / 100);
-
-      userRef.once("value").then(userSnap => {
-        const userData = userSnap.val();
-        const newBalance = (userData.balance || 0) + profit;
-
-        userRef.update({
-          balance: newBalance,
-          totalBalance: newBalance
-        }).then(() => {
-          investmentRef.update({
-            status: "completed",
-            receivedAt: Date.now()
+          db.ref(`users/${currentUser.uid}`).update({
+            balance:newBalance
           });
 
-          db.ref("transactions/" + currentUser.uid).push({
-            type:"profit_received",
-            plan: investment.name,
-            amount: profit,
-            createdAt: Date.now()
+          investRef.update({
+            collected:true
           });
 
-          notify(`Profit of $${profit} received successfully.`);
+          showMsg(`Profit collected successfully! $${payout.toFixed(2)} added.`);
         });
-      });
+
+      } else {
+        showMsg("Plan is still running.");
+      }
 
       return;
     }
 
-    /* INVEST */
-    userRef.once("value").then(userSnap => {
-      const userData = userSnap.val();
-      const balance = userData.balance || 0;
+    // NEW INVESTMENT
+    if(currentBalance < plan.price){
+      showMsg("Insufficient balance.");
+      return;
+    }
 
-      if(balance < plan.price){
-        notify("Insufficient balance.");
-        return;
-      }
+    const newBalance = currentBalance - plan.price;
 
-      const newBalance = balance - plan.price;
-
-      userRef.update({
-        balance: newBalance,
-        totalBalance: newBalance
-      }).then(() => {
-
-        investmentRef.set({
-          name: plan.name,
-          price: plan.price,
-          percent: plan.percent,
-          status: "active",
-          startTime: Date.now()
-        });
-
-        db.ref("transactions/" + currentUser.uid).push({
-          type:"investment",
-          plan: plan.name,
-          amount: plan.price,
-          createdAt: Date.now()
-        });
-
-        notify(`${plan.name} activated successfully.`);
+    db.ref(`users/${currentUser.uid}`).update({
+      balance:newBalance
+    }).then(()=>{
+      return investRef.set({
+        plan:plan.name,
+        amount:plan.price,
+        roi:plan.roi,
+        investedAt:Date.now(),
+        collected:false
       });
+    }).then(()=>{
+      showMsg(`${plan.name} Plan activated successfully.`);
     });
 
   });
 }
+
+// AUTH
+auth.onAuthStateChanged(user=>{
+  if(!user){
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+
+  // BALANCE LIVE
+  db.ref(`users/${user.uid}`).on("value",snap=>{
+    const data = snap.val() || {};
+    currentBalance = Number(data.balance || 0);
+    balanceEl.innerText = currentBalance.toFixed(2);
+  });
+
+  // INVESTMENTS LIVE
+  db.ref(`investments/${user.uid}`).on("value",snap=>{
+    renderPlans(snap.val() || {});
+  });
+});
+
+// GLOBAL TIMER REFRESH
+setInterval(()=>{
+  if(currentUser){
+    db.ref(`investments/${currentUser.uid}`).once("value").then(snap=>{
+      renderPlans(snap.val() || {});
+    });
+  }
+},1000);
+
 </script>
 
 </body>
-</html>>
-                                                                                   </html>
+</html>
