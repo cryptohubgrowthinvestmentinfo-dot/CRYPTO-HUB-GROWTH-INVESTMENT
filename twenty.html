@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
 
@@ -19,104 +19,129 @@
       background:linear-gradient(135deg,#06131f,#0b2240);
       color:#fff;
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
     }
 
     header{
+      background:rgba(255,255,255,0.05);
+      padding:20px;
       text-align:center;
-      padding:25px;
+      color:#00d9ff;
       font-size:1.5rem;
       font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 20px;
+      background:rgba(0,0,0,0.25);
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .balance{
+      color:#ffd700;
+      font-size:1.1rem;
+      font-weight:600;
+    }
+
+    .nav a{
       color:#00d9ff;
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(10px);
+      text-decoration:none;
+      margin-left:15px;
+      font-weight:600;
     }
 
     .container{
-      flex:1;
-      padding:20px;
-      max-width:1400px;
-      width:100%;
+      max-width:1450px;
       margin:auto;
+      padding:20px;
     }
 
     h2{
       text-align:center;
       color:#00d9ff;
-      margin-bottom:10px;
+      margin-bottom:8px;
     }
 
     .sub{
       text-align:center;
       color:#c9d6f2;
       margin-bottom:25px;
-      font-size:0.95rem;
+      line-height:1.6;
     }
 
     .notification{
-      max-width:750px;
+      max-width:800px;
       margin:0 auto 20px;
       padding:14px;
       border-radius:12px;
       text-align:center;
       display:none;
-      font-weight:500;
-      background:rgba(0,217,255,0.12);
-      border:1px solid rgba(0,217,255,0.35);
-      color:#00d9ff;
+      background:rgba(255,255,255,0.08);
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.1);
     }
 
     .plans{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
       gap:20px;
     }
 
-    .plan-card{
+    .card{
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.1);
       border-radius:20px;
-      padding:20px;
+      overflow:hidden;
       transition:0.3s;
       display:flex;
       flex-direction:column;
-      justify-content:space-between;
     }
 
-    .plan-card:hover{
-      transform:translateY(-5px);
+    .card:hover{
+      transform:translateY(-6px);
       border-color:#00d9ff;
     }
 
-    .plan-title{
-      font-size:1.15rem;
-      font-weight:700;
-      color:#00d9ff;
-      margin-bottom:10px;
+    .gallery{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+
+    .card-body{
+      padding:20px;
       text-align:center;
     }
 
-    .price{
-      font-size:1.8rem;
+    .title{
+      font-size:1.2rem;
+      color:#00d9ff;
       font-weight:700;
-      text-align:center;
+      margin-bottom:10px;
+    }
+
+    .price{
+      font-size:2rem;
+      font-weight:700;
       margin-bottom:10px;
     }
 
     .detail{
       color:#c9d6f2;
       margin-bottom:8px;
-      text-align:center;
-      font-size:0.9rem;
+      line-height:1.6;
+      font-size:0.95rem;
     }
 
     .timer{
-      text-align:center;
-      font-size:0.85rem;
       color:#ffcc00;
-      margin:10px 0;
-      min-height:22px;
+      font-weight:600;
+      margin:12px 0;
+      min-height:24px;
     }
 
     .btn{
@@ -129,6 +154,7 @@
       font-weight:700;
       cursor:pointer;
       transition:0.3s;
+      margin-top:10px;
     }
 
     .btn:hover{
@@ -143,25 +169,42 @@
     footer{
       text-align:center;
       padding:18px;
-      font-size:0.85rem;
+      margin-top:30px;
       color:#c9d6f2;
-      background:rgba(0,0,0,0.3);
+      background:rgba(0,0,0,0.25);
+    }
+
+    @media(max-width:768px){
+      .top-bar{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .nav a{
+        margin:0 8px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  CRYPTO HUB GROWTH INVESTMENT
-</header>
+<header>CRYPTO HUB GROWTH INVESTMENT</header>
+
+<div class="top-bar">
+  <div class="balance" id="balance">Balance: $0.00</div>
+
+  <div class="nav">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</div>
 
 <div class="container">
 
-  <h2>Professional Investment Plans</h2>
+  <h2>24-Hour Professional Investment Plans</h2>
 
   <div class="sub">
-    Minimum starts at $50 • Every plan matures after 24 hours • Higher plans earn higher profit
+    Minimum starts at $30 • Each next plan increases by $25 • Higher plans earn higher profits • Auto receive after 24 hours
   </div>
 
   <div class="notification" id="notification"></div>
@@ -171,7 +214,7 @@
 </div>
 
 <footer>
-  © 2026 CRYPTO HUB GROWTH INVESTMENT | Secure Investment System
+  © 2026 CRYPTO HUB GROWTH INVESTMENT | All Rights Reserved
 </footer>
 
 <!-- Firebase -->
@@ -180,7 +223,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-/* Firebase Config */
+/* ================= FIREBASE CONFIG ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
   authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
@@ -192,188 +235,158 @@ const firebaseConfig = {
   measurementId: "G-CLET27VD7J"
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.database();
 
 let currentUser = null;
 
-/* Plans:
-   Start at $50
-   Increase by $25
-   Start at 40%
-   Increase with price
-*/
+/* ================= INVESTMENT PLANS ================= */
 const plans = [
-  { id:1, name:"Starter Plan", price:50, percent:40 },
-  { id:2, name:"Bronze Plan", price:75, percent:50 },
-  { id:3, name:"Silver Plan", price:100, percent:60 },
-  { id:4, name:"Gold Plan", price:125, percent:70 },
-  { id:5, name:"Platinum Plan", price:150, percent:80 },
-  { id:6, name:"Diamond Plan", price:175, percent:90 },
-  { id:7, name:"Elite Plan", price:200, percent:100 }
+  {id:1,name:"Starter Plan",price:30,percent:10,image:"images/starter.jpg"},
+  {id:2,name:"Bronze Plan",price:55,percent:15,image:"images/bronze.jpg"},
+  {id:3,name:"Silver Plan",price:80,percent:20,image:"images/silver.jpg"},
+  {id:4,name:"Gold Plan",price:105,percent:25,image:"images/gold.jpg"},
+  {id:5,name:"Platinum Plan",price:130,percent:30,image:"images/platinum.jpg"},
+  {id:6,name:"Diamond Plan",price:155,percent:35,image:"images/diamond.jpg"},
+  {id:7,name:"Elite Plan",price:180,percent:40,image:"images/elite.jpg"}
 ];
 
-/* Pure Notification */
-function notify(message){
+/* ================= PURE NOTIFICATION ================= */
+function notify(message,color="#00d9ff"){
   const box = document.getElementById("notification");
-  box.innerText = message;
   box.style.display = "block";
+  box.style.color = color;
+  box.innerText = message;
 
   clearTimeout(box.hideTimer);
   box.hideTimer = setTimeout(()=>{
     box.style.display = "none";
-  }, 4500);
+  },4000);
 }
 
-/* Auth */
-auth.onAuthStateChanged(user => {
-  if(!user){
-    window.location.href = "login.html";
-    return;
-  }
+/* ================= FORMAT TIMER ================= */
+function formatTime(ms){
+  if(ms <= 0) return "Profit Ready";
 
-  currentUser = user;
-  renderPlans();
-});
+  const hrs = Math.floor(ms / (1000*60*60));
+  const mins = Math.floor((ms % (1000*60*60)) / (1000*60));
+  const secs = Math.floor((ms % (1000*60)) / 1000);
 
-/* Render Plans */
-function renderPlans(){
+  return `${hrs}h ${mins}m ${secs}s`;
+}
+
+/* ================= BALANCE SYNC ================= */
+function syncBalance(uid){
+  db.ref("users/" + uid).on("value", snap=>{
+    const data = snap.val() || {};
+    const balance = Number(data.balance || 0);
+
+    document.getElementById("balance").innerText =
+      `Balance: $${balance.toFixed(2)}`;
+  });
+}
+
+/* ================= RENDER PLANS ================= */
+function renderPlans(investments={}){
   const container = document.getElementById("plansContainer");
   container.innerHTML = "";
 
-  plans.forEach(plan => {
-    const card = document.createElement("div");
-    card.className = "plan-card";
+  plans.forEach(plan=>{
 
-    card.innerHTML = `
-      <div>
-        <div class="plan-title">${plan.name}</div>
-        <div class="price">$${plan.price}</div>
-        <div class="detail">${plan.percent}% Profit in 24 Hours</div>
-        <div class="detail">Duration: 24 Hours</div>
-        <div class="timer" id="timer-${plan.id}"></div>
-      </div>
+    const inv = investments[plan.id];
 
-      <button class="btn" id="btn-${plan.id}" onclick="handlePlan(${plan.id})">
-        Invest
-      </button>
-    `;
+    let btnText = "Invest";
+    let disabled = false;
+    let timerText = `Return Amount: $${(plan.price + (plan.price * plan.percent/100)).toFixed(2)}`;
 
-    container.appendChild(card);
+    if(inv){
+      const remaining = (inv.startTime + 86400000) - Date.now();
 
-    syncPlan(plan);
-  });
-}
-
-/* Sync each plan from realtime database */
-function syncPlan(plan){
-  const planRef = db.ref("investments/" + currentUser.uid + "/" + plan.id);
-
-  planRef.on("value", snap => {
-    const data = snap.val();
-    const btn = document.getElementById("btn-" + plan.id);
-    const timer = document.getElementById("timer-" + plan.id);
-
-    if(!data){
-      btn.innerText = "Invest";
-      btn.disabled = false;
-      timer.innerText = "";
-      return;
-    }
-
-    if(data.status === "active"){
-      const maturityTime = data.startTime + (24 * 60 * 60 * 1000);
-
-      if(Date.now() >= maturityTime){
-        btn.innerText = "Receive";
-        btn.disabled = false;
-        timer.innerText = "Plan matured. Profit ready.";
+      if(remaining <= 0){
+        btnText = "Receive";
+        timerText = `Return Ready: $${inv.returnAmount.toFixed(2)}`;
       }else{
-        btn.innerText = "Running";
-        btn.disabled = true;
-        startCountdown(plan.id, maturityTime);
+        btnText = "Running";
+        disabled = true;
+        timerText = formatTime(remaining);
       }
     }
 
-    if(data.status === "completed"){
-      btn.innerText = "Invest";
-      btn.disabled = false;
-      timer.innerText = "";
-    }
+    const totalReturn = plan.price + (plan.price * plan.percent/100);
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${plan.image}" alt="${plan.name}" class="gallery">
+
+      <div class="card-body">
+        <div class="title">${plan.name}</div>
+
+        <div class="price">$${plan.price}</div>
+
+        <div class="detail">
+          Profit: ${plan.percent}%<br>
+          Return Amount: $${totalReturn.toFixed(2)}<br>
+          Duration: 24 Hours
+        </div>
+
+        <div class="timer">${timerText}</div>
+
+        <button class="btn" ${disabled ? "disabled" : ""}>
+          ${btnText}
+        </button>
+      </div>
+    `;
+
+    const btn = card.querySelector("button");
+    btn.onclick = ()=>handlePlan(plan.id);
+
+    container.appendChild(card);
   });
 }
 
-/* Countdown */
-function startCountdown(planId, endTime){
-  const timer = document.getElementById("timer-" + planId);
-
-  const interval = setInterval(() => {
-    const now = Date.now();
-    const distance = endTime - now;
-
-    if(distance <= 0){
-      clearInterval(interval);
-      timer.innerText = "Plan matured. Profit ready.";
-      return;
-    }
-
-    const hrs = Math.floor(distance / (1000 * 60 * 60));
-    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((distance % (1000 * 60)) / 1000);
-
-    timer.innerText = `${hrs}h ${mins}m ${secs}s remaining`;
-  }, 1000);
-}
-
-/* Main Investment + Receive Logic */
+/* ================= HANDLE PLAN ================= */
 function handlePlan(planId){
-  const plan = plans.find(p => p.id === planId);
-
+  const plan = plans.find(p=>p.id===planId);
   if(!plan || !currentUser) return;
 
   const userRef = db.ref("users/" + currentUser.uid);
-  const planRef = db.ref("investments/" + currentUser.uid + "/" + planId);
+  const investRef = db.ref("investments/" + currentUser.uid + "/" + planId);
 
-  planRef.once("value").then(snap => {
-    const investment = snap.val();
+  investRef.once("value").then(snap=>{
+    const inv = snap.val();
 
-    /* RECEIVE */
-    if(investment && investment.status === "active"){
-      const maturityTime = investment.startTime + (24 * 60 * 60 * 1000);
+    /* RECEIVE PROFIT */
+    if(inv){
+      const maturity = inv.startTime + 86400000;
 
-      if(Date.now() < maturityTime){
-        notify("This investment is still active.");
+      if(Date.now() < maturity){
+        notify("Investment still running","#ffcc00");
         return;
       }
 
-      const profit = investment.price + ((investment.price * investment.percent) / 100);
+      const payout = inv.returnAmount;
 
-      userRef.once("value").then(userSnap => {
-        const userData = userSnap.val() || {};
-        const currentBalance = userData.balance || 0;
-
-        const updatedBalance = currentBalance + profit;
+      userRef.once("value").then(userSnap=>{
+        const balance = Number(userSnap.val()?.balance || 0);
 
         userRef.update({
-          balance: updatedBalance,
-          totalBalance: updatedBalance
-        }).then(() => {
-
-          planRef.update({
-            status: "completed",
-            receivedAt: Date.now()
-          });
+          balance: balance + payout,
+          totalBalance: balance + payout
+        }).then(()=>{
+          investRef.remove();
 
           db.ref("transactions/" + currentUser.uid).push({
-            type: "profit_received",
-            plan: investment.name,
-            amount: profit,
-            createdAt: Date.now()
+            type:"profit_received",
+            plan:inv.name,
+            amount:payout,
+            createdAt:Date.now()
           });
 
-          notify(`$${profit} received from ${investment.name}.`);
+          notify(`${inv.name}: $${payout.toFixed(2)} received`,"#00ff88");
         });
       });
 
@@ -381,44 +394,67 @@ function handlePlan(planId){
     }
 
     /* INVEST */
-    userRef.once("value").then(userSnap => {
-      const userData = userSnap.val() || {};
-      const balance = userData.balance || 0;
+    userRef.once("value").then(userSnap=>{
+      const balance = Number(userSnap.val()?.balance || 0);
 
       if(balance < plan.price){
-        notify("Insufficient total balance.");
+        notify("Insufficient balance","#ff4444");
         return;
       }
 
-      const updatedBalance = balance - plan.price;
-
       userRef.update({
-        balance: updatedBalance,
-        totalBalance: updatedBalance
-      }).then(() => {
+        balance: balance - plan.price,
+        totalBalance: balance - plan.price
+      }).then(()=>{
 
-        planRef.set({
+        investRef.set({
           name: plan.name,
           price: plan.price,
           percent: plan.percent,
-          status: "active",
-          startTime: Date.now()
+          startTime: Date.now(),
+          returnAmount: plan.price + (plan.price * plan.percent/100)
         });
 
         db.ref("transactions/" + currentUser.uid).push({
-          type: "investment",
-          plan: plan.name,
-          amount: plan.price,
-          createdAt: Date.now()
+          type:"investment",
+          plan:plan.name,
+          amount:plan.price,
+          createdAt:Date.now()
         });
 
-        notify(`${plan.name} activated successfully.`);
+        notify(`${plan.name} activated successfully`,"#00ff88");
       });
     });
-
   });
 }
+
+/* ================= AUTH ================= */
+auth.onAuthStateChanged(user=>{
+  if(!user){
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+
+  syncBalance(user.uid);
+
+  db.ref("investments/" + user.uid).on("value", snap=>{
+    renderPlans(snap.val() || {});
+  });
+});
+
+/* ================= LIVE TIMER ================= */
+setInterval(()=>{
+  if(currentUser){
+    db.ref("investments/" + currentUser.uid)
+      .once("value")
+      .then(snap=>{
+        renderPlans(snap.val() || {});
+      });
+  }
+},1000);
 </script>
 
 </body>
-</html>
+  </html>
