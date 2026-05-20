@@ -217,7 +217,9 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
+
 /* ================= FIREBASE CONFIG ================= */
+
 const firebaseConfig = {
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
   authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
@@ -229,7 +231,9 @@ const firebaseConfig = {
   measurementId: "G-CLET27VD7J"
 };
 
-if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+if(!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig);
+}
 
 const auth = firebase.auth();
 const db = firebase.database();
@@ -237,6 +241,7 @@ const db = firebase.database();
 let currentUser = null;
 
 /* ================= INVESTMENT PLANS ================= */
+
 const plans = [
   {id:1,name:"Starter Plan",price:30,percent:10},
   {id:2,name:"Bronze Plan",price:55,percent:15},
@@ -247,183 +252,303 @@ const plans = [
   {id:7,name:"Elite Plan",price:180,percent:40}
 ];
 
-/* ================= PURE NOTIFICATION ================= */
+/* ================= NOTIFICATION ================= */
+
 function notify(message,color="#00d9ff"){
-  const box = document.getElementById("notification");
+
+  const box =
+    document.getElementById("notification");
+
   box.style.display = "block";
   box.style.color = color;
   box.innerText = message;
 
   clearTimeout(box.hideTimer);
+
   box.hideTimer = setTimeout(()=>{
     box.style.display = "none";
   },4000);
-}
 
-/* ================= FORMAT TIMER ================= */
-function formatTime(ms){
-  if(ms <= 0) return "Profit Ready";
-
-  const hrs = Math.floor(ms / (1000*60*60));
-  const mins = Math.floor((ms % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((ms % (1000*60)) / 1000);
-
-  return `${hrs}h ${mins}m ${secs}s`;
 }
 
 /* ================= BALANCE SYNC ================= */
-function syncBalance(uid){
-  db.ref("users/" + uid).on("value", snap=>{
-    const data = snap.val() || {};
-    const balance = Number(data.balance || 0);
 
-    document.getElementById("balance").innerText =
+function syncBalance(uid){
+
+  db.ref("users/" + uid)
+  .on("value", snap=>{
+
+    const data = snap.val() || {};
+
+    const balance =
+      Number(data.balance || 0);
+
+    document.getElementById("balance")
+    .innerText =
       `Balance: $${balance.toFixed(2)}`;
+
   });
+
 }
 
 /* ================= RENDER PLANS ================= */
+
 function renderPlans(investments={}){
-  const container = document.getElementById("plansContainer");
+
+  const container =
+    document.getElementById("plansContainer");
+
   container.innerHTML = "";
 
   plans.forEach(plan=>{
 
-    const inv = investments[plan.id];
+    const inv =
+      investments[String(plan.id)];
 
     let btnText = "Invest";
     let disabled = false;
-    let timerText = `Return Amount: $${(plan.price + (plan.price * plan.percent/100)).toFixed(2)}`;
+
+    let timerText =
+      `Return Amount: $${(
+        plan.price +
+        (plan.price * plan.percent/100)
+      ).toFixed(2)}`;
 
     if(inv){
-      const remaining = (inv.startTime + 86400000) - Date.now();
+
+      const remaining =
+        (inv.startTime + 86400000)
+        - Date.now();
 
       if(remaining <= 0){
+
         btnText = "Receive";
-        timerText = `Return Ready: $${inv.returnAmount.toFixed(2)}`;
+
+        timerText =
+          `Return Ready: $${inv.returnAmount.toFixed(2)}`;
+
       }else{
+
         btnText = "Running";
         disabled = true;
         timerText = "Duration: 24 Hours";
+
       }
+
     }
 
-    const totalReturn = plan.price + (plan.price * plan.percent/100);
+    const totalReturn =
+      plan.price +
+      (plan.price * plan.percent/100);
 
-    const card = document.createElement("div");
+    const card =
+      document.createElement("div");
+
     card.className = "card";
 
     card.innerHTML = `
       <div class="card-body">
-        <div class="title">${plan.name}</div>
 
-        <div class="price">$${plan.price}</div>
+        <div class="title">
+          ${plan.name}
+        </div>
+
+        <div class="price">
+          $${plan.price}
+        </div>
 
         <div class="detail">
           Profit: ${plan.percent}%<br>
-          Return Amount: $${totalReturn.toFixed(2)}<br>
+          Return Amount:
+          $${totalReturn.toFixed(2)}<br>
           Duration: 24 Hours
         </div>
 
-        <div class="timer">${timerText}</div>
+        <div class="timer">
+          ${timerText}
+        </div>
 
-        <button class="btn" ${disabled ? "disabled" : ""}>
+        <button class="btn"
+          ${disabled ? "disabled" : ""}>
+
           ${btnText}
+
         </button>
+
       </div>
     `;
 
-    const btn = card.querySelector("button");
-    btn.onclick = ()=>handlePlan(plan.id);
+    const btn =
+      card.querySelector("button");
+
+    btn.onclick =
+      ()=>handlePlan(plan.id);
 
     container.appendChild(card);
+
   });
+
 }
 
 /* ================= HANDLE PLAN ================= */
+
 function handlePlan(planId){
-  const plan = plans.find(p=>p.id===planId);
+
+  const plan =
+    plans.find(p=>p.id===planId);
+
   if(!plan || !currentUser) return;
 
-  const userRef = db.ref("users/" + currentUser.uid);
-  const investRef = db.ref("investments/" + currentUser.uid + "/" + planId);
+  const userRef =
+    db.ref("users/" + currentUser.uid);
 
-  investRef.once("value").then(snap=>{
+  const investRef =
+    db.ref(
+      "investments/" +
+      currentUser.uid +
+      "/" +
+      planId
+    );
+
+  investRef.once("value")
+  .then(snap=>{
+
     const inv = snap.val();
 
-    /* RECEIVE PROFIT */
+    /* RECEIVE */
+
     if(inv){
-      const maturity = inv.startTime + 86400000;
+
+      const maturity =
+        inv.startTime + 86400000;
 
       if(Date.now() < maturity){
-        notify("Investment still running","#ffcc00");
+
+        notify(
+          "Investment still running",
+          "#ffcc00"
+        );
+
         return;
       }
 
-      const payout = inv.returnAmount;
+      const payout =
+        inv.returnAmount;
 
-      userRef.once("value").then(userSnap=>{
-        const balance = Number(userSnap.val()?.balance || 0);
+      userRef.once("value")
+      .then(userSnap=>{
+
+        const balance =
+          Number(
+            userSnap.val()?.balance || 0
+          );
 
         userRef.update({
+
           balance: balance + payout,
           totalBalance: balance + payout
+
         }).then(()=>{
+
           investRef.remove();
 
-          db.ref("transactions/" + currentUser.uid).push({
+          db.ref(
+            "transactions/" +
+            currentUser.uid
+          ).push({
+
             type:"profit_received",
             plan:inv.name,
             amount:payout,
             createdAt:Date.now()
+
           });
 
-          notify(`${inv.name}: $${payout.toFixed(2)} received`,"#00ff88");
+          notify(
+            `${inv.name}: $${payout.toFixed(2)} received`,
+            "#00ff88"
+          );
+
         });
+
       });
 
       return;
     }
 
     /* INVEST */
-    userRef.once("value").then(userSnap=>{
-      const balance = Number(userSnap.val()?.balance || 0);
+
+    userRef.once("value")
+    .then(userSnap=>{
+
+      const balance =
+        Number(
+          userSnap.val()?.balance || 0
+        );
 
       if(balance < plan.price){
-        notify("Insufficient balance","#ff4444");
+
+        notify(
+          "Insufficient balance",
+          "#ff4444"
+        );
+
         return;
       }
 
       userRef.update({
+
         balance: balance - plan.price,
         totalBalance: balance - plan.price
+
       }).then(()=>{
 
         investRef.set({
+
           name: plan.name,
           price: plan.price,
           percent: plan.percent,
           startTime: Date.now(),
-          returnAmount: plan.price + (plan.price * plan.percent/100)
+          returnAmount:
+            plan.price +
+            (plan.price * plan.percent/100)
+
         });
 
-        db.ref("transactions/" + currentUser.uid).push({
+        db.ref(
+          "transactions/" +
+          currentUser.uid
+        ).push({
+
           type:"investment",
           plan:plan.name,
           amount:plan.price,
           createdAt:Date.now()
+
         });
 
-        notify(`${plan.name} activated successfully`,"#00ff88");
+        notify(
+          `${plan.name} activated successfully`,
+          "#00ff88"
+        );
+
       });
+
     });
+
   });
+
 }
 
 /* ================= AUTH ================= */
+
 auth.onAuthStateChanged(user=>{
+
   if(!user){
-    window.location.href = "login.html";
+
+    window.location.href =
+      "login.html";
+
     return;
   }
 
@@ -431,21 +556,37 @@ auth.onAuthStateChanged(user=>{
 
   syncBalance(user.uid);
 
-  db.ref("investments/" + user.uid).on("value", snap=>{
+  db.ref(
+    "investments/" + user.uid
+  ).on("value", snap=>{
+
     renderPlans(snap.val() || {});
+
   });
+
 });
 
-/* ================= LIVE TIMER ================= */
+/* ================= AUTO REFRESH ================= */
+
 setInterval(()=>{
+
   if(currentUser){
-    db.ref("investments/" + currentUser.uid)
-      .once("value")
-      .then(snap=>{
-        renderPlans(snap.val() || {});
-      });
+
+    db.ref(
+      "investments/" +
+      currentUser.uid
+    )
+    .once("value")
+    .then(snap=>{
+
+      renderPlans(snap.val() || {});
+
+    });
+
   }
+
 },1000);
+
 </script>
 
 </body>
