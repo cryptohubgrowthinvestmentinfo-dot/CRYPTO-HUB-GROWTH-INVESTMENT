@@ -1,204 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Investment Plans | CRYPTO HUB GROWTH INVESTMENT</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
-    }
+<style>
 
-    body{
-      background:linear-gradient(135deg,#06131f,#0b2240);
-      color:#fff;
-      min-height:100vh;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-    header{
-      background:rgba(255,255,255,0.05);
-      padding:20px;
-      text-align:center;
-      color:#00d9ff;
-      font-size:1.5rem;
-      font-weight:700;
-      letter-spacing:1px;
-    }
+body{
+  background:linear-gradient(135deg,#06131f,#0b2240);
+  color:#fff;
+  min-height:100vh;
+}
 
-    .top-bar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 20px;
-      background:rgba(0,0,0,0.25);
-      flex-wrap:wrap;
-      gap:10px;
-    }
+header{
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  text-align:center;
+  color:#00d9ff;
+  font-size:1.5rem;
+  font-weight:700;
+}
 
-    .balance{
-      color:#ffd700;
-      font-size:1.1rem;
-      font-weight:600;
-    }
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:rgba(0,0,0,0.25);
+  flex-wrap:wrap;
+  gap:10px;
+}
 
-    .nav a{
-      color:#00d9ff;
-      text-decoration:none;
-      margin-left:15px;
-      font-weight:600;
-    }
+.balance{
+  color:#ffd700;
+  font-size:1.1rem;
+  font-weight:600;
+}
 
-    .container{
-      max-width:1450px;
-      margin:auto;
-      padding:20px;
-    }
+.nav{
+  display:flex;
+  gap:15px;
+}
 
-    h2{
-      text-align:center;
-      color:#00d9ff;
-      margin-bottom:8px;
-    }
+.nav a{
+  color:#00d9ff;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    .sub{
-      text-align:center;
-      color:#c9d6f2;
-      margin-bottom:25px;
-      line-height:1.6;
-    }
+.container{
+  max-width:1450px;
+  margin:auto;
+  padding:20px;
+}
 
-    .notification{
-      max-width:800px;
-      margin:0 auto 20px;
-      padding:14px;
-      border-radius:12px;
-      text-align:center;
-      display:none;
-      background:rgba(255,255,255,0.08);
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.1);
-    }
+h2{
+  text-align:center;
+  color:#00d9ff;
+  margin-bottom:10px;
+}
 
-    .plans{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
-      gap:20px;
-    }
+.sub{
+  text-align:center;
+  color:#c9d6f2;
+  margin-bottom:25px;
+  line-height:1.7;
+}
 
-    .card{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:20px;
-      overflow:hidden;
-      transition:0.3s;
-      display:flex;
-      flex-direction:column;
-    }
+.notification{
+  max-width:700px;
+  margin:0 auto 20px;
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+  display:none;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  font-weight:600;
+}
 
-    .card:hover{
-      transform:translateY(-6px);
-      border-color:#00d9ff;
-    }
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
 
-    .card-body{
-      padding:20px;
-      text-align:center;
-    }
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  transition:0.3s;
+}
 
-    .title{
-      font-size:1.2rem;
-      color:#00d9ff;
-      font-weight:700;
-      margin-bottom:10px;
-    }
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#00d9ff;
+}
 
-    .price{
-      font-size:2rem;
-      font-weight:700;
-      margin-bottom:10px;
-    }
+.card-body{
+  padding:22px;
+  text-align:center;
+}
 
-    .detail{
-      color:#c9d6f2;
-      margin-bottom:8px;
-      line-height:1.6;
-      font-size:0.95rem;
-    }
+.title{
+  color:#00d9ff;
+  font-size:1.3rem;
+  font-weight:700;
+  margin-bottom:10px;
+}
 
-    .timer{
-      color:#ffcc00;
-      font-weight:600;
-      margin:12px 0;
-      min-height:24px;
-    }
+.price{
+  font-size:2.2rem;
+  font-weight:700;
+  margin-bottom:10px;
+}
 
-    .btn{
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:30px;
-      background:#00d9ff;
-      color:#06131f;
-      font-weight:700;
-      cursor:pointer;
-      transition:0.3s;
-      margin-top:10px;
-    }
+.detail{
+  color:#c9d6f2;
+  line-height:1.8;
+  margin-bottom:10px;
+}
 
-    .btn:hover{
-      background:#fff;
-    }
+.timer{
+  color:#ffcc00;
+  font-weight:700;
+  margin-top:12px;
+  font-size:1rem;
+}
 
-    .btn:disabled{
-      opacity:0.65;
-      cursor:not-allowed;
-    }
+.btn{
+  width:100%;
+  margin-top:18px;
+  padding:13px;
+  border:none;
+  border-radius:30px;
+  background:#00d9ff;
+  color:#06131f;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    footer{
-      text-align:center;
-      padding:18px;
-      margin-top:30px;
-      color:#c9d6f2;
-      background:rgba(0,0,0,0.25);
-    }
+.btn:hover:not(:disabled){
+  background:#fff;
+}
 
-    @media(max-width:768px){
-      .top-bar{
-        flex-direction:column;
-        text-align:center;
-      }
+.btn:disabled{
+  opacity:0.65;
+  cursor:not-allowed;
+}
 
-      .nav a{
-        margin:0 8px;
-      }
-    }
-  </style>
+footer{
+  text-align:center;
+  padding:18px;
+  margin-top:35px;
+  background:rgba(0,0,0,0.25);
+  color:#c9d6f2;
+}
+
+@media(max-width:768px){
+
+  .top-bar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
 
-<header>CRYPTO HUB GROWTH INVESTMENT</header>
+<header>
+  CRYPTO HUB GROWTH INVESTMENT
+</header>
 
 <div class="top-bar">
-  <div class="balance" id="balance">Balance: $0.00</div>
+
+  <div class="balance" id="balance">
+    Balance: $0.00
+  </div>
 
   <div class="nav">
     <a href="dashboard.html">Dashboard</a>
     <a href="profile.html">Profile</a>
   </div>
+
 </div>
 
 <div class="container">
 
-  <h2>24-Hour Professional Investment Plans</h2>
+  <h2>24 Hours Professional Investment Plans</h2>
 
   <div class="sub">
-    Minimum starts at $30 • Each next plan increases by $25 • Higher plans earn higher profits • Auto receive after 24 hours
+    Minimum investment starts from $30.<br>
+    Every next plan increases by $25.<br>
+    Higher plans earn higher profits.<br>
+    Investment duration is strictly 24 hours.
   </div>
 
   <div class="notification" id="notification"></div>
@@ -208,10 +217,11 @@
 </div>
 
 <footer>
-  © 2026 CRYPTO HUB GROWTH INVESTMENT | All Rights Reserved
+  © 2026 CRYPTO HUB GROWTH INVESTMENT
 </footer>
 
 <!-- Firebase -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -239,17 +249,20 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 let currentUser = null;
+let currentBalance = 0;
 
 /* ================= INVESTMENT PLANS ================= */
 
 const plans = [
-  {id:1,name:"Starter Plan",price:30,percent:10},
-  {id:2,name:"Bronze Plan",price:55,percent:15},
-  {id:3,name:"Silver Plan",price:80,percent:20},
-  {id:4,name:"Gold Plan",price:105,percent:25},
-  {id:5,name:"Platinum Plan",price:130,percent:30},
-  {id:6,name:"Diamond Plan",price:155,percent:35},
-  {id:7,name:"Elite Plan",price:180,percent:40}
+
+  {id:1,name:"Starter Plan",price:30,percent:40},
+  {id:2,name:"Bronze Plan",price:55,percent:45},
+  {id:3,name:"Silver Plan",price:80,percent:50},
+  {id:4,name:"Gold Plan",price:105,percent:55},
+  {id:5,name:"Platinum Plan",price:130,percent:60},
+  {id:6,name:"Diamond Plan",price:155,percent:65},
+  {id:7,name:"Elite Plan",price:180,percent:70}
+
 ];
 
 /* ================= NOTIFICATION ================= */
@@ -271,21 +284,47 @@ function notify(message,color="#00d9ff"){
 
 }
 
+/* ================= COUNTDOWN ================= */
+
+function formatCountdown(ms){
+
+  if(ms <= 0){
+    return "24 Hours Completed";
+  }
+
+  const hours =
+    Math.floor(ms / (1000 * 60 * 60));
+
+  const minutes =
+    Math.floor(
+      (ms % (1000 * 60 * 60))
+      / (1000 * 60)
+    );
+
+  const seconds =
+    Math.floor(
+      (ms % (1000 * 60))
+      / 1000
+    );
+
+  return `${hours}h ${minutes}m ${seconds}s`;
+}
+
 /* ================= BALANCE SYNC ================= */
 
 function syncBalance(uid){
 
   db.ref("users/" + uid)
-  .on("value", snap=>{
+  .on("value",snap=>{
 
     const data = snap.val() || {};
 
-    const balance =
+    currentBalance =
       Number(data.balance || 0);
 
     document.getElementById("balance")
     .innerText =
-      `Balance: $${balance.toFixed(2)}`;
+      `Balance: $${currentBalance.toFixed(2)}`;
 
   });
 
@@ -309,10 +348,7 @@ function renderPlans(investments={}){
     let disabled = false;
 
     let timerText =
-      `Return Amount: $${(
-        plan.price +
-        (plan.price * plan.percent/100)
-      ).toFixed(2)}`;
+      `24 Hours`;
 
     if(inv){
 
@@ -325,13 +361,15 @@ function renderPlans(investments={}){
         btnText = "Receive";
 
         timerText =
-          `Return Ready: $${inv.returnAmount.toFixed(2)}`;
+          "24 Hours Completed";
 
       }else{
 
         btnText = "Running";
         disabled = true;
-        timerText = "Duration: 24 Hours";
+
+        timerText =
+          formatCountdown(remaining);
 
       }
 
@@ -339,7 +377,7 @@ function renderPlans(investments={}){
 
     const totalReturn =
       plan.price +
-      (plan.price * plan.percent/100);
+      (plan.price * plan.percent / 100);
 
     const card =
       document.createElement("div");
@@ -347,6 +385,7 @@ function renderPlans(investments={}){
     card.className = "card";
 
     card.innerHTML = `
+
       <div class="card-body">
 
         <div class="title">
@@ -358,10 +397,16 @@ function renderPlans(investments={}){
         </div>
 
         <div class="detail">
-          Profit: ${plan.percent}%<br>
-          Return Amount:
+
+          Profit Percentage:
+          ${plan.percent}%<br>
+
+          Total Return:
           $${totalReturn.toFixed(2)}<br>
-          Duration: 24 Hours
+
+          Duration:
+          24 Hours
+
         </div>
 
         <div class="timer">
@@ -376,6 +421,7 @@ function renderPlans(investments={}){
         </button>
 
       </div>
+
     `;
 
     const btn =
@@ -415,7 +461,7 @@ function handlePlan(planId){
 
     const inv = snap.val();
 
-    /* RECEIVE */
+    /* RECEIVE PROFIT */
 
     if(inv){
 
@@ -438,15 +484,22 @@ function handlePlan(planId){
       userRef.once("value")
       .then(userSnap=>{
 
+        const userData =
+          userSnap.val() || {};
+
         const balance =
-          Number(
-            userSnap.val()?.balance || 0
-          );
+          Number(userData.balance || 0);
+
+        const totalBalance =
+          Number(userData.totalBalance || 0);
 
         userRef.update({
 
-          balance: balance + payout,
-          totalBalance: balance + payout
+          balance:
+            balance + payout,
+
+          totalBalance:
+            totalBalance + payout
 
         }).then(()=>{
 
@@ -465,7 +518,7 @@ function handlePlan(planId){
           });
 
           notify(
-            `${inv.name}: $${payout.toFixed(2)} received`,
+            `${inv.name} profit received successfully`,
             "#00ff88"
           );
 
@@ -481,10 +534,14 @@ function handlePlan(planId){
     userRef.once("value")
     .then(userSnap=>{
 
+      const userData =
+        userSnap.val() || {};
+
       const balance =
-        Number(
-          userSnap.val()?.balance || 0
-        );
+        Number(userData.balance || 0);
+
+      const totalBalance =
+        Number(userData.totalBalance || 0);
 
       if(balance < plan.price){
 
@@ -496,22 +553,29 @@ function handlePlan(planId){
         return;
       }
 
+      const newBalance =
+        balance - plan.price;
+
+      const newTotalBalance =
+        totalBalance - plan.price;
+
       userRef.update({
 
-        balance: balance - plan.price,
-        totalBalance: balance - plan.price
+        balance:newBalance,
+        totalBalance:newTotalBalance
 
       }).then(()=>{
 
         investRef.set({
 
-          name: plan.name,
-          price: plan.price,
-          percent: plan.percent,
-          startTime: Date.now(),
+          name:plan.name,
+          price:plan.price,
+          percent:plan.percent,
+          startTime:Date.now(),
+
           returnAmount:
             plan.price +
-            (plan.price * plan.percent/100)
+            (plan.price * plan.percent / 100)
 
         });
 
@@ -557,8 +621,9 @@ auth.onAuthStateChanged(user=>{
   syncBalance(user.uid);
 
   db.ref(
-    "investments/" + user.uid
-  ).on("value", snap=>{
+    "investments/" +
+    user.uid
+  ).on("value",snap=>{
 
     renderPlans(snap.val() || {});
 
@@ -579,7 +644,9 @@ setInterval(()=>{
     .once("value")
     .then(snap=>{
 
-      renderPlans(snap.val() || {});
+      renderPlans(
+        snap.val() || {}
+      );
 
     });
 
