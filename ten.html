@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CRYPTO HUB INVESTMENT</title>
+<title>CRYPTO HUB GROWTH INVESTMENT</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -37,6 +37,7 @@ header{
   align-items:center;
   padding:15px 20px;
   flex-wrap:wrap;
+  gap:10px;
 }
 
 .balance{
@@ -113,6 +114,7 @@ header{
 .detail{
   margin:8px 0;
   color:#c9d6f2;
+  line-height:1.7;
 }
 
 .timer{
@@ -170,6 +172,15 @@ footer{
   color:#c9d6f2;
 }
 
+@media(max-width:768px){
+
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
+
 </style>
 </head>
 
@@ -182,7 +193,7 @@ footer{
 <div class="topbar">
 
   <div class="balance" id="balance">
-    Balance: $0.00
+    Total Balance: $0.00
   </div>
 
   <div class="nav">
@@ -196,8 +207,9 @@ footer{
 
   <div class="note">
     Minimum investment starts at $10.<br>
-    Each investment runs for 24 Hours.<br>
-    Higher plans earn higher ROI returns.
+    Every next plan increases by $25.<br>
+    All plans run for 24 hours.<br>
+    Higher plans earn higher ROI percentages.
   </div>
 
   <div class="msg" id="msg"></div>
@@ -223,7 +235,7 @@ footer{
 
 <script>
 
-/* ================= FIREBASE ================= */
+/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
@@ -246,97 +258,102 @@ const db = firebase.database();
 let currentUser = null;
 let currentBalance = 0;
 
-/* ================= PLANS ================= */
+/* ================= INVESTMENT PLANS ================= */
 
 const plans = [
 
 {
   id:1,
-  name:"Starter",
-  metal:"Copper",
+  name:"Starter Plan",
   price:10,
-  roi:10
+  roi:20
 },
 
 {
   id:2,
-  name:"Bronze",
-  metal:"Bronze",
+  name:"Bronze Plan",
   price:35,
-  roi:12
+  roi:25
 },
 
 {
   id:3,
-  name:"Silver",
-  metal:"Silver",
+  name:"Silver Plan",
   price:60,
-  roi:14
+  roi:30
 },
 
 {
   id:4,
-  name:"Gold",
-  metal:"Gold",
+  name:"Gold Plan",
   price:85,
-  roi:16
+  roi:35
 },
 
 {
   id:5,
-  name:"Platinum",
-  metal:"Platinum",
+  name:"Platinum Plan",
   price:110,
-  roi:18
+  roi:40
 },
 
 {
   id:6,
-  name:"Diamond",
-  metal:"Diamond",
+  name:"Diamond Plan",
   price:135,
-  roi:20
+  roi:45
+},
+
+{
+  id:7,
+  name:"Elite Plan",
+  price:160,
+  roi:50
 }
 
 ];
 
-/* ================= NOTIFY ================= */
+/* ================= NOTIFICATION ================= */
 
-function notify(msg,color="#00ff88"){
+function notify(message,color="#00ff88"){
 
-  const box = document.getElementById("msg");
+  const msg =
+    document.getElementById("msg");
 
-  box.style.color = color;
-  box.innerText = msg;
+  msg.style.color = color;
+  msg.innerText = message;
 
   clearTimeout(window.notifyTimer);
 
   window.notifyTimer = setTimeout(()=>{
-    box.innerText = "";
+    msg.innerText = "";
   },4000);
 
 }
 
-/* ================= BALANCE ================= */
+/* ================= BALANCE SYNC ================= */
 
-function loadBalance(uid){
+function syncBalance(uid){
 
   db.ref("users/" + uid)
   .on("value",snap=>{
 
+    const userData =
+      snap.val() || {};
+
     currentBalance =
-      Number(snap.val()?.balance || 0);
+      Number(userData.balance || 0);
 
     document.getElementById("balance")
     .innerText =
-      "Balance: $" +
+      "Total Balance: $" +
       currentBalance.toFixed(2);
 
   });
 
 }
 
-/* ================= TIMER ================= */
+/* ================= FORMAT TIMER ================= */
 
 function formatTime(ms){
 
@@ -368,16 +385,24 @@ function renderPlans(uid,data={}){
 
   plans.forEach(plan=>{
 
-    const inv = data[String(plan.id)];
+    const investment =
+      data[String(plan.id)];
 
     let buttonText = "Invest";
     let disabled = false;
-    let timerText = "Duration: 24H";
 
-    if(inv){
+    let timerText =
+      "24 Hours";
+
+    if(
+      investment &&
+      investment.amount &&
+      investment.roi &&
+      investment.time
+    ){
 
       const remaining =
-        (inv.time + 86400000)
+        (investment.time + 86400000)
         - Date.now();
 
       if(remaining <= 0){
@@ -389,13 +414,15 @@ function renderPlans(uid,data={}){
 
         buttonText = "Running";
         disabled = true;
-        timerText = formatTime(remaining);
+
+        timerText =
+          formatTime(remaining);
 
       }
 
     }
 
-    const total =
+    const expectedReturn =
       plan.price +
       (plan.price * plan.roi / 100);
 
@@ -407,12 +434,7 @@ function renderPlans(uid,data={}){
     card.innerHTML = `
 
       <div class="title">
-        ${plan.name} Plan
-      </div>
-
-      <div class="detail">
-        Metal Used:
-        ${plan.metal}
+        ${plan.name}
       </div>
 
       <div class="price">
@@ -421,12 +443,13 @@ function renderPlans(uid,data={}){
 
       <div class="detail">
         ROI:
-        ${plan.roi}% after 24 Hours
-      </div>
+        ${plan.roi}%<br>
 
-      <div class="detail">
+        Duration:
+        24 Hours<br>
+
         Expected Return:
-        $${total.toFixed(2)}
+        $${expectedReturn.toFixed(2)}
       </div>
 
       <div class="timer">
@@ -434,7 +457,7 @@ function renderPlans(uid,data={}){
       </div>
 
       <button class="btn"
-        ${disabled ? "disabled" : ""}>
+      ${disabled ? "disabled" : ""}>
         ${buttonText}
       </button>
 
@@ -444,11 +467,13 @@ function renderPlans(uid,data={}){
       card.querySelector("button");
 
     if(buttonText === "Invest"){
-      btn.onclick = ()=>invest(uid,plan);
+      btn.onclick =
+        ()=>invest(uid,plan);
     }
 
     if(buttonText === "Receive"){
-      btn.onclick = ()=>receive(uid,plan,inv);
+      btn.onclick =
+        ()=>receive(uid,plan,investment);
     }
 
     container.appendChild(card);
@@ -457,7 +482,7 @@ function renderPlans(uid,data={}){
 
 }
 
-/* ================= ACTIVE ================= */
+/* ================= ACTIVE INVESTMENTS ================= */
 
 function renderActive(data={}){
 
@@ -480,9 +505,11 @@ function renderActive(data={}){
   if(validInvestments.length === 0){
 
     container.innerHTML = `
+
       <div class="active-card">
         No active investments
       </div>
+
     `;
 
     return;
@@ -508,7 +535,7 @@ function renderActive(data={}){
       <h3>${inv.plan}</h3>
 
       <p>
-        Amount:
+        Invested:
         $${inv.amount}
       </p>
 
@@ -518,12 +545,14 @@ function renderActive(data={}){
       </p>
 
       <p>
-        Return:
+        Total Return:
         $${total.toFixed(2)}
       </p>
 
       <p class="timer">
-        ${remaining <= 0 ? "Profit Ready" : formatTime(remaining)}
+        ${remaining <= 0
+          ? "Profit Ready"
+          : formatTime(remaining)}
       </p>
 
     `;
@@ -548,23 +577,40 @@ function invest(uid,plan){
     return;
   }
 
-  db.ref(
-    "investments/" +
-    uid + "/" +
-    plan.id
-  )
-  .once("value")
+  const investRef =
+    db.ref(
+      "investments/" +
+      uid + "/" +
+      plan.id
+    );
 
+  investRef.once("value")
   .then(snapshot=>{
 
-    if(snapshot.exists()){
+    const existing =
+      snapshot.val();
 
-      notify(
-        "Plan already active",
-        "#ff4444"
-      );
+    if(
+      existing &&
+      existing.amount &&
+      existing.roi &&
+      existing.time
+    ){
 
-      return;
+      const remaining =
+        (existing.time + 86400000)
+        - Date.now();
+
+      if(remaining > 0){
+
+        notify(
+          "Plan already active",
+          "#ff4444"
+        );
+
+        return;
+      }
+
     }
 
     const newBalance =
@@ -572,17 +618,15 @@ function invest(uid,plan){
 
     return db.ref("users/" + uid)
     .update({
-      balance:newBalance
+
+      balance:newBalance,
+      totalBalance:newBalance
+
     })
 
     .then(()=>{
 
-      return db.ref(
-        "investments/" +
-        uid + "/" +
-        plan.id
-      )
-      .set({
+      return investRef.set({
 
         plan:plan.name,
         amount:plan.price,
@@ -597,7 +641,7 @@ function invest(uid,plan){
 
       notify(
         plan.name +
-        " Plan activated successfully"
+        " activated successfully"
       );
 
     });
@@ -608,11 +652,20 @@ function invest(uid,plan){
 
 /* ================= RECEIVE ================= */
 
-function receive(uid,plan,inv){
+function receive(uid,plan,investment){
+
+  if(
+    !investment ||
+    !investment.amount ||
+    !investment.roi
+  ){
+    return;
+  }
 
   const payout =
-    inv.amount +
-    (inv.amount * plan.roi / 100);
+    investment.amount +
+    (investment.amount *
+    investment.roi / 100);
 
   db.ref("users/" + uid)
   .once("value")
@@ -624,9 +677,15 @@ function receive(uid,plan,inv){
         snap.val()?.balance || 0
       );
 
+    const updatedBalance =
+      current + payout;
+
     return db.ref("users/" + uid)
     .update({
-      balance: current + payout
+
+      balance:updatedBalance,
+      totalBalance:updatedBalance
+
     });
 
   })
@@ -644,9 +703,37 @@ function receive(uid,plan,inv){
   .then(()=>{
 
     notify(
-      "Received $" +
-      payout.toFixed(2)
+      "Profit received successfully",
+      "#00ff88"
     );
+
+  });
+
+}
+
+/* ================= CLEAN INVALID DATA ================= */
+
+function cleanInvalidInvestments(uid,data={}){
+
+  Object.keys(data).forEach(key=>{
+
+    const inv = data[key];
+
+    if(
+      !inv ||
+      !inv.plan ||
+      !inv.amount ||
+      !inv.roi ||
+      !inv.time
+    ){
+
+      db.ref(
+        "investments/" +
+        uid + "/" +
+        key
+      ).remove();
+
+    }
 
   });
 
@@ -664,15 +751,26 @@ auth.onAuthStateChanged(user=>{
 
   currentUser = user;
 
-  loadBalance(user.uid);
+  syncBalance(user.uid);
 
-  db.ref("investments/" + user.uid)
+  db.ref(
+    "investments/" +
+    user.uid
+  )
   .on("value",snap=>{
 
     const data =
       snap.val() || {};
 
-    renderPlans(user.uid,data);
+    cleanInvalidInvestments(
+      user.uid,
+      data
+    );
+
+    renderPlans(
+      user.uid,
+      data
+    );
 
     renderActive(data);
 
