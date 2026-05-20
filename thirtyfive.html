@@ -1,12 +1,18 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard | CRYPTO HUB GROWTH INVESTMENT</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>
+CRYPTO HUB GROWTH INVESTMENT
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -15,97 +21,275 @@
 }
 
 body{
-  background:linear-gradient(135deg,#06131f,#0b2240);
-  color:#fff;
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
+  overflow-x:hidden;
+  color:#fff;
+  background:
+  radial-gradient(circle at top left,#00d9ff22,transparent 25%),
+  radial-gradient(circle at bottom right,#00ffb322,transparent 25%),
+  linear-gradient(135deg,#03101f,#071426,#0b1d38,#10254a);
 }
+
+/* ================= BACKGROUND ================= */
+
+.bg-glow{
+  position:fixed;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  filter:blur(120px);
+  z-index:-1;
+  animation:float 8s ease-in-out infinite;
+}
+
+.bg1{
+  top:-120px;
+  left:-120px;
+  background:#00d9ff18;
+}
+
+.bg2{
+  bottom:-120px;
+  right:-120px;
+  background:#00ff9918;
+  animation-delay:2s;
+}
+
+@keyframes float{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(30px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* ================= HEADER ================= */
 
 header{
+  padding:30px 20px;
   text-align:center;
-  padding:20px;
-  font-size:1.5rem;
-  font-weight:700;
-  color:#00d9ff;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.container{
-  flex:1;
-  padding:20px;
+header h1{
+  color:#00d9ff;
+  font-size:2.3rem;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+header p{
+  margin-top:10px;
+  color:#d6e4ff;
+  font-size:1rem;
+}
+
+/* ================= TOP BAR ================= */
+
+.top-bar{
   display:flex;
-  flex-direction:column;
+  justify-content:space-between;
   align-items:center;
+  padding:20px 25px;
+  flex-wrap:wrap;
+  gap:15px;
 }
 
 .balance{
-  font-size:1.3rem;
-  font-weight:600;
-  margin-bottom:20px;
-  color:#ffcc00;
+  padding:15px 24px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  font-size:1.1rem;
+  font-weight:700;
+  color:#ffd700;
+  backdrop-filter:blur(16px);
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-h2{
-  color:#00d9ff;
-  margin-bottom:20px;
-  text-align:center;
+.nav{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
+
+.nav a{
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,0.06);
+  padding:13px 22px;
+  border-radius:16px;
+  transition:.35s;
+  font-weight:600;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.nav a:hover{
+  background:linear-gradient(135deg,#00d9ff,#00ffb3);
+  color:#071426;
+  transform:translateY(-3px);
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  max-width:1550px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.hero h2{
+  font-size:2.5rem;
+  color:#00d9ff;
+  margin-bottom:14px;
+  font-weight:800;
+}
+
+.hero p{
+  color:#d6e4ff;
+  line-height:2;
+  font-size:1rem;
+}
+
+/* ================= NOTIFICATION ================= */
+
+.notification{
+  max-width:750px;
+  margin:0 auto 25px;
+  display:none;
+  border-radius:18px;
+  overflow:hidden;
+  animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* ================= PLAN GRID ================= */
 
 .plans{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  width:100%;
-  max-width:1300px;
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:28px;
 }
 
-.plan-card{
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
   background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;
-  padding:20px;
-  text-align:center;
-  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  transition:.35s;
+  box-shadow:0 10px 35px rgba(0,0,0,.2);
 }
 
-.plan-card:hover{
-  transform:scale(1.05);
+.card::before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background:rgba(0,217,255,0.08);
+  top:-120px;
+  right:-100px;
+}
+
+.card:hover{
+  transform:translateY(-10px);
   border-color:#00d9ff;
+  box-shadow:0 25px 50px rgba(0,217,255,.15);
 }
 
-.plan-title{
-  font-weight:700;
-  font-size:1.2rem;
-  margin-bottom:10px;
+.card-body{
+  position:relative;
+  z-index:2;
+  padding:32px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  background:rgba(0,217,255,0.12);
   color:#00d9ff;
+  font-size:.85rem;
+  font-weight:700;
+  margin-bottom:18px;
 }
 
-.plan-detail{
-  margin-bottom:12px;
-  color:#c9d6f2;
+.title{
+  font-size:1.6rem;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.price{
+  font-size:3rem;
+  font-weight:800;
+  color:#00ffb3;
+  margin-bottom:15px;
+}
+
+.detail{
+  color:#d6e4ff;
+  line-height:2;
+  font-size:.97rem;
 }
 
 .timer{
+  margin-top:18px;
+  padding:15px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
   color:#ffcc00;
-  font-weight:600;
-  margin-bottom:12px;
+  font-weight:700;
+  text-align:center;
 }
 
 .btn{
-  padding:10px 20px;
-  border:none;
-  border-radius:25px;
-  background:#00d9ff;
-  color:#06131f;
-  font-weight:700;
-  cursor:pointer;
   width:100%;
+  margin-top:22px;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#00d9ff,#00ffb3);
+  color:#071426;
+  font-weight:800;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.35s;
 }
 
-.btn:hover{
-  background:white;
+.btn:hover:not(:disabled){
+  transform:translateY(-3px);
+  box-shadow:0 15px 30px rgba(0,217,255,.2);
 }
 
 .btn:disabled{
@@ -113,239 +297,786 @@ h2{
   cursor:not-allowed;
 }
 
-.msg{
-  text-align:center;
-  margin-top:20px;
-  color:#ffcc00;
-  font-weight:500;
-  min-height:25px;
+/* ================= ACTIVE INVESTMENTS ================= */
+
+.section-title{
+  margin:50px 0 22px;
+  color:#00d9ff;
+  font-size:1.9rem;
+  font-weight:800;
 }
+
+.active-box{
+  margin-bottom:18px;
+  padding:25px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+}
+
+.active-box h3{
+  color:#00d9ff;
+  margin-bottom:10px;
+}
+
+.active-box p{
+  color:#d6e4ff;
+  line-height:2;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
+  margin-top:40px;
+  padding:22px;
   text-align:center;
-  padding:15px;
-  font-size:0.85rem;
   color:#c9d6f2;
-  background:rgba(0,0,0,0.3);
+  background:rgba(255,255,255,0.03);
 }
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+  .top-bar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .hero h2{
+    font-size:2rem;
+  }
+
+  .price{
+    font-size:2.5rem;
+  }
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<header>CRYPTO HUB GROWTH INVESTMENT | DASHBOARD</header>
+<div class="bg-glow bg1"></div>
+<div class="bg-glow bg2"></div>
+
+<header>
+
+  <h1>
+    CRYPTO HUB GROWTH INVESTMENT
+  </h1>
+
+  <p>
+    Professional 24 Hours Crypto Investment Platform
+  </p>
+
+</header>
+
+<div class="top-bar">
+
+  <div class="balance" id="balance">
+    Total Balance: $0.00
+  </div>
+
+  <div class="nav">
+
+    <a href="dashboard.html">
+      Dashboard
+    </a>
+
+    <a href="profile.html">
+      Profile
+    </a>
+
+  </div>
+
+</div>
 
 <div class="container">
-  <div class="balance">Balance: $<span id="balance">0.00</span></div>
 
-  <h2>24-Hour Investment Plans</h2>
+  <div class="hero">
+
+    <h2>
+      Premium Investment Plans
+    </h2>
+
+    <p>
+      Minimum investment starts from $85.<br>
+      Every next investment increases by $25.<br>
+      All plans run strictly for 24 hours.<br>
+      Higher plans generate higher ROI percentages.
+    </p>
+
+  </div>
+
+  <div class="notification" id="notification"></div>
 
   <div class="plans" id="plansContainer"></div>
 
-  <div class="msg" id="msg"></div>
+  <h2 class="section-title">
+    Active Investments
+  </h2>
+
+  <div id="activeInvestments"></div>
+
 </div>
 
-<footer>© 2026 CRYPTO HUB GROWTH INVESTMENT</footer>
+<footer>
+  © 2026 CRYPTO HUB GROWTH INVESTMENT
+</footer>
+
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-// FIREBASE CONFIG
+
+/* ================= FIREBASE CONFIG ================= */
+
 const firebaseConfig = {
+
   apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
-  authDomain: "crypto-hub-growth-invest-9492c.firebaseapp.com",
-  databaseURL: "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "crypto-hub-growth-invest-9492c",
-  storageBucket: "crypto-hub-growth-invest-9492c.firebasestorage.app",
-  messagingSenderId: "946872117732",
-  appId: "1:946872117732:web:c6ba0ca8c1510bf902bff1",
-  measurementId: "G-CLET27VD7J"
+
+  authDomain:
+  "crypto-hub-growth-invest-9492c.firebaseapp.com",
+
+  databaseURL:
+  "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
+
+  projectId:
+  "crypto-hub-growth-invest-9492c",
+
+  storageBucket:
+  "crypto-hub-growth-invest-9492c.firebasestorage.app",
+
+  messagingSenderId:
+  "946872117732",
+
+  appId:
+  "1:946872117732:web:c6ba0ca8c1510bf902bff1",
+
+  measurementId:
+  "G-CLET27VD7J"
+
 };
 
-firebase.initializeApp(firebaseConfig);
+if(!firebase.apps.length){
+
+  firebase.initializeApp(firebaseConfig);
+
+}
 
 const auth = firebase.auth();
 const db = firebase.database();
 
-const plans = [
-  {id:1, name:"Starter", price:35, roi:25},
-  {id:2, name:"Bronze", price:60, roi:30},
-  {id:3, name:"Silver", price:85, roi:35},
-  {id:4, name:"Gold", price:110, roi:40},
-  {id:5, name:"Platinum", price:135, roi:45},
-  {id:6, name:"Diamond", price:160, roi:50},
-  {id:7, name:"Elite", price:185, roi:55}
-];
-
-const plansContainer = document.getElementById("plansContainer");
-const balanceEl = document.getElementById("balance");
-const msgEl = document.getElementById("msg");
-
 let currentUser = null;
 let currentBalance = 0;
 
-// MESSAGE
-function showMsg(text){
-  msgEl.innerText = text;
+/* ================= INVESTMENT PLANS ================= */
+
+const plans = [
+
+  {
+    id:1,
+    name:"Starter Plan",
+    price:85,
+    percent:35
+  },
+
+  {
+    id:2,
+    name:"Bronze Plan",
+    price:110,
+    percent:40
+  },
+
+  {
+    id:3,
+    name:"Silver Plan",
+    price:135,
+    percent:45
+  },
+
+  {
+    id:4,
+    name:"Gold Plan",
+    price:160,
+    percent:50
+  },
+
+  {
+    id:5,
+    name:"Platinum Plan",
+    price:185,
+    percent:55
+  },
+
+  {
+    id:6,
+    name:"Diamond Plan",
+    price:210,
+    percent:60
+  },
+
+  {
+    id:7,
+    name:"Elite Plan",
+    price:235,
+    percent:65
+  }
+
+];
+
+/* ================= PURE NOTIFICATION ================= */
+
+function notify(message,color="#00ffb3"){
+
+  const box =
+  document.getElementById("notification");
+
+  box.style.display = "block";
+
+  box.innerHTML = `
+
+    <div style="
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(16px);
+      color:${color};
+      font-weight:700;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    ">
+      ${message}
+    </div>
+
+  `;
+
+  clearTimeout(box.timer);
+
+  box.timer = setTimeout(()=>{
+
+    box.style.display = "none";
+
+  },4000);
+
 }
 
-// TIMER FORMAT
+/* ================= BALANCE SYNC ================= */
+
+function syncBalance(uid){
+
+  db.ref("users/" + uid)
+  .on("value",snapshot=>{
+
+    const data =
+    snapshot.val() || {};
+
+    currentBalance =
+    Number(data.totalBalance || 0);
+
+    document.getElementById("balance")
+    .innerHTML =
+
+    "Total Balance: $" +
+    currentBalance.toFixed(2);
+
+  });
+
+}
+
+/* ================= COUNTDOWN ================= */
+
 function formatTime(ms){
-  if(ms <= 0) return "Completed";
-  const hrs = Math.floor(ms / (1000*60*60));
-  const mins = Math.floor((ms % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((ms % (1000*60)) / 1000);
-  return `${hrs}h ${mins}m ${secs}s`;
+
+  if(ms <= 0){
+
+    return "✅ Profit Ready To Receive";
+
+  }
+
+  const hours =
+  Math.floor(ms / 3600000);
+
+  const minutes =
+  Math.floor((ms % 3600000) / 60000);
+
+  const seconds =
+  Math.floor((ms % 60000) / 1000);
+
+  return `${hours}h ${minutes}m ${seconds}s`;
+
 }
 
-// RENDER PLANS
-function renderPlans(userPlans = {}){
-  plansContainer.innerHTML = "";
+/* ================= ACTIVE INVESTMENTS ================= */
 
-  plans.forEach(plan=>{
-    const investment = userPlans[plan.name];
-    let buttonText = "Invest";
-    let buttonDisabled = false;
-    let timerText = "Duration: 24 Hours";
+function renderActiveInvestments(data={}){
 
-    if(investment){
-      const endTime = investment.investedAt + 86400000;
-      const remaining = endTime - Date.now();
+  const container =
+  document.getElementById(
+    "activeInvestments"
+  );
 
-      if(!investment.collected && remaining > 0){
-        buttonText = "Running";
-        buttonDisabled = true;
-        timerText = "Remaining: " + formatTime(remaining);
-      } else if(!investment.collected && remaining <= 0){
-        buttonText = "Collect Profit";
-        timerText = "Profit Ready";
-      } else {
-        buttonText = "Invest Again";
-      }
-    }
+  container.innerHTML = "";
 
-    const totalReturn = plan.price + (plan.price * plan.roi / 100);
+  const investments =
+  Object.values(data);
 
-    const card = document.createElement("div");
-    card.className = "plan-card";
+  if(investments.length === 0){
 
-    card.innerHTML = `
-      <div class="plan-title">${plan.name} Plan</div>
-      <div class="plan-detail">
-        Price: $${plan.price}<br>
-        ROI: ${plan.roi}%<br>
-        Return: $${totalReturn.toFixed(2)}
+    container.innerHTML = `
+
+      <div class="active-box">
+
+        No active investments found.
+
       </div>
-      <div class="timer">${timerText}</div>
-      <button class="btn" ${buttonDisabled ? "disabled" : ""}>
-        ${buttonText}
-      </button>
+
     `;
 
-    const btn = card.querySelector("button");
-    btn.onclick = () => handlePlan(plan);
+    return;
 
-    plansContainer.appendChild(card);
+  }
+
+  investments.forEach(inv=>{
+
+    const remaining =
+    (inv.startTime + 86400000)
+    - Date.now();
+
+    const div =
+    document.createElement("div");
+
+    div.className =
+    "active-box";
+
+    div.innerHTML = `
+
+      <h3>
+        ${inv.name}
+      </h3>
+
+      <p>
+        Invested Amount:
+        $${inv.price}
+      </p>
+
+      <p>
+        ROI:
+        ${inv.percent}%
+      </p>
+
+      <p>
+        Expected Return:
+        $${inv.returnAmount.toFixed(2)}
+      </p>
+
+      <p class="timer">
+        ${formatTime(remaining)}
+      </p>
+
+    `;
+
+    container.appendChild(div);
+
   });
+
 }
 
-// HANDLE PLAN
-function handlePlan(plan){
-  if(!currentUser) return showMsg("Please login first.");
+/* ================= RENDER PLANS ================= */
 
-  const investRef = db.ref(`investments/${currentUser.uid}/${plan.name}`);
+function renderPlans(investments={}){
 
-  investRef.once("value").then(snapshot=>{
-    const data = snapshot.val();
-    const now = Date.now();
+  const container =
+  document.getElementById(
+    "plansContainer"
+  );
 
-    // ACTIVE OR COLLECT
-    if(data && !data.collected){
-      const endTime = data.investedAt + 86400000;
+  container.innerHTML = "";
 
-      if(now >= endTime){
-        const payout = data.amount + (data.amount * data.roi / 100);
+  plans.forEach(plan=>{
 
-        db.ref(`users/${currentUser.uid}`).once("value").then(userSnap=>{
-          const oldBalance = Number(userSnap.val()?.balance || 0);
-          const newBalance = oldBalance + payout;
+    const investment =
+    investments[String(plan.id)];
 
-          db.ref(`users/${currentUser.uid}`).update({
-            balance:newBalance
-          });
+    let buttonText =
+    "Invest";
 
-          investRef.update({
-            collected:true
-          });
+    let disabled =
+    false;
 
-          showMsg(`Profit collected successfully! $${payout.toFixed(2)} added.`);
-        });
+    let timerText =
+    "24 Hours Duration";
 
-      } else {
-        showMsg("Plan is still running.");
+    if(investment){
+
+      const remaining =
+      (investment.startTime + 86400000)
+      - Date.now();
+
+      if(remaining <= 0){
+
+        buttonText =
+        "Receive";
+
+        timerText =
+        "✅ Profit Ready";
+
+      }else{
+
+        buttonText =
+        "Running";
+
+        disabled =
+        true;
+
+        timerText =
+        formatTime(remaining);
+
       }
 
-      return;
     }
 
-    // NEW INVESTMENT
-    if(currentBalance < plan.price){
-      showMsg("Insufficient balance.");
-      return;
-    }
+    const totalReturn =
+    plan.price +
+    (plan.price * plan.percent / 100);
 
-    const newBalance = currentBalance - plan.price;
+    const card =
+    document.createElement("div");
 
-    db.ref(`users/${currentUser.uid}`).update({
-      balance:newBalance
-    }).then(()=>{
-      return investRef.set({
-        plan:plan.name,
-        amount:plan.price,
-        roi:plan.roi,
-        investedAt:Date.now(),
-        collected:false
-      });
-    }).then(()=>{
-      showMsg(`${plan.name} Plan activated successfully.`);
-    });
+    card.className =
+    "card";
+
+    card.innerHTML = `
+
+      <div class="card-body">
+
+        <div class="badge">
+          24 HOURS PLAN
+        </div>
+
+        <div class="title">
+          ${plan.name}
+        </div>
+
+        <div class="price">
+          $${plan.price}
+        </div>
+
+        <div class="detail">
+
+          ROI Percentage:
+          ${plan.percent}%<br>
+
+          Duration:
+          24 Hours<br>
+
+          Expected Return:
+          $${totalReturn.toFixed(2)}
+
+        </div>
+
+        <div class="timer">
+          ${timerText}
+        </div>
+
+        <button class="btn"
+        ${disabled ? "disabled" : ""}>
+
+          ${buttonText}
+
+        </button>
+
+      </div>
+
+    `;
+
+    const btn =
+    card.querySelector("button");
+
+    btn.onclick =
+    ()=>handlePlan(plan.id);
+
+    container.appendChild(card);
 
   });
+
 }
 
-// AUTH
+/* ================= HANDLE PLAN ================= */
+
+function handlePlan(planId){
+
+  if(!currentUser) return;
+
+  const plan =
+  plans.find(
+    p => p.id === planId
+  );
+
+  const userRef =
+  db.ref(
+    "users/" +
+    currentUser.uid
+  );
+
+  const investRef =
+  db.ref(
+    "investments/" +
+    currentUser.uid +
+    "/" +
+    planId
+  );
+
+  investRef.once("value")
+  .then(snapshot=>{
+
+    const investment =
+    snapshot.val();
+
+    /* ================= RECEIVE ================= */
+
+    if(investment){
+
+      const maturity =
+      investment.startTime +
+      86400000;
+
+      if(Date.now() < maturity){
+
+        notify(
+          "⏳ Investment still running",
+          "#ffcc00"
+        );
+
+        return;
+      }
+
+      const payout =
+      Number(
+        investment.returnAmount
+      );
+
+      userRef.once("value")
+      .then(userSnap=>{
+
+        const userData =
+        userSnap.val() || {};
+
+        const current =
+        Number(
+          userData.totalBalance || 0
+        );
+
+        const profit =
+        payout - investment.price;
+
+        const totalProfit =
+        Number(
+          userData.totalProfit || 0
+        );
+
+        const activeInvestment =
+        Number(
+          userData.activeInvestment || 0
+        );
+
+        return userRef.update({
+
+          totalBalance:
+          current + payout,
+
+          balance:
+          current + payout,
+
+          totalProfit:
+          totalProfit + profit,
+
+          activeInvestment:
+          Math.max(
+            activeInvestment - investment.price,
+            0
+          )
+
+        });
+
+      })
+
+      .then(()=>{
+
+        return investRef.remove();
+
+      })
+
+      .then(()=>{
+
+        notify(
+          "✅ Profit received successfully"
+        );
+
+      });
+
+      return;
+
+    }
+
+    /* ================= INVEST ================= */
+
+    if(currentBalance < plan.price){
+
+      notify(
+        "❌ Insufficient balance",
+        "#ff4d4d"
+      );
+
+      return;
+
+    }
+
+    userRef.once("value")
+    .then(userSnap=>{
+
+      const userData =
+      userSnap.val() || {};
+
+      const balance =
+      Number(
+        userData.totalBalance || 0
+      );
+
+      const active =
+      Number(
+        userData.activeInvestment || 0
+      );
+
+      const updatedBalance =
+      balance - plan.price;
+
+      const returnAmount =
+      plan.price +
+      (plan.price *
+      plan.percent / 100);
+
+      return userRef.update({
+
+        totalBalance:
+        updatedBalance,
+
+        balance:
+        updatedBalance,
+
+        activeInvestment:
+        active + plan.price
+
+      })
+
+      .then(()=>{
+
+        return investRef.set({
+
+          id:plan.id,
+
+          name:plan.name,
+
+          price:plan.price,
+
+          percent:plan.percent,
+
+          startTime:Date.now(),
+
+          returnAmount:returnAmount,
+
+          duration:"24 Hours"
+
+        });
+
+      });
+
+    })
+
+    .then(()=>{
+
+      notify(
+        "🚀 " +
+        plan.name +
+        " activated successfully"
+      );
+
+    });
+
+  });
+
+}
+
+/* ================= AUTH ================= */
+
 auth.onAuthStateChanged(user=>{
+
   if(!user){
-    window.location.href = "login.html";
+
+    window.location.href =
+    "login.html";
+
     return;
+
   }
 
-  currentUser = user;
+  currentUser =
+  user;
 
-  // BALANCE LIVE
-  db.ref(`users/${user.uid}`).on("value",snap=>{
-    const data = snap.val() || {};
-    currentBalance = Number(data.balance || 0);
-    balanceEl.innerText = currentBalance.toFixed(2);
+  syncBalance(user.uid);
+
+  db.ref(
+    "investments/" +
+    user.uid
+  ).on("value",snapshot=>{
+
+    const data =
+    snapshot.val() || {};
+
+    renderPlans(data);
+
+    renderActiveInvestments(data);
+
   });
 
-  // INVESTMENTS LIVE
-  db.ref(`investments/${user.uid}`).on("value",snap=>{
-    renderPlans(snap.val() || {});
-  });
 });
 
-// GLOBAL TIMER REFRESH
+/* ================= LIVE TIMER ================= */
+
 setInterval(()=>{
+
   if(currentUser){
-    db.ref(`investments/${currentUser.uid}`).once("value").then(snap=>{
-      renderPlans(snap.val() || {});
+
+    db.ref(
+      "investments/" +
+      currentUser.uid
+    ).once("value")
+    .then(snapshot=>{
+
+      const data =
+      snapshot.val() || {};
+
+      renderPlans(data);
+
+      renderActiveInvestments(data);
+
     });
+
   }
+
 },1000);
 
 </script>
 
 </body>
-</html>
+  </html>
