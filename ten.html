@@ -186,8 +186,8 @@ footer{
   </div>
 
   <div class="nav">
-    <a href="#">Dashboard</a>
-    <a href="#">Profile</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
   </div>
 
 </div>
@@ -336,6 +336,27 @@ function loadBalance(uid){
 
 }
 
+/* ================= TIMER ================= */
+
+function formatTime(ms){
+
+  if(ms <= 0){
+    return "Profit Ready";
+  }
+
+  const hours =
+    Math.floor(ms / 3600000);
+
+  const minutes =
+    Math.floor((ms % 3600000) / 60000);
+
+  const seconds =
+    Math.floor((ms % 60000) / 1000);
+
+  return `${hours}h ${minutes}m ${seconds}s`;
+
+}
+
 /* ================= RENDER PLANS ================= */
 
 function renderPlans(uid,data={}){
@@ -347,10 +368,11 @@ function renderPlans(uid,data={}){
 
   plans.forEach(plan=>{
 
-    const inv = data[plan.id];
+    const inv = data[String(plan.id)];
 
     let buttonText = "Invest";
     let disabled = false;
+    let timerText = "Duration: 24H";
 
     if(inv){
 
@@ -361,11 +383,13 @@ function renderPlans(uid,data={}){
       if(remaining <= 0){
 
         buttonText = "Receive";
+        timerText = "Profit Ready";
 
       }else{
 
         buttonText = "Running";
         disabled = true;
+        timerText = formatTime(remaining);
 
       }
 
@@ -406,7 +430,7 @@ function renderPlans(uid,data={}){
       </div>
 
       <div class="timer">
-        Duration: 24H
+        ${timerText}
       </div>
 
       <button class="btn"
@@ -444,9 +468,16 @@ function renderActive(data={}){
 
   container.innerHTML = "";
 
-  const keys = Object.keys(data);
+  const validInvestments =
+    Object.values(data).filter(inv =>
+      inv &&
+      inv.plan &&
+      inv.amount &&
+      inv.roi &&
+      inv.time
+    );
 
-  if(keys.length === 0){
+  if(validInvestments.length === 0){
 
     container.innerHTML = `
       <div class="active-card">
@@ -457,13 +488,15 @@ function renderActive(data={}){
     return;
   }
 
-  keys.forEach(key=>{
-
-    const inv = data[key];
+  validInvestments.forEach(inv=>{
 
     const total =
       inv.amount +
       (inv.amount * inv.roi / 100);
+
+    const remaining =
+      (inv.time + 86400000)
+      - Date.now();
 
     const div =
       document.createElement("div");
@@ -490,7 +523,7 @@ function renderActive(data={}){
       </p>
 
       <p class="timer">
-        Duration: 24H
+        ${remaining <= 0 ? "Profit Ready" : formatTime(remaining)}
       </p>
 
     `;
@@ -647,7 +680,36 @@ auth.onAuthStateChanged(user=>{
 
 });
 
+/* ================= LIVE TIMER ================= */
+
+setInterval(()=>{
+
+  if(currentUser){
+
+    db.ref(
+      "investments/" +
+      currentUser.uid
+    )
+    .once("value")
+    .then(snap=>{
+
+      const data =
+        snap.val() || {};
+
+      renderPlans(
+        currentUser.uid,
+        data
+      );
+
+      renderActive(data);
+
+    });
+
+  }
+
+},1000);
+
 </script>
 
 </body>
-</html>
+  </html>
