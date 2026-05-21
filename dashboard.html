@@ -609,8 +609,6 @@ tracking and secure portfolio management.
 
 <main class="main">
 
-<!-- TOPBAR -->
-
 <div class="topbar">
 
 <div class="welcome">
@@ -631,13 +629,9 @@ View Profile
 
 </div>
 
-<!-- LIVE STATUS -->
-
 <div class="live-status" id="liveStatus">
 🟢 Connecting to secure real-time database...
 </div>
-
-<!-- STATS -->
 
 <section class="cards">
 
@@ -685,8 +679,6 @@ Accumulated earnings
 
 </section>
 
-<!-- ACTIONS -->
-
 <section class="actions">
 
 <button class="action-btn deposit"
@@ -710,16 +702,7 @@ Company
 
 </button>
 
-<button class="action-btn logout"
-id="logoutBtn">
-
-Logout
-
-</button>
-
 </section>
-
-<!-- ABOUT -->
 
 <section class="panel">
 
@@ -728,12 +711,10 @@ About Our Platform
 </h2>
 
 <p>
-CRYPTO HUB GROWTH INVESTMENT is a next-generation cryptocurrency investment platform built for transparency, profitability and long-term digital wealth growth. Our advanced systems provide secure investment tracking, real-time monitoring and smooth portfolio management for investors worldwide.
+CRYPTO HUB GROWTH INVESTMENT is a next-generation cryptocurrency investment platform built for transparency, profitability and long-term digital wealth growth.
 </p>
 
 </section>
-
-<!-- LIVE INVESTMENT TIMER -->
 
 <section class="panel">
 
@@ -763,8 +744,6 @@ Your active investments will appear here automatically.
 
 </section>
 
-<!-- PLANS -->
-
 <section class="panel">
 
 <h2>
@@ -774,170 +753,80 @@ Professional Investment Plans
 <div class="plan-grid">
 
 <div class="plan-card">
-
-<div class="plan-name">
-Starter Plan
-</div>
-
-<div class="plan-roi">
-20%
-</div>
-
-<div class="plan-price">
-$10 Investment
-</div>
-
+<div class="plan-name">Starter Plan</div>
+<div class="plan-roi">20%</div>
+<div class="plan-price">$10 Investment</div>
 <div class="plan-desc">
 Ideal for beginners entering cryptocurrency investment.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 <div class="plan-card">
-
-<div class="plan-name">
-Bronze Plan
-</div>
-
-<div class="plan-roi">
-25%
-</div>
-
-<div class="plan-price">
-$35 Investment
-</div>
-
+<div class="plan-name">Bronze Plan</div>
+<div class="plan-roi">25%</div>
+<div class="plan-price">$35 Investment</div>
 <div class="plan-desc">
 Grow faster with improved return opportunities.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 <div class="plan-card">
-
-<div class="plan-name">
-Silver Plan
-</div>
-
-<div class="plan-roi">
-30%
-</div>
-
-<div class="plan-price">
-$60 Investment
-</div>
-
+<div class="plan-name">Silver Plan</div>
+<div class="plan-roi">30%</div>
+<div class="plan-price">$60 Investment</div>
 <div class="plan-desc">
 Perfect for stronger portfolio growth and profits.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 <div class="plan-card">
-
-<div class="plan-name">
-Gold Plan
-</div>
-
-<div class="plan-roi">
-35%
-</div>
-
-<div class="plan-price">
-$85 Investment
-</div>
-
+<div class="plan-name">Gold Plan</div>
+<div class="plan-roi">35%</div>
+<div class="plan-price">$85 Investment</div>
 <div class="plan-desc">
 Higher earning opportunities with premium returns.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 <div class="plan-card">
-
-<div class="plan-name">
-Platinum Plan
-</div>
-
-<div class="plan-roi">
-40%
-</div>
-
-<div class="plan-price">
-$110 Investment
-</div>
-
+<div class="plan-name">Platinum Plan</div>
+<div class="plan-roi">40%</div>
+<div class="plan-price">$110 Investment</div>
 <div class="plan-desc">
 Advanced investment strategy with enhanced profits.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 <div class="plan-card">
-
-<div class="plan-name">
-Diamond Plan
-</div>
-
-<div class="plan-roi">
-45%
-</div>
-
-<div class="plan-price">
-$135 Investment
-</div>
-
+<div class="plan-name">Diamond Plan</div>
+<div class="plan-roi">45%</div>
+<div class="plan-price">$135 Investment</div>
 <div class="plan-desc">
 Elite level investment for experienced investors.
 </div>
-
-<a href="investment.html"
-class="plan-btn">
-
-Invest Now
-
-</a>
-
+<a href="investment.html" class="plan-btn">Invest Now</a>
 </div>
 
 </div>
 
 </section>
+
+<!-- LOGOUT BUTTON AT BOTTOM -->
+
+<div style="margin-top:40px;text-align:center;">
+
+<button class="action-btn logout" id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
 
 <footer>
 
@@ -949,311 +838,6 @@ Premium Investor Dashboard
 </main>
 
 </div>
-
-<!-- FIREBASE -->
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-  getDatabase,
-  ref,
-  onValue
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-/* ================= FIREBASE CONFIG ================= */
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyDoE3JXF_ggmLS_MNO0xYE0uykuAlj0Mdk",
-
-  authDomain:
-  "crypto-hub-growth-invest-9492c.firebaseapp.com",
-
-  databaseURL:
-  "https://crypto-hub-growth-invest-9492c-default-rtdb.europe-west1.firebasedatabase.app",
-
-  projectId:
-  "crypto-hub-growth-invest-9492c",
-
-  storageBucket:
-  "crypto-hub-growth-invest-9492c.firebasestorage.app",
-
-  messagingSenderId:
-  "946872117732",
-
-  appId:
-  "1:946872117732:web:c6ba0ca8c1510bf902bff1",
-
-  measurementId:
-  "G-CLET27VD7J"
-
-};
-
-/* ================= INITIALIZE ================= */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const database = getDatabase(app);
-
-/* ================= ELEMENTS ================= */
-
-const liveStatus =
-document.getElementById("liveStatus");
-
-const welcomeText =
-document.getElementById("welcomeText");
-
-const totalBalance =
-document.getElementById("totalBalance");
-
-const activeInvestment =
-document.getElementById("activeInvestment");
-
-const totalProfit =
-document.getElementById("totalProfit");
-
-const investmentTimers =
-document.getElementById("investmentTimers");
-
-/* ================= LIVE STATUS ================= */
-
-liveStatus.innerText =
-"🟢 Secure real-time database connected successfully";
-
-/* ================= FORMAT TIMER ================= */
-
-function formatTime(ms){
-
-  if(ms <= 0){
-    return "Profit Ready";
-  }
-
-  const hours =
-  Math.floor(ms / 3600000);
-
-  const minutes =
-  Math.floor((ms % 3600000) / 60000);
-
-  const seconds =
-  Math.floor((ms % 60000) / 1000);
-
-  return `
-  ${hours.toString().padStart(2,'0')}h
-  ${minutes.toString().padStart(2,'0')}m
-  ${seconds.toString().padStart(2,'0')}s
-  `;
-
-}
-
-/* ================= AUTH ================= */
-
-onAuthStateChanged(auth,(user)=>{
-
-  if(user){
-
-    const userRef =
-    ref(database,"users/" + user.uid);
-
-    const investmentRef =
-    ref(database,"investments/" + user.uid);
-
-    /* USER DATA */
-
-    onValue(userRef,(snapshot)=>{
-
-      if(snapshot.exists()){
-
-        const data =
-        snapshot.val();
-
-        welcomeText.innerText =
-        `Welcome Back, ${data.userName || "Investor"}`;
-
-        totalBalance.innerText =
-        "$" +
-        Number(data.totalBalance || data.balance || 0)
-        .toFixed(2);
-
-        totalProfit.innerText =
-        "$" +
-        Number(data.totalProfit || 0)
-        .toFixed(2);
-
-      }
-
-    });
-
-    /* INVESTMENTS */
-
-    onValue(investmentRef,(snapshot)=>{
-
-      const data =
-      snapshot.val() || {};
-
-      let activeTotal = 0;
-
-      investmentTimers.innerHTML = "";
-
-      const investments =
-      Object.values(data);
-
-      if(investments.length === 0){
-
-        investmentTimers.innerHTML = `
-
-        <div class="timer-card">
-
-        <h3>
-        No Active Investment
-        </h3>
-
-        <div class="timer">
-        00h 00m 00s
-        </div>
-
-        <p>
-        Your active investments will appear here automatically.
-        </p>
-
-        </div>
-
-        `;
-
-      }else{
-
-        investments.forEach(inv=>{
-
-          activeTotal += Number(inv.amount || 0);
-
-          const endTime =
-          inv.time + 86400000;
-
-          const remaining =
-          endTime - Date.now();
-
-          const card =
-          document.createElement("div");
-
-          card.className = "timer-card";
-
-          card.innerHTML = `
-
-          <h3>
-          ${inv.plan}
-          </h3>
-
-          <div class="timer ${remaining <= 0 ? 'ready' : ''}">
-          ${formatTime(remaining)}
-          </div>
-
-          <p>
-          Invested: $${Number(inv.amount).toFixed(2)}
-          </p>
-
-          <p>
-          ROI: ${inv.roi}%
-          </p>
-
-          `;
-
-          investmentTimers.appendChild(card);
-
-        });
-
-      }
-
-      activeInvestment.innerText =
-      "$" + activeTotal.toFixed(2);
-
-    });
-
-    /* LIVE TIMER REFRESH */
-
-    setInterval(()=>{
-
-      onValue(investmentRef,(snapshot)=>{
-
-        const data =
-        snapshot.val() || {};
-
-        const cards =
-        investmentTimers.querySelectorAll(".timer");
-
-        let index = 0;
-
-        Object.values(data).forEach(inv=>{
-
-          const remaining =
-          (inv.time + 86400000) - Date.now();
-
-          if(cards[index]){
-
-            cards[index].innerHTML =
-            formatTime(remaining);
-
-            if(remaining <= 0){
-              cards[index]
-              .classList.add("ready");
-            }
-
-          }
-
-          index++;
-
-        });
-
-      },{onlyOnce:true});
-
-    },1000);
-
-  }else{
-
-    window.location.href =
-    "login.html";
-
-  }
-
-});
-
-/* ================= LOGOUT ================= */
-
-document.getElementById("logoutBtn")
-.addEventListener("click",async()=>{
-
-  try{
-
-    await signOut(auth);
-
-    localStorage.removeItem(
-      "cryptoHubUserId"
-    );
-
-    window.location.href =
-    "login.html";
-
-  }catch(error){
-
-    liveStatus.innerText =
-    error.message;
-
-  }
-
-});
-
-</script>
 
 </body>
   </html>
